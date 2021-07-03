@@ -2,6 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>1.0.1</Version>
+    <Authors>Sergi Ortiz Gomez</Authors>
+    <Company>DrUalcman</Company>
+    <Description>Component Blazor extend the normal InputFile with all the necessary to upload files. Also have a InputFileHandler can be inherit and add more functions</Description>
+    <Copyright>Free</Copyright>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/drualcman/BlazorInputFileExtended</RepositoryUrl>
+    <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
+    <PackageTags>components, blazor, webassembly</PackageTags>
+    <PackageReleaseNotes>First released</PackageReleaseNotes>
   </PropertyGroup>
 
   
@@ -11,6 +23,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
