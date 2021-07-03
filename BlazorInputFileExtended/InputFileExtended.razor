@@ -1,0 +1,23 @@
+﻿@typeparam TResponse
+
+@if (MultiFile)
+{
+    <InputFile multiple OnChange="Files.UploadFile" class="@InputCss" title="@InputTitle" accept="@InputFileTypes" />
+}
+else
+{
+    <InputFile OnChange="Files.UploadFile" class="@InputCss" title="@InputTitle" accept="@InputFileTypes" />
+}
+@if (ButtonShow)
+{
+    <button class="@ButtonCss" @onclick="Save" title="@ButtonTitle">@ButtonText</button>
+}
+
+@if (IsImage && ShowPreview && FileBytes is not null)
+{
+    <figure class="@PreviewWrapperCss">
+        <img src="data:image;base64,@Convert.ToBase64String(FileBytes)" class="@FileCss" />
+    </figure>
+}
+
+<label>@ErrorMessages</label>
