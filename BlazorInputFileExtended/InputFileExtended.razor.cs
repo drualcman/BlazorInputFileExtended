@@ -91,6 +91,9 @@ namespace BlazorInputFileExtended
         /// CSS class for the image file
         /// </summary>
         [Parameter] public string FileCss { get; set; }
+        /// <summary>
+        /// Store the bytes[] for the last image uploaded
+        /// </summary>
         public byte[] FileBytes = null;
         #endregion
 

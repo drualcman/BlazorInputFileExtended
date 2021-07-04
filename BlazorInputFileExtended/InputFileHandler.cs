@@ -188,6 +188,13 @@ namespace BlazorInputFileExtended
                             OnUploadError(this, new ArgumentException($"Max files can be selected is {this.MaxAllowedFiles}", "UploadFile"));
                         }
                     }
+                    else if (this.Count >= this.MaxAllowedFiles)
+                    {
+                        if (OnUploadError is not null)
+                        {
+                            OnUploadError(this, new ArgumentException($"Max files [{this.MaxAllowedFiles}] already selected. For upload more files please remove some.", "UploadFile"));
+                        }
+                    }
                     else
                     {
                         if (this.MaxAllowedFiles == 1)          //if only allowed 1 file always reset the dictionary
