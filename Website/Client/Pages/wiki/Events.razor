@@ -1,0 +1,59 @@
+﻿@page "/wiki/events"
+
+<h1>Events</h1>
+<ul>
+    <li><strong>OnUploadedFile:</strong> When each file is uploaded. Returns <i>FileUploadEventArgs</i>.</li>
+    <li><strong>OnUploadComleted:</strong> When all files is uploaded. Returns <i>FilesUploadEventArgs</i>.</li>
+    <li><strong>OnError:</strong> When some exception. Returns <i>ArgumentException</i>.</li>
+    <li><strong>OnSave:</strong> When click on <i><strong>SAVE</strong> button</i>. Returns <i>TResponse</i> with the model from the response.</li>
+</ul>
+
+<h2>Arguments return objects</h2>
+<h3>OnUploadedFile</h3>
+<code>
+    /// Return file name and file stream per each file uploaded<br />
+    public class FileUploadEventArgs : EventArgs<br />
+    {<br />
+        /// File uploaded with all the data<br />
+        public FileUploadContent File { get; set; }<br />
+        /// Index in the object<br />
+        public int FileIndex { get; set; }<br />
+        /// Action used<br />
+        public string Action { get; set; }<br />
+    }
+</code>
+<h3>OnUploadComleted</h3>
+<code>
+    /// Return all files uploaded<br />
+    public class FilesUploadEventArgs : EventArgs<br />
+    {<br />
+        /// Files uploaded<br />
+        public SortedDictionary&lt;int, FileUploadContent&gt; Files { get; set; }<br />
+        /// Total size of all the files uploated<br />
+        public long Size { get; set; }<br />
+        /// Number of the files uploated<br />
+        public int Count { get; set; }<br />
+        /// Action used<br />
+        public string Action { get; set; }<br />
+    }
+</code>
+<h4>Auxsiliar object content the file</h4>
+<code>
+    /// Manage the file upload<br />
+    public class FileUploadContent<br />
+    {<br />
+        /// The name of the file as specified by the browser.<br />
+        public string Name { get; set; }<br />
+        /// The last modified date as specified by the browser.<br />
+        public DateTimeOffset LastModified { get; set; }<br />
+        /// The size of the file in bytes as specified by the browser.<br />
+        public long Size { get; set; }<br />
+        /// The MIME type of the file as specified by the browser.<br />
+        public string ContentType { get; set; }<br />
+        /// File bites<br />
+        public StreamContent FileStreamContent { get; set; }<br />
+        /// Get the bytes from the stream<br />
+        public async Task&lt;byte[]&gt; GetFileBytes() =><br />
+        await FileStreamContent.ReadAsByteArrayAsync();<br />
+    }
+</code>

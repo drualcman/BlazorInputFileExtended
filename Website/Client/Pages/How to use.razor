@@ -1,0 +1,82 @@
+﻿@page "/how-to-use"
+
+<h1>How to use</h1>
+<h2>Upload Images</h2>
+<p>This example is how to show the input file for upload images.</p>
+<p>
+    <code>
+        &lt;InputFileExtended TResponse="bool"
+        <br />
+        EndPoint="upload"
+        <br />
+        IsImage="true"
+        <br />
+        ShowPreview="true"
+        <br />
+        OnSave="Save"
+        <br />
+        OnError="Error"
+        <br />
+        OnUploadedFile="UploadFile"
+        <br />
+        OnUploadComleted="Completed"
+        <br />
+        MultiFile="true" /&gt;
+        <br />
+    </code>
+    </p>
+<p>
+    <code>
+        @@code{
+        <br />
+        string Messages;
+        <br />
+        void Save(bool result)
+        <br />
+        {
+        <br />
+        if (result)
+        <br />
+        {
+        <br />
+        Messages = "All good.";
+        <br />
+        }
+        <br />
+        else
+        <br />
+        {
+        <br />
+        Messages = "Oops! Some is wrong.";
+        <br />
+        }
+        <br />
+        }
+        <br />
+        void Completed(FilesUploadEventArgs e)
+        <br />
+        {
+        <br />
+        Messages = $"{e.Count} files with total {e.Size} bytes {e.Action}";
+        <br />
+        }
+        <br />
+        void UploadFile(FileUploadEventArgs e)
+        <br />
+        {
+        <br />
+        Messages = $"File {e.File.Name} with size {e.File.Size} {e.Action}";
+        <br />
+        }
+        <br />
+        void Error(ArgumentException e)
+        <br />
+        {
+        <br />
+        Messages = e.Message;
+        <br />
+        }
+        <br />
+        }
+    </code>
+</p>

@@ -1,0 +1,37 @@
+﻿@page "/wiki/properties"
+
+<h1>Properties</h1>
+<h2>Upload management</h2>
+<ul>
+    <li><strong>MultiFile:</strong> Indicates can accept multiple files on the selection box.</li>
+    <li><strong>MaxUploatedFiles:</strong> Indicates how many files can be selected. Default <i>5</i>.</li>
+    <li><strong>MaxFileSize:</strong> Indicates maximum file size per each file selected. Default <i>512000 bytes</i>.</li>
+</ul>
+<h2>Input formating</h2>
+<ul>
+    <li><strong>InputCss:</strong> Set the CSS to format the input file tag.</li>
+    <li><strong>InputTitle:</strong> Set the title when the user hover the input file tag.</li>
+    <li><strong>InputFileTypes:</strong> Indicates what kind of files can be selected. Ex: <i>images/*</i>.</li>
+</ul>
+<h2>Button formating</h2>
+<ul>
+    <li><strong>ButtonShow:</strong> Button to upload can be hide if you want to manage externally. Default <i>true</i>.</li>
+    <li><strong>ButtonCss:</strong> Set the CSS to format the button.</li>
+    <li><strong>ButtonText:</strong> Set the text on the button.</li>
+    <li><strong>ButtonTitle:</strong> Set the title when the user hover the button.</li>
+</ul>
+<h2>Preview setup <i>only for images</i></h2>
+<ul>
+    <li><strong>IsImage:</strong> Indicate the files to select is images. Default <i>false</i>.</li>
+    <li><strong>ShowPreview:</strong> Indicates if need to show a preview for the file selected. Default <i>false</i></li>
+    <li><strong>PreviewWrapperCss:</strong> Set the CSS to format the wrapper for the figure tag content the image. Default <i>image</i></li>
+    <li><strong>FileCss:</strong> Set the CSS to format the image tag.</li>
+    <li><strong>FileBytes:</strong> Store the byte[] about the last image selected.</li>
+</ul>
+<h2>Post actions</h2>
+<p>If you want to upload files with some other data, send the model data.</p>
+<ul>
+    <li><strong>FormData:</strong> Object <i>MultipartFormDataContent</i> with the form data to send with the files.</li>
+    <li><strong>FormField:</strong> Indicates the field form name to send the files. Default <i>files</i></li>
+    <li><strong>EndPoint:</strong> Indicate the URL to use for the post action. If it's not setup return a event error if try to upload images.</li>
+</ul>
