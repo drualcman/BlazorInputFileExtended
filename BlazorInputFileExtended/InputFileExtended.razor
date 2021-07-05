@@ -2,11 +2,11 @@
 
 @if (MultiFile)
 {
-    <InputFile multiple OnChange="Files.UploadFile" class="@InputCss" title="@InputTitle" accept="@InputFileTypes" />
+    <InputFile multiple @ref="MultipleFile" OnChange="Files.UploadFile" class="@InputCss" title="@InputTitle" accept="@InputFileTypes" />
 }
 else
 {
-    <InputFile OnChange="Files.UploadFile" class="@InputCss" title="@InputTitle" accept="@InputFileTypes" />
+    <InputFile @ref="SingleFile" OnChange="Files.UploadFile" class="@InputCss" title="@InputTitle" accept="@InputFileTypes" />
 }
 @if (ButtonShow)
 {

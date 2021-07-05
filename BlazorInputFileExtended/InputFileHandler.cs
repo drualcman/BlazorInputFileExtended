@@ -404,6 +404,24 @@ namespace BlazorInputFileExtended
 
         }
         #endregion
+
+        /// <summary>
+        /// Remove all the files into the object
+        /// </summary>
+        public void Clean()
+        {
+            int c = this.Count;
+            for (int i = 0; i < c; i++)
+            {
+                Remove(i);
+            }
+            UploadedImage = null;
+            FileName = string.Empty;
+            if (OnUploaded is not null)
+            {
+                OnUploaded(this, new FilesUploadEventArgs { Files = null, Count = 0, Size = 0, Action = "Clean" });
+            }
+        }
         #endregion
 
         #region methods mange object
@@ -558,19 +576,30 @@ namespace BlazorInputFileExtended
             }
             try
             {
-                using HttpResponseMessage result = await HttpClient.PostAsync(urlEndPoint, content);
-                if (result.IsSuccessStatusCode)
+                if (this.Size > 0)
                 {
-                    TModel response = await result.Content.ReadFromJsonAsync<TModel>();
-                    return response;
+                    using HttpResponseMessage result = await HttpClient.PostAsync(urlEndPoint, content);
+                    if (result.IsSuccessStatusCode)
+                    {
+                        TModel response = await result.Content.ReadFromJsonAsync<TModel>();
+                        return response;
+                    }
+                    else
+                    {
+                        if (OnAPIError is not null)
+                        {
+                            //decode the error from the call of the end point                        
+                            string jsonElement = await result.Content.ReadAsStringAsync();
+                            OnAPIError(this, new ArgumentException($"{urlEndPoint}: {result.ReasonPhrase} [{(int)result.StatusCode} {result.StatusCode}]: {jsonElement}", "UploadFilesAsync"));
+                        }
+                        return default(TModel);
+                    }
                 }
                 else
                 {
-                    if (OnAPIError is not null)
+                    if (OnUploadError is not null)
                     {
-                        //decode the error from the call of the end point                        
-                        string jsonElement = await result.Content.ReadAsStringAsync();
-                        OnAPIError(this, new ArgumentException($"{urlEndPoint}: {result.ReasonPhrase} [{(int)result.StatusCode} {result.StatusCode}]: {jsonElement}", "UploadFilesAsync"));
+                        _ = OnUploadError(this, new ArgumentException($"No files to upload", "UploadAsync"));
                     }
                     return default(TModel);
                 }

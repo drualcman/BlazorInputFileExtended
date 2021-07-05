@@ -22,8 +22,6 @@ namespace Website.Client.Pages.demos
             SaveMessage = "Uploading image ... (Simulate 3 seconds)";
             await Task.Delay(3000);
             SaveMessage = "Image Uploaded!";
-            UploadImage.FileBytes = null;
-
         }
 
         void Error(ArgumentException e) => ErrorsMessage = e.Message;

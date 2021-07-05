@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -35,6 +36,11 @@ namespace BlazorInputFileExtended
         /// Maximum file size per each file
         /// </summary>
         [Parameter] public long MaxFileSize { get; set; } = 512000;
+
+        /// <summary>
+        /// Clean all files after success upload
+        /// </summary>
+        [Parameter] public bool CleanOnSuccessUpload { get; set; }
         #endregion
 
         #region input formating
@@ -115,25 +121,20 @@ namespace BlazorInputFileExtended
         InputFileHandler Files;
         string ErrorMessages;
         byte[] FileBytes = null;
+        InputFile MultipleFile;
+        InputFile SingleFile;
         #endregion
 
         #region methods
+        /// <summary>
+        /// Clean all the files
+        /// </summary>
         public void Clean()
         {
-            int c = Files.Count;
-            for (int i = 0; i < c; i++)
-            {
-                Files.Remove(i);
-            }
+            SingleFile = new InputFile();
+            MultipleFile = new InputFile();
+            Files.Clean();
             FileBytes = null;
-            FilesUploadEventArgs e = new FilesUploadEventArgs
-            {
-                Files = null,
-                Count = 0,
-                Size = 0,
-                Action = "Clean",
-            };
-            OnUploadComleted.InvokeAsync(e);
         }
         #endregion
 
@@ -213,6 +214,7 @@ namespace BlazorInputFileExtended
             {
                 if (FormData is not null) await OnSave.InvokeAsync(await Files.UploadAsync<TResponse>(EndPoint, FormData, !MultiFile));
                 else await OnSave.InvokeAsync(await Files.UploadAsync<TResponse>(EndPoint, !MultiFile));
+                if (CleanOnSuccessUpload) Clean();
             }
         }
         #endregion
