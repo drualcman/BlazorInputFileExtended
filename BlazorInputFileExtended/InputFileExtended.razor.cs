@@ -91,10 +91,6 @@ namespace BlazorInputFileExtended
         /// CSS class for the image file
         /// </summary>
         [Parameter] public string FileCss { get; set; }
-        /// <summary>
-        /// Store the bytes[] for the last image uploaded
-        /// </summary>
-        public byte[] FileBytes = null;
         #endregion
 
         #region post actions
@@ -118,6 +114,27 @@ namespace BlazorInputFileExtended
         #region variables
         InputFileHandler Files;
         string ErrorMessages;
+        byte[] FileBytes = null;
+        #endregion
+
+        #region methods
+        public void Clean()
+        {
+            int c = Files.Count;
+            for (int i = 0; i < c; i++)
+            {
+                Files.Remove(i);
+            }
+            FileBytes = null;
+            FilesUploadEventArgs e = new FilesUploadEventArgs
+            {
+                Files = null,
+                Count = 0,
+                Size = 0,
+                Action = "Clean",
+            };
+            OnUploadComleted.InvokeAsync(e);
+        }
         #endregion
 
         #region setup
@@ -200,6 +217,9 @@ namespace BlazorInputFileExtended
         }
         #endregion
         #endregion
+
+        
+
         public void Dispose()
         {
             Files.Dispose();
