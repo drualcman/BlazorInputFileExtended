@@ -9,7 +9,7 @@ namespace BlazorInputFileExtended
     /// InputFile Extension with all necessary to upload files.
     /// </summary>
     /// <typeparam name="TResponse">Model used when post action after upload file. This is the model returned the API call.</typeparam>
-    public partial class InputFileExtended<TResponse> : ComponentBase
+    public partial class InputFileExtended<TResponse> : ComponentBase, IDisposable
     {
         #region injections
         /// <summary>
@@ -200,6 +200,9 @@ namespace BlazorInputFileExtended
         }
         #endregion
         #endregion
-
+        public void Dispose()
+        {
+            Files.Dispose();
+        }
     }
 }
