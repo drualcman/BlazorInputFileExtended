@@ -11,6 +11,9 @@ namespace BlazorInputFileExtended
     public class InputFileHandler : IDisposable
     {
         #region variables
+        /// <summary>
+        /// Need to use the post actions
+        /// </summary>
         protected HttpClient HttpClient;
 
         int MaxAllowedFiles;
@@ -30,7 +33,7 @@ namespace BlazorInputFileExtended
         /// <param name="httpClient"></param>
         /// <param name="maxFiles">Maximum files allowed to upload</param>
         /// <param name="maxSize">Maximum file size to upload</param>
-        /// <param name="formField">form content name to upload the file</param>
+        /// <param name="formField">Form content name to upload the file</param>
         public InputFileHandler(HttpClient httpClient = null, int maxFiles = 5, long maxSize = 512000, string formField = "files")
         {
             if (httpClient is not null) HttpClient = httpClient;
@@ -419,10 +422,14 @@ namespace BlazorInputFileExtended
         /// </summary>
         /// <param name="maxSize"></param>
         public void SetMaxFileSize(long maxSize) => MaxAllowedSize = maxSize;
+        /// <summary>
+        /// Set the field name for the form when upload files
+        /// </summary>
+        /// <param name="field"></param>
         public void SetFormField(string field) => FormField = field;
         #endregion
 
-        #region api calls
+        #region HttpClient calls
         /// <summary>
         /// Upload a image using the endpoint send
         /// </summary>

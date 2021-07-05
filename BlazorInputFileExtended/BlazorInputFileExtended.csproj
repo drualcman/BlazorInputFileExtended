@@ -14,6 +14,7 @@
     <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
     <PackageTags>components, blazor, webassembly</PackageTags>
     <PackageReleaseNotes>First released</PackageReleaseNotes>
+    <RepositoryType>Component Library</RepositoryType>
   </PropertyGroup>
 
   

@@ -1,3 +1,73 @@
 ﻿@page "/wiki/handler"
 
-<h2>Handler</h2>
+<h2>Namespace BlazorInputFileExtended</h2>
+<h1>InputFileHandler</h1>
+<p>You can create you own handler inherit from this to add, for example, post actions with authentication. Implement the interface IDisposable.</p>
+<h3>Protected variables</h3>
+<code>
+    protected HttpClient HttpClient;<br />
+    protected SortedDictionary&lt;int, FileUploadContent&gt; UploadedFiles;<br />
+</code>
+<h3>Constructor</h3>
+<code>public InputFileHandler(HttpClient httpClient = null, int maxFiles = 5, long maxSize = 512000, string formField = "files")</code>
+<ul>
+    <li><strong>httpClient:</strong> Inject the service</li>
+    <li><strong>maxFiles:</strong> Maximum files allowed to upload</li>
+    <li><strong>maxSize:</strong> Maximum file size to upload</li>
+    <li><strong>formField:</strong> Form content name to upload the file</li>
+</ul>
+<h3>Properties</h3>
+<code>
+    public FileUploadContent this[int index]<br />
+    public FileUploadContent this[string fileName]<br />
+    public FileUploadContent First<br />
+    public FileUploadContent Last<br />
+    public int Count<br />
+    public long Size<br />
+</code>
+<h3>Fields</h3>
+<code>
+    public StreamContent UploadedImage;<br />
+    public string FileName;<br />
+</code>
+<h3>Events</h3>
+<code>
+    public delegate Task UploadEventHandler(object sender, FileUploadEventArgs e);<br />
+    public delegate Task UploadsEventHandler(object sender, FilesUploadEventArgs e);<br />
+    public delegate Task UploadErrorEventHandler(object sender, ArgumentException e);<br />
+    public delegate void APIErrorEventHandler(object sender, ArgumentException e);<br />
+    <br />
+    public virtual event UploadEventHandler OnUploadFile;<br />
+    public virtual event UploadsEventHandler OnUploaded;<br />
+    public virtual event UploadErrorEventHandler OnUploadError;<br />
+    public virtual event APIErrorEventHandler OnAPIError;<br/>
+</code>
+<h3>Methods</h3>
+<code>
+    public IEnumerator&lt;FileUploadContent&gt; GetEnumerator()<br />
+    public void UploadFile(InputFileChangeEventArgs e)<br />
+    <br />
+    public void Add(FileUploadContent image)<br />
+    public void Update(int index, FileUploadContent image)<br />
+    public bool Update(string fileName, FileUploadContent image)<br />
+    public bool Remove(int index)<br />
+    public bool Remove(string fileName)<br />
+    <br />
+    public void SetHttpClient(HttpClient httpClient)<br />
+    public void SetMaxFiles(int maxfile)<br />
+    public void SetMaxFileSize(long maxSize)<br />
+    public void SetFormField(string field)<br />
+</code>
+<h3>HttpClient calls</h3>
+<code>
+    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, bool ignoreFiles = true)
+    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, InputFileChangeEventArgs files)
+    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, MultipartFormDataContent content)
+    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, MultipartFormDataContent content, bool ignoreFiles)
+    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, MultipartFormDataContent content, InputFileChangeEventArgs files)
+    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, MultipartFormDataContent content, StreamContent file, string fileName = "")
+    <br />
+    public async Task&lt;bool&gt; DeleteAsync(string endPoint, int index)
+    public async Task&lt;bool&gt; DeleteAsync(string endPoint, string filename)
+</code>
+
