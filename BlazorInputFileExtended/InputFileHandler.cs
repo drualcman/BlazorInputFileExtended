@@ -179,7 +179,7 @@ namespace BlazorInputFileExtended
         /// </summary>
         public event APIErrorEventHandler OnAPIError;
 
-        #region expose events to derivated classes
+        #region expose events to derivate class
         /// <summary>
         /// Trigger the OnUploadFile from a derivated class
         /// </summary>

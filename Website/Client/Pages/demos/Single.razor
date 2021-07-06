@@ -4,111 +4,104 @@
 <p>In this page we will simulate how to upload a image file. This page don't upload really any file so you can see the functionality.</p>
 <p>Is setup like multiple files but limited to only 1, you can see the error event response if you try to select more than 1 file</p>
 
-<p>
-    Personalize your texts
-    <div class="row">
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Select File button text" @bind="SelectText">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Upload Button text" @bind="UploadText">
-        </div>
+<div class="form-row">
+    <p>
+        Personalize your texts
+    </p>
+    <div class="form-group col">
+        <label>Choose file text</label>
+        <input type="text" class="form-control" placeholder="Select File button text" @bind="SelectText">
     </div>
-</p>
-<p>Messages</p>
-<ol>
-    <li><strong>Upload File:</strong> @UploadMessage</li>
-    <li><strong>Complete:</strong> @CompletedMessage</li>
-    <li><strong>Save:</strong> @SaveMessage</li>
-    <li><strong>Error:</strong> @ErrorsMessage</li>
-</ol>
-<InputFileExtended
-                   TResponse="bool"
-                   FormAction="files"
-                   IsImage="true"
-                   ShowPreview="true"
-                   MaxUploatedFiles="1"
-                   MaxFileSize="512000"
-                   MultiFile="true"
-                   CleanOnSuccessUpload="true"
-                   OnError="Error"
-                   OnUploadedFile="UploadFile"
-                   OnUploadComleted="Completed"
-                   OnSave="Save"
-                   ButtonCss="btn btn-primary"
-                   ButtonTitle="Click here to upload the file" >
-    <InputContent>@SelectText</InputContent>
-    <ButtonContent>@UploadText</ButtonContent>
-</InputFileExtended>
+    <div class="form-group col">
+        <label>Upload button text</label>
+        <input type="text" class="form-control" placeholder="Upload Button text" @bind="UploadText">
+    </div>
 
-<p>
-    <code>
-        &lt;InputFileExtended
-        <br />
-        TResponse="bool"
-        <br />
-        FormAction="simulate"
-        <br />
-        IsImage="true"
-        <br />
-        ShowPreview="true"
-        <br />
-        OnSave="Save"
-        <br />
-        OnError="Error"
-        <br />
-        OnUploadedFile="UploadFile"
-        <br />
-        OnUploadComleted="Completed"
-        <br />
-        MaxUploatedFiles="1"
-        <br />
-        MaxFileSize=512000
-        <br />
-        CleanOnSuccessUpload="true"
-        <br />
-        MultiFile="true" /&gt;
-        <br />
-        ButtonCss="btn btn-primary"
-        <br />
-        ButtonText="Upload"
-        <br />
-        ButtonTitle="Click here to upload the file"
-        <br />
-    </code>
-</p>
-<h2>How is work</h2>
-<ol>
-    <li>Declared UploadImage to do a reference with the component. <i>This is nor required, it's only for the demo can clean the file preview after upload.</i></li>
-    <li>In the event Save clear the <strong>Field</strong> UploadImage.FileBytes to remove the preview after upload.</li>
-    <li>In the event Error shows all the errors can happen. If you select 2 files or file is more than 521Kb you can see the example.</li>
-    <li>In the event UploadFile show the data from the image selected after load the image.</li>
-    <li>In the event Completed show how many files are load and the total size about all the files.</li>
-</ol>
-<p>Code</p>
-<code>
-    string ErrorsMessage;<br />
-    string UploadMessage;<br />
-    string CompletedMessage;<br />
-    string SaveMessage;<br />
-    <br />
-    InputFileExtended&lt;bool&gt;<br />
-    <br />
-    UploadImage;<br />
-    <br />
-    async Task Save()<br />
-    {<br />
-    SaveMessage = "Uploading image ... (Simulate 3 seconds)";<br />
-    await Task.Delay(3000);<br />
-    SaveMessage = "Image Uploaded!";<br />
-    UploadImage.FileBytes = null;<br />
-    }<br />
-    <br />
-    void Error(ArgumentException e) => ErrorsMessage = e.Message;<br />
-    <br />
-    void UploadFile(FileUploadEventArgs e) =><br />
-    UploadMessage = $"File name: {e.File.Name} File type: {e.File.ContentType} Size: {e.File.Size} Action: {e.Action}";<br />
-    <br />
-    void Completed(FilesUploadEventArgs e) =><br />
-    CompletedMessage = $". Files loadted: {e.Count} with total size: {e.Size} Action: {e.Action}";<br />
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <InputFileExtended TResponse="bool"
+                           FormAction="files"
+                           IsImage="true"
+                           ShowPreview="true"
+                           MaxUploatedFiles="1"
+                           MaxFileSize="512000"
+                           MultiFile="true"
+                           CleanOnSuccessUpload="true"
+                           OnError="Error"
+                           OnUploadedFile="UploadFile"
+                           OnUploadComleted="Completed"
+                           OnSave="Save"
+                           ButtonCss="btn btn-primary"
+                           ButtonTitle="Click here to upload the file">
+            <InputContent>@SelectText</InputContent>
+            <ButtonContent>@UploadText</ButtonContent>
+        </InputFileExtended>
+        <p>Code</p>
+        <pre class="pre-scrollable">
+<code>&lt;InputFileExtended
+            TResponse="bool"
+            FormAction="simulate"
+            IsImage="true"
+            ShowPreview="true"
+            MaxUploatedFiles="1"
+            MaxFileSize=512000
+            CleanOnSuccessUpload="true"
+            MultiFile="true"
+            ButtonCss="btn btn-primary"
+            ButtonText="Upload"
+            ButtonTitle="Click here to upload the file"
+            OnSave="Save"
+            OnError="Error"
+            OnUploadedFile="UploadFile"
+            OnUploadComleted="Completed" /&gt;
+
+@@code{
+    string ErrorsMessage;
+    string UploadMessage;
+    string CompletedMessage;
+    string SaveMessage;
+
+    InputFileExtended&lt;bool&gt;
+    UploadImage;
+
+    async Task Save()
+    {
+        SaveMessage = "Uploading image ... (Simulate 3 seconds)";
+        await Task.Delay(3000);
+        SaveMessage = "Image Uploaded!";
+        UploadImage.FileBytes = null;
+    }
+
+    void Error(ArgumentException e) =>
+    ErrorsMessage = e.Message;
+
+    void UploadFile(FileUploadEventArgs e) =>
+    UploadMessage = $"File name: {e.File.Name} File type: {e.File.ContentType} Size: {e.File.Size} Action: {e.Action}";
+
+    void Completed(FilesUploadEventArgs e) =>
+    CompletedMessage = $". Files loadted: {e.Count} with total size: {e.Size} Action: {e.Action}";
+}
 </code>
+        </pre>
+
+    </div>
+    <div class="col">
+        <h2>How is work</h2>
+        <ol>
+            <li>Declared UploadImage to do a reference with the component. <i>This is nor required, it's only for the demo can clean the file preview after upload.</i></li>
+            <li>In the event Save clear the <strong>Field</strong> UploadImage.FileBytes to remove the preview after upload.</li>
+            <li>In the event Error shows all the errors can happen. If you select 2 files or file is more than 521Kb you can see the example.</li>
+            <li>In the event UploadFile show the data from the image selected after load the image.</li>
+            <li>In the event Completed show how many files are load and the total size about all the files.</li>
+        </ol>
+        <p>Messages</p>
+        <ol>
+            <li><strong>Upload File:</strong> @UploadMessage</li>
+            <li><strong>Complete:</strong> @CompletedMessage</li>
+            <li><strong>Save:</strong> @SaveMessage</li>
+            <li><strong>Error:</strong> @ErrorsMessage</li>
+        </ol>
+    </div>
+</div>

@@ -4,10 +4,12 @@
 <h1>InputFileHandler</h1>
 <p>You can create you own handler inherit from this to add, for example, post actions with authentication. Implement the interface IDisposable.</p>
 <h3>Protected variables</h3>
+<pre>
 <code>
-    protected HttpClient HttpClient;<br />
-    protected SortedDictionary&lt;int, FileUploadContent&gt; UploadedFiles;<br />
+    protected HttpClient HttpClient;
+    protected SortedDictionary&lt;int, FileUploadContent&gt; UploadedFiles;
 </code>
+</pre>
 <h3>Constructor</h3>
 <code>public InputFileHandler(HttpClient httpClient = null, int maxFiles = 5, long maxSize = 512000, string formField = "files")</code>
 <ul>
@@ -17,49 +19,64 @@
     <li><strong>formField:</strong> Form content name to upload the file</li>
 </ul>
 <h3>Properties</h3>
+<pre>
 <code>
-    public FileUploadContent this[int index]<br />
-    public FileUploadContent this[string fileName]<br />
-    public FileUploadContent First<br />
-    public FileUploadContent Last<br />
-    public int Count<br />
-    public long Size<br />
+    public FileUploadContent this[int index]
+    public FileUploadContent this[string fileName]
+    public FileUploadContent First
+    public FileUploadContent Last
+    public int Count
+    public long Size
 </code>
+</pre>
 <h3>Fields</h3>
+<pre>
 <code>
-    public StreamContent UploadedImage;<br />
-    public string FileName;<br />
+    public StreamContent UploadedImage;
+    public string FileName;
 </code>
+</pre>
 <h3>Events</h3>
+<pre>
 <code>
-    public delegate Task UploadEventHandler(object sender, FileUploadEventArgs e);<br />
-    public delegate Task UploadsEventHandler(object sender, FilesUploadEventArgs e);<br />
-    public delegate Task UploadErrorEventHandler(object sender, ArgumentException e);<br />
-    public delegate void APIErrorEventHandler(object sender, ArgumentException e);<br />
-    <br />
-    public virtual event UploadEventHandler OnUploadFile;<br />
-    public virtual event UploadsEventHandler OnUploaded;<br />
-    public virtual event UploadErrorEventHandler OnUploadError;<br />
-    public virtual event APIErrorEventHandler OnAPIError;<br/>
+    public delegate Task UploadEventHandler(object sender, FileUploadEventArgs e);
+    public delegate Task UploadsEventHandler(object sender, FilesUploadEventArgs e);
+    public delegate Task UploadErrorEventHandler(object sender, ArgumentException e);
+    public delegate void APIErrorEventHandler(object sender, ArgumentException e);
+
+    public virtual event UploadEventHandler OnUploadFile;
+    public virtual event UploadsEventHandler OnUploaded;
+    public virtual event UploadErrorEventHandler OnUploadError;
+    public virtual event APIErrorEventHandler OnAPIError;
+
+    //To use from a derivate class
+    protected virtual void OnUploadFileEvent(object sender, FileUploadEventArgs e)
+    protected virtual void OnUploadedEvent(object sender, FilesUploadEventArgs e)
+    protected virtual void OnUploadErrorEvent(object sender, ArgumentException e)
+    protected virtual void OnAPIErrorEvent(object sender, ArgumentException e)
 </code>
+</pre>
 <h3>Methods</h3>
+<pre>
 <code>
-    public IEnumerator&lt;FileUploadContent&gt; GetEnumerator()<br />
-    public void UploadFile(InputFileChangeEventArgs e)<br />
-    public void Clean()<br />
-    <br />
-    public void Add(FileUploadContent image)<br />
-    public void Update(int index, FileUploadContent image)<br />
-    public bool Update(string fileName, FileUploadContent image)<br />
-    public bool Remove(int index)<br />
-    public bool Remove(string fileName)<br />
-    <br />
-    public void SetHttpClient(HttpClient httpClient)<br />
-    public void SetMaxFiles(int maxfile)<br />
-    public void SetMaxFileSize(long maxSize)<br />
-    public void SetFormField(string field)<br />
+    public IEnumerator&lt;FileUploadContent&gt; GetEnumerator()
+    public void UploadFile(InputFileChangeEventArgs e)
+    public void Clean()
+
+    public void Add(FileUploadContent image)
+    public void Update(int index, FileUploadContent image)
+    public bool Update(string fileName, FileUploadContent image)
+    public bool Remove(int index)
+    public bool Remove(string fileName)
+
+    public void SetHttpClient(HttpClient httpClient)
+    public void SetMaxFiles(int maxfile)
+    public void SetMaxFileSize(long maxSize)
+    public void SetFormField(string field)
 </code>
+</pre>
 <h3>HttpClient calls</h3>
+<pre>
 <code>
     public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, bool ignoreFiles = true)
     public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, InputFileChangeEventArgs files)
@@ -67,8 +84,9 @@
     public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, MultipartFormDataContent content, bool ignoreFiles)
     public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, MultipartFormDataContent content, InputFileChangeEventArgs files)
     public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, MultipartFormDataContent content, StreamContent file, string fileName = "")
-    <br />
+
     public async Task&lt;bool&gt; DeleteAsync(string endPoint, int index)
     public async Task&lt;bool&gt; DeleteAsync(string endPoint, string filename)
 </code>
+</pre>
 

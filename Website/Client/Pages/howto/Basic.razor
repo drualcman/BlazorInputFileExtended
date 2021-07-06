@@ -1,31 +1,31 @@
 ﻿@page "/how-to-use/basic"
 
 <h1>How to use</h1>
-<h2>Basic</h2>
-<div class="col">
-    <InputFileExtended TResponse="bool"
-                       FormAction="files"
-                       CleanOnSuccessUpload="true" />
-</div>
-<div class="col">
-    <h3>Properties</h3>
-    <ul>
-        <li><strong>TResponse:</strong> Model to use on the response from the form action.</li>
-        <li><strong>FormAction</strong> Action to call on the upload button. Default field <i>files</i></li>
-    </ul>
-    <p>
-        <code>
-            &lt;InputFileExtended TResponse="bool"
-            <br />
-            FormAction="upload" /&gt;
-            <br />
-        </code>
-    </p>
-    <p>
-        <code>
-            @@code{<br />
-            //No need nothing else<br />
-            }
-        </code>
-    </p>
+<p>This is the most basic use. Only need to set the action form and the response model from the action form to upload files.</p>
+<div class="row">
+    <div class="col">
+        <h2>Basic</h2>
+        <InputFileExtended TResponse="bool"
+                           FormAction="files"
+                           CleanOnSuccessUpload="true"
+                           OnSave="Save" />
+        <p>@Messages</p>
+    </div>
+    <div class="col">
+        <h2>Properties</h2>
+        <ul>
+            <li><strong>TResponse:</strong> Model to use on the response from the form action.</li>
+            <li><strong>FormAction</strong> Action to call on the upload button. Default field <i>files</i></li>
+        </ul>
+        <p>Code</p>
+        <pre>
+<code>&lt;InputFileExtended TResponse="bool"
+    FormAction="upload" /&gt;
+
+@@code{
+    //No need nothing else
+}
+</code>
+        </pre>
+    </div>
 </div>
