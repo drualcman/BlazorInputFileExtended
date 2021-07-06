@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace BlazorInputFileExtended
 {
+    /// <summary>
+    /// Manage upload files
+    /// </summary>
     public class InputFileHandler : IDisposable
     {
         #region variables
@@ -370,6 +373,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Update image by index
         /// </summary>
+        /// <param name="index"></param>
         /// <param name="image"></param>
         public void Update(int index, FileUploadContent image)
         {
@@ -541,6 +545,7 @@ namespace BlazorInputFileExtended
         /// </summary>
         /// <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
         /// <param name="urlEndPoint"></param>
+        /// <param name="files"></param>
         /// <returns></returns>
         public async Task<TModel> UploadAsync<TModel>(string urlEndPoint, InputFileChangeEventArgs files) =>
             await UploadAsync<TModel>(urlEndPoint, new MultipartFormDataContent(), files);
@@ -722,7 +727,10 @@ namespace BlazorInputFileExtended
 
         #region dispose
         private bool disposedValue;
-
+        /// <summary>
+        /// Overwride the dispose to clean the object
+        /// </summary>
+        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -741,10 +749,11 @@ namespace BlazorInputFileExtended
             }
         }
 
+        /// <summary>
+        /// Disponse action
+        /// </summary>
         public void Dispose()
         {
-
-            Console.WriteLine("Hizo Dispose");
             // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
             Dispose(disposing: true);
             GC.SuppressFinalize(this);

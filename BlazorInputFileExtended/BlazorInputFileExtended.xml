@@ -1,0 +1,548 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BlazorInputFileExtended</name>
+    </assembly>
+    <members>
+        <member name="T:BlazorInputFileExtended.InputFileExtended`1">
+            <summary>
+            InputFile Extension with all necessary to upload files.
+            </summary>
+            <typeparam name="TResponse">Model used when post action after upload file. This is the model returned the API call.</typeparam>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.Client">
+            <summary>
+            If want to use the upload must be have HttpClient.
+            That's why is automatic injected
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.MultiFile">
+            <summary>
+            Set if we will accept multiple files uploaded or not
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.MaxUploatedFiles">
+            <summary>
+            Number maximum of files can be uploaded
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.MaxFileSize">
+            <summary>
+            Maximum file size per each file
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.CleanOnSuccessUpload">
+            <summary>
+            Clean all files after success upload
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.InputCss">
+            <summary>
+            CSS InputFile
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.InputTitle">
+            <summary>
+            InputFile title
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.InputFileTypes">
+            <summary>
+            File types accepted. Example: image/*
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.ButtonShow">
+            <summary>
+            Show the save button
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.ButtonCss">
+            <summary>
+            CSS button save
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.ButtonText">
+            <summary>
+            Button text
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.ButtonTitle">
+            <summary>
+            Button title
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.IsImage">
+            <summary>
+            Inicate if the file it's a image
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.ShowPreview">
+            <summary>
+            If IsImage = true this indicate if need to do a preview
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.PreviewWrapperCss">
+            <summary>
+            CSS class for the preview image wrapper. Default image
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.FileCss">
+            <summary>
+            CSS class for the image file
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.FormData">
+            <summary>
+            Form data to send in a post action with the files
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.FormField">
+            <summary>
+            Used when send in a post action, this indicate the field name are expecting
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.EndPoint">
+            <summary>
+            End point to call in a post action
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended`1.Clean">
+            <summary>
+            Clean all the files
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended`1.OnInitialized">
+            <summary>
+            Initialize the component
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended`1.OnParametersSet">
+            <summary>
+            Format the component with the properties
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.OnUploadedFile">
+            <summary>
+            When each file is uploaded
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.OnUploadComleted">
+            <summary>
+            When all files is uploaded
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.OnError">
+            <summary>
+            When some error occurs
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.OnSave">
+            <summary>
+            When some error occurs
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended`1.Dispose">
+            <summary>
+            Dispose action
+            </summary>
+        </member>
+        <member name="T:BlazorInputFileExtended.InputFileHandler">
+            <summary>
+            Manage upload files
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.InputFileHandler.HttpClient">
+            <summary>
+            Need to use the post actions
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.InputFileHandler.UploadedFiles">
+            <summary>
+            All files uploaded
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.#ctor(System.Net.Http.HttpClient,System.Int32,System.Int64,System.String)">
+            <summary>
+            Can upload files
+            </summary>
+            <param name="httpClient"></param>
+            <param name="maxFiles">Maximum files allowed to upload</param>
+            <param name="maxSize">Maximum file size to upload</param>
+            <param name="formField">Form content name to upload the file</param>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileHandler.Item(System.Int32)">
+            <summary>
+            Define the indexer to allow client code to use [] notation to access directly to the file. 
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileHandler.Item(System.String)">
+            <summary>
+            Define the indexer to allow client code to use [] notation to access directly to the file by file name. 
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileHandler.First">
+            <summary>
+            Return first image from the dictionary
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileHandler.Last">
+            <summary>
+            Return last image from the dictionary
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileHandler.Count">
+            <summary>
+            Return how many images have stored
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileHandler.Size">
+            <summary>
+            Return total file size uploaded
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.InputFileHandler.UploadedImage">
+            <summary>
+            Last File stream uploaded
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.InputFileHandler.FileName">
+            <summary>
+            Last File name uploaded
+            </summary>
+        </member>
+        <member name="T:BlazorInputFileExtended.InputFileHandler.UploadEventHandler">
+            <summary>
+            Delegate to manage OnUploadFile
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BlazorInputFileExtended.InputFileHandler.UploadsEventHandler">
+            <summary>
+            Delegate to manage OnUploaded
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BlazorInputFileExtended.InputFileHandler.UploadErrorEventHandler">
+            <summary>
+            Delegate to manage OnUploadError
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BlazorInputFileExtended.InputFileHandler.APIErrorEventHandler">
+            <summary>
+            Delegate to manage OnAPIError
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="E:BlazorInputFileExtended.InputFileHandler.OnUploadFile">
+            <summary>
+            Event to notify each file uploaded
+            </summary>
+        </member>
+        <member name="E:BlazorInputFileExtended.InputFileHandler.OnUploaded">
+            <summary>
+            Event to notify all files are uploaded
+            </summary>
+        </member>
+        <member name="E:BlazorInputFileExtended.InputFileHandler.OnUploadError">
+            <summary>
+            Event to notify errors occurs
+            </summary>
+        </member>
+        <member name="E:BlazorInputFileExtended.InputFileHandler.OnAPIError">
+            <summary>
+            Event to notify errors occurs uploading to the api
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.OnUploadFileEvent(System.Object,BlazorInputFileExtended.FileUploadEventArgs)">
+            <summary>
+            Trigger the OnUploadFile from a derivated class
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.OnUploadedEvent(System.Object,BlazorInputFileExtended.FilesUploadEventArgs)">
+            <summary>
+            Trigger the OnUploaded from a derivated class
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.OnUploadErrorEvent(System.Object,System.ArgumentException)">
+            <summary>
+            Trigger the OnUploadError from a derivated class
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.OnAPIErrorEvent(System.Object,System.ArgumentException)">
+            <summary>
+            Trigger the OnAPIError from a derivated class
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.GetEnumerator">
+            <summary>
+            Foreach enumerator to get all the files
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.UploadFile(Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs)">
+            <summary>
+            Use with InputFile OnChange
+            </summary>
+            <param name="e">InputFileChangeEventArgs</param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.Add(BlazorInputFileExtended.FileUploadContent)">
+            <summary>
+            Add a image
+            </summary>
+            <param name="image"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.Update(System.Int32,BlazorInputFileExtended.FileUploadContent)">
+            <summary>
+            Update image by index
+            </summary>
+            <param name="index"></param>
+            <param name="image"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.Update(System.String,BlazorInputFileExtended.FileUploadContent)">
+            <summary>
+            Update image by file name
+            </summary>
+            <param name="fileName"></param>
+            <param name="image"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.Remove(System.Int32)">
+            <summary>
+            Remove image from index
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.Remove(System.String)">
+            <summary>
+            Remove image from file name
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.Clean">
+            <summary>
+            Remove all the files into the object
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.SetHttpClient(System.Net.Http.HttpClient)">
+            <summary>
+            Set HttpClient if is not from the constructor
+            </summary>
+            <param name="httpClient"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.SetMaxFiles(System.Int32)">
+            <summary>
+            Set the max allowed files
+            </summary>
+            <param name="maxfile"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.SetMaxFileSize(System.Int64)">
+            <summary>
+            Set the max file size allowed
+            </summary>
+            <param name="maxSize"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.SetFormField(System.String)">
+            <summary>
+            Set the field name for the form when upload files
+            </summary>
+            <param name="field"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.UploadAsync``1(System.String,System.Boolean)">
+            <summary>
+            Upload a image using the endpoint send
+            </summary>
+            <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
+            <param name="urlEndPoint"></param>
+            <param name="ignoreFiles">Indicate if need to ignore the files or not</param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.UploadAsync``1(System.String,Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs)">
+            <summary>
+            Upload a image using the endpoint send
+            </summary>
+            <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
+            <param name="urlEndPoint"></param>
+            <param name="files"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.UploadAsync``1(System.String,System.Net.Http.MultipartFormDataContent)">
+            <summary>
+            Upload a image using the endpoint send
+            </summary>
+            <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
+            <param name="urlEndPoint"></param>
+            <param name="content">form content to send to the url end point</param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.UploadAsync``1(System.String,System.Net.Http.MultipartFormDataContent,System.Boolean)">
+            <summary>
+            Upload a image using the endpoint send
+            </summary>
+            <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
+            <param name="urlEndPoint"></param>
+            <param name="content">form content to send to the url end point</param>
+            <param name="ignoreFiles">Indicate if need to ignore the files or not</param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.UploadAsync``1(System.String,System.Net.Http.MultipartFormDataContent,Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs)">
+            <summary>
+            Upload a image using the endpoint send
+            </summary>
+            <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
+            <param name="urlEndPoint"></param>
+            <param name="content">form content to send to the url end point</param>
+            <param name="files"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.UploadAsync``1(System.String,System.Net.Http.MultipartFormDataContent,System.Net.Http.StreamContent,System.String)">
+            <summary>
+            Upload a image using the endpoint send
+            </summary>
+            <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
+            <param name="urlEndPoint"></param>
+            <param name="content">form content to send to the url end point</param>
+            <param name="file"></param>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.UploadFilesAsync``1(System.String,System.Net.Http.MultipartFormDataContent,System.Boolean)">
+            <summary>
+            Upload all files uploaded
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <param name="urlEndPoint"></param>
+            <param name="content"></param>
+            <param name="ignoreFiles">if need to ignore the dictionaty files</param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.DeleteAsync(System.String,System.Int32)">
+            <summary>
+            Delete the image
+            </summary>
+            <param name="endPoint">Must be return boolean the endpoint</param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.DeleteAsync(System.String,System.String)">
+            <summary>
+            Delete the image from the filename
+            </summary>
+            <param name="endPoint">Must be return boolean the endpoint</param>
+            <param name="filename"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.Dispose(System.Boolean)">
+            <summary>
+            Overwride the dispose to clean the object
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.Dispose">
+            <summary>
+            Disponse action
+            </summary>
+        </member>
+        <member name="T:BlazorInputFileExtended.FileUploadEventArgs">
+            <summary>
+            Return file name and file stream per each file uploaded
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadEventArgs.File">
+            <summary>
+            File uploaded with all the data
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadEventArgs.FileIndex">
+            <summary>
+            Index in the object
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadEventArgs.Action">
+            <summary>
+            Action used
+            </summary>
+        </member>
+        <member name="T:BlazorInputFileExtended.FilesUploadEventArgs">
+            <summary>
+            Return all files uploaded
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FilesUploadEventArgs.Files">
+            <summary>
+            Files uploaded
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FilesUploadEventArgs.Size">
+            <summary>
+            Total size of all the files uploated
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FilesUploadEventArgs.Count">
+            <summary>
+            Number of the files uploated
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FilesUploadEventArgs.Action">
+            <summary>
+            Action used
+            </summary>
+        </member>
+        <member name="T:BlazorInputFileExtended.FileUploadContent">
+            <summary>
+            Manage the file upload
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadContent.Name">
+            <summary>
+            The name of the file as specified by the browser.
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadContent.LastModified">
+            <summary>
+            The last modified date as specified by the browser.
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadContent.Size">
+            <summary>
+            The size of the file in bytes as specified by the browser.
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadContent.ContentType">
+            <summary>
+            The MIME type of the file as specified by the browser.
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadContent.FileStreamContent">
+            <summary>
+            File bites
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.FileUploadContent.GetFileBytes">
+            <summary>
+            Get the bytes from the stream
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

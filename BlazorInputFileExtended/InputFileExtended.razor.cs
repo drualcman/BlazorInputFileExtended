@@ -139,6 +139,9 @@ namespace BlazorInputFileExtended
         #endregion
 
         #region setup
+        /// <summary>
+        /// Initialize the component
+        /// </summary>
         protected override void OnInitialized()
         {
             Files = new InputFileHandler(Client);
@@ -147,6 +150,9 @@ namespace BlazorInputFileExtended
             Files.OnUploadError += Files_OnUploadError;
             Files.OnAPIError += Files_OnAPIError;
         }
+        /// <summary>
+        /// Format the component with the properties
+        /// </summary>
         protected override void OnParametersSet()
         {
             Files.SetMaxFiles(MaxUploatedFiles);
@@ -220,8 +226,9 @@ namespace BlazorInputFileExtended
         #endregion
         #endregion
 
-        
-
+                /// <summary>
+        /// Dispose action
+        /// </summary>
         public void Dispose()
         {
             Files.Dispose();

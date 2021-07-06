@@ -13,8 +13,13 @@
     <RepositoryUrl>https://github.com/drualcman/BlazorInputFileExtended</RepositoryUrl>
     <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
     <PackageTags>components, blazor, webassembly</PackageTags>
-    <PackageReleaseNotes>Add clean to remove all files loaded from the object</PackageReleaseNotes>
+    <PackageReleaseNotes>Add clean to remove all files loaded from the object.
+Add methods to manage the events from a derivated class.</PackageReleaseNotes>
     <RepositoryType>Component Library</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\DrUalcman\BlazorInputFileExtended\BlazorInputFileExtended\BlazorInputFileExtended.xml</DocumentationFile>
   </PropertyGroup>
 
   
