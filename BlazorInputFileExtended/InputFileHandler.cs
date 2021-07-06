@@ -128,9 +128,32 @@ namespace BlazorInputFileExtended
         #endregion
 
         #region events
+        /// <summary>
+        /// Delegate to manage OnUploadFile
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public delegate Task UploadEventHandler(object sender, FileUploadEventArgs e);
+        /// <summary>
+        /// Delegate to manage OnUploaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public delegate Task UploadsEventHandler(object sender, FilesUploadEventArgs e);
+        /// <summary>
+        /// Delegate to manage OnUploadError
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public delegate Task UploadErrorEventHandler(object sender, ArgumentException e);
+        /// <summary>
+        /// Delegate to manage OnAPIError
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public delegate void APIErrorEventHandler(object sender, ArgumentException e);
 
         /// <summary>
