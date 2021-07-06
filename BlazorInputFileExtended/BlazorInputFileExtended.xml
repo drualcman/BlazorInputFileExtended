@@ -51,6 +51,11 @@
             File types accepted. Example: image/*
             </summary>
         </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.InputText">
+            <summary>
+            Text to show for the file selection
+            </summary>
+        </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended`1.ButtonShow">
             <summary>
             Show the save button

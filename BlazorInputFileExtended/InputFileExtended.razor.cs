@@ -47,7 +47,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// CSS InputFile
         /// </summary>
-        [Parameter] public string InputCss { get; set; } = string.Empty;
+        [Parameter] public string InputCss { get; set; } = "InputFileExtendedButton";
 
         /// <summary>
         /// InputFile title
@@ -57,6 +57,11 @@ namespace BlazorInputFileExtended
         /// File types accepted. Example: image/*
         /// </summary>
         [Parameter] public string InputFileTypes { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Text to show for the file selection
+        /// </summary>
+        [Parameter] public string InputText { get; set; } = "Selecciona Archivo";
         #endregion
 
         #region button formating

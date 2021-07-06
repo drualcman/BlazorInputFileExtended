@@ -2,12 +2,27 @@
 
 @if (MultiFile)
 {
-    <InputFile multiple @ref="MultipleFile" OnChange="Files.UploadFile" class="@InputCss" title="@InputTitle" accept="@InputFileTypes" />
+<div class="InputFileExtendedBox">
+    <label class="@InputCss" for="InputFileExtendedMultiple">
+        <InputFile multiple @ref="MultipleFile" OnChange="Files.UploadFile"
+                   id="InputFileExtendedMultiple" title="@InputTitle" 
+                   accept="@InputFileTypes" />
+        @InputText
+    </label>
+</div>
 }
 else
 {
-    <InputFile @ref="SingleFile" OnChange="Files.UploadFile" class="@InputCss" title="@InputTitle" accept="@InputFileTypes" />
+<div class="InputFileExtendedBox">
+    <label class="@InputCss" for="InputFileExtendedSingle">
+        <InputFile @ref="SingleFile" OnChange="Files.UploadFile"
+                   id="InputFileExtendedSingle" title="@InputTitle" 
+                   accept="@InputFileTypes" />
+        @InputText
+    </label>
+</div>
 }
+
 @if (ButtonShow)
 {
     <button class="@ButtonCss" @onclick="Save" title="@ButtonTitle">@ButtonText</button>

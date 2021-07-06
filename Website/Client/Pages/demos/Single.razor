@@ -4,7 +4,9 @@
 <p>In this page we will simulate how to upload a image file. This page don't upload really any file so you can see the functionality.</p>
 <p>Is setup like multiple files but limited to only 1, you can see the error event response if you try to select more than 1 file</p>
 
-
+<p>Text to show in the butto to select files:
+    <InputText @bind-Value="TextFile"    
+</p>
 <p>Messages</p>
 <ol>
     <li><strong>Upload File:</strong> @UploadMessage</li>
@@ -16,6 +18,7 @@
                    TResponse="bool"
                    EndPoint="files"
                    IsImage="true"
+                   InputText="TextFile"
                    ShowPreview="true"
                    MaxUploatedFiles="1"
                    MaxFileSize="512000"

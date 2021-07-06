@@ -1,0 +1,9 @@
+﻿::deep input[type="file"] {
+    display: none;
+}
+
+.InputFileExtendedButton {
+    background: red;
+    padding: 5px;
+    border: 1px solid;
+}
