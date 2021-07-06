@@ -36,6 +36,16 @@
             Clean all files after success upload
             </summary>
         </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.SelectionText">
+            <summary>
+            Message to show when files are selected
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.SelectionCss">
+            <summary>
+            CSS class to personalize the selection text info
+            </summary>
+        </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended`1.InputCss">
             <summary>
             CSS InputFile
@@ -51,7 +61,7 @@
             File types accepted. Example: image/*
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.InputText">
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.InputContent">
             <summary>
             Text to show for the file selection
             </summary>
@@ -66,7 +76,7 @@
             CSS button save
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.ButtonText">
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.ButtonContent">
             <summary>
             Button text
             </summary>
@@ -106,7 +116,7 @@
             Used when send in a post action, this indicate the field name are expecting
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.EndPoint">
+        <member name="P:BlazorInputFileExtended.InputFileExtended`1.FormAction">
             <summary>
             End point to call in a post action
             </summary>

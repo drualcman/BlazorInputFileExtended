@@ -41,13 +41,24 @@ namespace BlazorInputFileExtended
         /// Clean all files after success upload
         /// </summary>
         [Parameter] public bool CleanOnSuccessUpload { get; set; }
+
+        /// <summary>
+        /// Message to show when files are selected
+        /// </summary>
+        [Parameter] public string SelectionText { get; set; }
+
+        /// <summary>
+        /// CSS class to personalize the selection text info
+        /// </summary>
+        [Parameter] public string SelectionCss { get; set; }
+
         #endregion
 
         #region input formating
         /// <summary>
         /// CSS InputFile
         /// </summary>
-        [Parameter] public string InputCss { get; set; } = "InputFileExtendedButton";
+        [Parameter] public string InputCss { get; set; } = "input-file button-file";
 
         /// <summary>
         /// InputFile title
@@ -61,7 +72,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Text to show for the file selection
         /// </summary>
-        [Parameter] public string InputText { get; set; } = "Selecciona Archivo";
+        [Parameter] public RenderFragment InputContent { get; set; }
         #endregion
 
         #region button formating
@@ -72,12 +83,12 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// CSS button save
         /// </summary>
-        [Parameter] public string ButtonCss { get; set; } = string.Empty;
+        [Parameter] public string ButtonCss { get; set; } = "input-file button-upload";
 
         /// <summary>
         /// Button text
         /// </summary>
-        [Parameter] public string ButtonText { get; set; } = "Save";
+        [Parameter] public RenderFragment ButtonContent { get; set; }
 
         /// <summary>
         /// Button title
@@ -118,7 +129,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// End point to call in a post action
         /// </summary>
-        [Parameter] public string EndPoint { get; set; }
+        [Parameter] public string FormAction { get; set; }
         #endregion
         #endregion
 
@@ -126,8 +137,7 @@ namespace BlazorInputFileExtended
         InputFileHandler Files;
         string ErrorMessages;
         byte[] FileBytes = null;
-        InputFile MultipleFile;
-        InputFile SingleFile;
+        string SelectionInfo;
         #endregion
 
         #region methods
@@ -136,10 +146,9 @@ namespace BlazorInputFileExtended
         /// </summary>
         public void Clean()
         {
-            SingleFile = new InputFile();
-            MultipleFile = new InputFile();
             Files.Clean();
             FileBytes = null;
+            SelectionInfo = string.Empty;
         }
         #endregion
 
@@ -154,6 +163,7 @@ namespace BlazorInputFileExtended
             Files.OnUploadFile += Files_OnUploadFile;
             Files.OnUploadError += Files_OnUploadError;
             Files.OnAPIError += Files_OnAPIError;
+            SelectionInfo = string.Empty;
         }
         /// <summary>
         /// Format the component with the properties
@@ -166,6 +176,9 @@ namespace BlazorInputFileExtended
 
             if (IsImage && string.IsNullOrEmpty(InputFileTypes)) InputFileTypes = "image/*";
             else InputFileTypes = "*";
+
+            if (string.IsNullOrEmpty(SelectionText)) SelectionText = "chosen";
+            if (string.IsNullOrEmpty(SelectionCss)) SelectionCss = "info";
         }
 
         private void Files_OnAPIError(object sender, ArgumentException e)
@@ -201,6 +214,7 @@ namespace BlazorInputFileExtended
         #region handlers
         private async Task Files_OnUploaded(object sender, FilesUploadEventArgs e)
         {
+            SelectionInfo = $"{e.Count} {SelectionText}";
             await OnUploadComleted.InvokeAsync(e);
         }
 
@@ -217,21 +231,21 @@ namespace BlazorInputFileExtended
 
         async Task Save()
         {
-            if (string.IsNullOrEmpty(EndPoint))
+            if (string.IsNullOrEmpty(FormAction))
             {
                 await OnError.InvokeAsync(new ArgumentException("Don't have endpoint to call."));
             }
             else
             {
-                if (FormData is not null) await OnSave.InvokeAsync(await Files.UploadAsync<TResponse>(EndPoint, FormData, !MultiFile));
-                else await OnSave.InvokeAsync(await Files.UploadAsync<TResponse>(EndPoint, !MultiFile));
+                if (FormData is not null) await OnSave.InvokeAsync(await Files.UploadAsync<TResponse>(FormAction, FormData, !MultiFile));
+                else await OnSave.InvokeAsync(await Files.UploadAsync<TResponse>(FormAction, !MultiFile));
                 if (CleanOnSuccessUpload) Clean();
             }
         }
         #endregion
         #endregion
 
-                /// <summary>
+         /// <summary>
         /// Dispose action
         /// </summary>
         public void Dispose()

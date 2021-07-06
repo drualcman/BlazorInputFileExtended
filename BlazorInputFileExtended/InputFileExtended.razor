@@ -2,30 +2,65 @@
 
 @if (MultiFile)
 {
-<div class="InputFileExtendedBox">
     <label class="@InputCss" for="InputFileExtendedMultiple">
-        <InputFile multiple @ref="MultipleFile" OnChange="Files.UploadFile"
-                   id="InputFileExtendedMultiple" title="@InputTitle" 
+        <InputFile multiple OnChange="Files.UploadFile"
+                   id="InputFileExtendedMultiple" title="@InputTitle"
                    accept="@InputFileTypes" />
-        @InputText
+        @if (string.IsNullOrEmpty(SelectionInfo))
+        {
+            @if (InputContent is null)
+            {
+                <span>Choose File</span>
+            }
+            else
+            {
+
+                @InputContent
+            }
+        }
+        else
+        {
+            <span class="@SelectionCss">@SelectionInfo</span>
+        }
     </label>
-</div>
 }
 else
 {
-<div class="InputFileExtendedBox">
     <label class="@InputCss" for="InputFileExtendedSingle">
-        <InputFile @ref="SingleFile" OnChange="Files.UploadFile"
-                   id="InputFileExtendedSingle" title="@InputTitle" 
+        <InputFile OnChange="Files.UploadFile"
+                   id="InputFileExtendedSingle" title="@InputTitle"
                    accept="@InputFileTypes" />
-        @InputText
+        @if (string.IsNullOrEmpty(SelectionInfo))
+        {
+            @if (InputContent is null)
+            {
+                <span>Choose File</span>
+            }
+            else
+            {
+
+                @InputContent
+            }
+        }
+        else
+        {
+            <span class="@SelectionCss">@SelectionInfo</span>
+        }
     </label>
-</div>
 }
 
 @if (ButtonShow)
 {
-    <button class="@ButtonCss" @onclick="Save" title="@ButtonTitle">@ButtonText</button>
+    <button class="@ButtonCss" @onclick="Save" title="@ButtonTitle">
+        @if (ButtonContent is null)
+        {
+            <span>Upload</span>
+        }
+        else
+        {
+            @ButtonContent
+        }
+    </button>
 }
 
 @if (IsImage && ShowPreview && FileBytes is not null)

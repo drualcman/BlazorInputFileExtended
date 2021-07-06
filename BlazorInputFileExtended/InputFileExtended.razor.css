@@ -2,8 +2,25 @@
     display: none;
 }
 
-.InputFileExtendedButton {
-    background: red;
-    padding: 5px;
-    border: 1px solid;
+.input-file {
+    padding: 0.3rem 2rem;
+    box-shadow: darkgrey 0 0 0.5rem 0.1rem;
+    border-radius: 0.2rem;
+    display: inline-block;
+    margin: 0 0.3rem;
+    text-align: center;
+}
+
+.button-file {
+    background: #e8e8e8;
+}
+
+.button-upload {
+    background: #00188a;
+    color: whitesmoke;
+}
+
+.info {
+    color: forestgreen;
+    width: 100%;
 }

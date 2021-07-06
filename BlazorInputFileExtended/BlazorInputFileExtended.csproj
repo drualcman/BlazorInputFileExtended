@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Authors>Sergi Ortiz Gomez</Authors>
     <Company>DrUalcman</Company>
     <Description>Component Blazor extend the normal InputFile with all the necessary to upload files. Also have a InputFileHandler can be inherit and add more functions</Description>
@@ -13,8 +13,7 @@
     <RepositoryUrl>https://github.com/drualcman/BlazorInputFileExtended</RepositoryUrl>
     <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
     <PackageTags>components, blazor, webassembly</PackageTags>
-    <PackageReleaseNotes>Add clean to remove all files loaded from the object.
-Add methods to manage the events from a derivated class.</PackageReleaseNotes>
+    <PackageReleaseNotes>Add RenderFragment to personalize content for choose file and content for upload button</PackageReleaseNotes>
     <RepositoryType>Component Library</RepositoryType>
   </PropertyGroup>
 
