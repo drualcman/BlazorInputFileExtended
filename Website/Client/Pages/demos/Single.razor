@@ -4,8 +4,16 @@
 <p>In this page we will simulate how to upload a image file. This page don't upload really any file so you can see the functionality.</p>
 <p>Is setup like multiple files but limited to only 1, you can see the error event response if you try to select more than 1 file</p>
 
-<p>Text to show in the butto to select files:
-    <InputText @bind-Value="TextFile"    
+<p>
+    Personalize your texts
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Select File button text" @bind="SelectText">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Upload Button text" @bind="UploadText">
+        </div>
+    </div>
 </p>
 <p>Messages</p>
 <ol>
@@ -14,11 +22,10 @@
     <li><strong>Save:</strong> @SaveMessage</li>
     <li><strong>Error:</strong> @ErrorsMessage</li>
 </ol>
-<InputFileExtended @ref="UploadImage"
+<InputFileExtended
                    TResponse="bool"
-                   EndPoint="files"
+                   FormAction="files"
                    IsImage="true"
-                   InputText="TextFile"
                    ShowPreview="true"
                    MaxUploatedFiles="1"
                    MaxFileSize="512000"
@@ -29,16 +36,18 @@
                    OnUploadComleted="Completed"
                    OnSave="Save"
                    ButtonCss="btn btn-primary"
-                   ButtonText="Upload"
-                   ButtonTitle="Click here to upload the file" />
+                   ButtonTitle="Click here to upload the file" >
+    <InputContent>@SelectText</InputContent>
+    <ButtonContent>@UploadText</ButtonContent>
+</InputFileExtended>
 
 <p>
     <code>
-        &lt;InputFileExtended @@ref="UploadImage"
+        &lt;InputFileExtended
         <br />
         TResponse="bool"
         <br />
-        EndPoint="simulate"
+        FormAction="simulate"
         <br />
         IsImage="true"
         <br />

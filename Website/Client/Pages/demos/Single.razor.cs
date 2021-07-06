@@ -14,9 +14,8 @@ namespace Website.Client.Pages.demos
         string UploadMessage;
         string CompletedMessage;
         string SaveMessage;
-        string TextFile = "Choose File";
-
-        InputFileExtended<bool> UploadImage;
+        string SelectText = "Choose File";
+        string UploadText = "Upload";
 
         async Task Save()
         {
