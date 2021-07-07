@@ -20,8 +20,7 @@
 </ul>
 <h3>Properties</h3>
 <pre>
-<code>
-    public FileUploadContent this[int index]
+<code>    public FileUploadContent this[int index]
     public FileUploadContent this[string fileName]
     public FileUploadContent First
     public FileUploadContent Last
@@ -38,10 +37,9 @@
 </pre>
 <h3>Events</h3>
 <pre>
-<code>
-    public delegate Task UploadEventHandler(object sender, FileUploadEventArgs e);
-    public delegate Task UploadsEventHandler(object sender, FilesUploadEventArgs e);
-    public delegate Task UploadErrorEventHandler(object sender, ArgumentException e);
+<code>    public delegate void UploadEventHandler(object sender, FileUploadEventArgs e);
+    public delegate void UploadsEventHandler(object sender, FilesUploadEventArgs e);
+    public delegate void UploadErrorEventHandler(object sender, ArgumentException e);
     public delegate void APIErrorEventHandler(object sender, ArgumentException e);
 
     public virtual event UploadEventHandler OnUploadFile;
@@ -58,8 +56,7 @@
 </pre>
 <h3>Methods</h3>
 <pre>
-<code>
-    public IEnumerator&lt;FileUploadContent&gt; GetEnumerator()
+<code>    public IEnumerator&lt;FileUploadContent&gt; GetEnumerator()
     public void UploadFile(InputFileChangeEventArgs e)
     public void Clean()
 
@@ -77,8 +74,7 @@
 </pre>
 <h3>HttpClient calls</h3>
 <pre>
-<code>
-    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, bool ignoreFiles = true)
+<code>    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint)
     public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, InputFileChangeEventArgs files)
     public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, MultipartFormDataContent content)
     public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, MultipartFormDataContent content, bool ignoreFiles)
