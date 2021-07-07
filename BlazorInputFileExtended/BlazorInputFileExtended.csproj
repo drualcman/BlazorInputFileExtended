@@ -16,7 +16,8 @@
     <PackageReleaseNotes>Add RenderFragment to personalize content for choose file and content for upload button
 Change delegate Task to void
 Removed ButttonText. Changed to RenderFragment
-Add some isolated CSS</PackageReleaseNotes>
+Add some isolated CSS
+Change Property EndPoint with name FromAction</PackageReleaseNotes>
     <RepositoryType>Component Library</RepositoryType>
     <PackageIcon>icon-512.png</PackageIcon>
     <PackageIconUrl />
