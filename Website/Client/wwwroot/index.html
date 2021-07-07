@@ -4,24 +4,48 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>BlazorInputFileExtended</title>
+    <title>BlazorInputFileExtended Component</title>
     <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link href="Website.Client.styles.css" rel="stylesheet" />
-    <link href="manifest.json" rel="manifest" />
-    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link href="css/loading.css" rel="stylesheet" />
+    <link rel="preload" href="css/app.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/app.css" /></noscript>
+    <link rel="preload" href="css/bootstrap/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" /></noscript>
+    <link rel="apple-touch-icon" sizes="512x512" href="/images/icon-512.png" />
+    <link rel="icon" sizes="512x512" href="/images/icon-512.png" />
+    <link rel="alternate" href="https://blazorinputfileextended.community-mall.com/" hreflang="en" />
+    <link rel="preload" href="Website.Client.styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="Website.Client.styles.css" /></noscript>
+    <meta name="description" content="Blazor component to extend the InputFile component with more options to reduce code in the web Blazor Server or Blazor WebAssembly">
+    <meta name="keywords" content="blazor, component, webassembly, inputfile, inputfileextended, upload, files">
+    <link rel="canonical" href="https://blazorinputfileextended.community-mall.com/">
+    <meta property="og:image" content="/images/icon-512.png">
+    <meta property="og:url" content="https://blazorinputfileextended.community-mall.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="BlazorInputFileExtended Component">
+    <meta property="og:description" content="Blazor component to extend the InputFile component with more options to reduce code in the web Blazor Server or Blazor WebAssembly">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="blazorinputfileextended.community-mall.com">
+    <meta property="twitter:url" content="https://blazorinputfileextended.community-mall.com/">
+    <meta name="twitter:title" content="BlazorInputFileExtended Component">
+    <meta name="twitter:description" content="Blazor component to extend the InputFile component with more options to reduce code in the web Blazor Server or Blazor WebAssembly">
+    <meta name="twitter:image" content="/images/icon-512.png">
 </head>
 
 <body>
-    <div id="app">Loading...</div>
+    <div id="app">
+        <div class="loader">Loading</div>
+    </div>
     <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
+        <div class="content-wp">
+            <div class="box-content">
+                <div class="icon"><i class="oi oi-link-broken"></i></div>
+                <p>Something is wrong on this page, kindly try to reload or reset your cache</p>
+                <a href="" class="reload">Reload</a>
+            </div>
+        </div>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script>navigator.serviceWorker.register('service-worker.js');</script>
 </body>
 
 </html>

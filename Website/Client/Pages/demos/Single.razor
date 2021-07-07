@@ -26,7 +26,7 @@
                            IsImage="true"
                            ShowPreview="true"
                            MaxUploatedFiles="1"
-                           MaxFileSize="512000"
+                           MaxFileSize="51200"
                            MultiFile="true"
                            CleanOnSuccessUpload="true"
                            OnError="Error"
@@ -46,11 +46,10 @@
             IsImage="true"
             ShowPreview="true"
             MaxUploatedFiles="1"
-            MaxFileSize=512000
+            MaxFileSize=51200
             CleanOnSuccessUpload="true"
             MultiFile="true"
             ButtonCss="btn btn-primary"
-            ButtonText="Upload"
             ButtonTitle="Click here to upload the file"
             OnSave="Save"
             OnError="Error"
@@ -63,31 +62,34 @@
     string CompletedMessage;
     string SaveMessage;
 
-    InputFileExtended&lt;bool&gt;
-    UploadImage;
-
     async Task Save()
     {
         SaveMessage = "Uploading image ... (Simulate 3 seconds)";
         await Task.Delay(3000);
         SaveMessage = "Image Uploaded!";
-        UploadImage.FileBytes = null;
     }
 
     void Error(ArgumentException e) =>
-    ErrorsMessage = e.Message;
+        ErrorsMessage = e.Message;
 
     void UploadFile(FileUploadEventArgs e) =>
-    UploadMessage = $"File name: {e.File.Name} File type: {e.File.ContentType} Size: {e.File.Size} Action: {e.Action}";
+        UploadMessage = $"File name: {e.File.Name} File type: {e.File.ContentType} Size: {e.File.Size} Action: {e.Action}";
 
     void Completed(FilesUploadEventArgs e) =>
-    CompletedMessage = $". Files loadted: {e.Count} with total size: {e.Size} Action: {e.Action}";
+        CompletedMessage = $". Files loadted: {e.Count} with total size: {e.Size} Action: {e.Action}";
 }
 </code>
         </pre>
 
     </div>
     <div class="col">
+        <p>Messages</p>
+        <ol>
+            <li><strong>Upload File:</strong> @UploadMessage</li>
+            <li><strong>Complete:</strong> @CompletedMessage</li>
+            <li><strong>Save:</strong> @SaveMessage</li>
+            <li><strong>Error:</strong> @ErrorsMessage</li>
+        </ol>
         <h2>How is work</h2>
         <ol>
             <li>Declared UploadImage to do a reference with the component. <i>This is nor required, it's only for the demo can clean the file preview after upload.</i></li>
@@ -95,13 +97,6 @@
             <li>In the event Error shows all the errors can happen. If you select 2 files or file is more than 521Kb you can see the example.</li>
             <li>In the event UploadFile show the data from the image selected after load the image.</li>
             <li>In the event Completed show how many files are load and the total size about all the files.</li>
-        </ol>
-        <p>Messages</p>
-        <ol>
-            <li><strong>Upload File:</strong> @UploadMessage</li>
-            <li><strong>Complete:</strong> @CompletedMessage</li>
-            <li><strong>Save:</strong> @SaveMessage</li>
-            <li><strong>Error:</strong> @ErrorsMessage</li>
         </ol>
     </div>
 </div>

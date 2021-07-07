@@ -30,25 +30,6 @@ a, .btn-link {
     color: red;
 }
 
-#blazor-error-ui {
-    background: lightyellow;
-    bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-    display: none;
-    left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-}
-
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
-
 pre {
     background: black;
     color: white;
@@ -57,3 +38,84 @@ pre {
     box-shadow: inset whitesmoke 0px 0px 1rem 0.15rem;
     padding: 1rem;
 }
+
+/* Error */
+
+body #blazor-error-ui {
+    background-color: rgba(10, 10, 10, 0.86);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    z-index: 1000;
+    display: none;
+}
+
+    body #blazor-error-ui .content-wp {
+        height: 100%;
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    body #blazor-error-ui .box-content {
+        background: #fff;
+        border-radius: 20px;
+        max-width: 450px;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+    }
+
+        body #blazor-error-ui .box-content p {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        body #blazor-error-ui .box-content a.reload {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #000;
+            border-radius: 12px;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            margin-bottom: 25px;
+        }
+
+        body #blazor-error-ui .box-content a.send-feedback-btn {
+            font-size: 14px;
+            font-weight: 400;
+            color: #666;
+            text-decoration: underline;
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+        }
+
+        body #blazor-error-ui .box-content .is-no-event {
+            pointer-events: none;
+        }
+
+        body #blazor-error-ui .box-content .icon {
+            font-size: 7em;
+            color: #ec6c6c;
+        }
+
+    body #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
