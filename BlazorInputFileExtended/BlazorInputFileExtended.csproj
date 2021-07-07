@@ -14,13 +14,32 @@
     <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
     <PackageTags>components, blazor, webassembly</PackageTags>
     <PackageReleaseNotes>Add RenderFragment to personalize content for choose file and content for upload button
-Change delegate Task to void</PackageReleaseNotes>
+Change delegate Task to void
+Removed ButttonText. Changed to RenderFragment
+Add some isolated CSS</PackageReleaseNotes>
     <RepositoryType>Component Library</RepositoryType>
+    <PackageIcon>icon-512.png</PackageIcon>
+    <PackageIconUrl />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>C:\DrUalcman\BlazorInputFileExtended\BlazorInputFileExtended\BlazorInputFileExtended.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="icon-512.png" />
+    <None Include="icon-512.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icon-512.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 
   
   <ItemGroup>
