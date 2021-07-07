@@ -137,21 +137,21 @@ namespace BlazorInputFileExtended
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        public delegate Task UploadEventHandler(object sender, FileUploadEventArgs e);
+        public delegate void UploadEventHandler(object sender, FileUploadEventArgs e);
         /// <summary>
         /// Delegate to manage OnUploaded
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        public delegate Task UploadsEventHandler(object sender, FilesUploadEventArgs e);
+        public delegate void UploadsEventHandler(object sender, FilesUploadEventArgs e);
         /// <summary>
         /// Delegate to manage OnUploadError
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        public delegate Task UploadErrorEventHandler(object sender, ArgumentException e);
+        public delegate void UploadErrorEventHandler(object sender, ArgumentException e);
         /// <summary>
         /// Delegate to manage OnAPIError
         /// </summary>
@@ -311,7 +311,7 @@ namespace BlazorInputFileExtended
             {
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "UploadFile"));
+                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "UploadFile", ex));
                 }
             }
         }
@@ -364,7 +364,7 @@ namespace BlazorInputFileExtended
             {
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Add"));
+                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Add", ex));
                 }
             }
 
@@ -377,10 +377,6 @@ namespace BlazorInputFileExtended
         /// <param name="image"></param>
         public void Update(int index, FileUploadContent image)
         {
-            if (OnUploadFile is not null)
-            {
-                OnUploadFile(this, new FileUploadEventArgs { File = this[index], FileIndex = index, Action = "Updating" });
-            }
             UploadedFiles[index] = image;
             if (OnUploadFile is not null)
             {
@@ -403,7 +399,7 @@ namespace BlazorInputFileExtended
                 {
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException($"Image {fileName} not found", "UpdateImage"));
+                        OnUploadError(this, new ArgumentException($"Image {fileName} not found", "Update"));
                     }
                     result = false;
                 }
@@ -418,7 +414,7 @@ namespace BlazorInputFileExtended
                 result = false;
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Update"));
+                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Update", ex));
                 }
             }
             return result;
@@ -465,7 +461,7 @@ namespace BlazorInputFileExtended
                 {
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException($"Image {fileName} not found", "RemoveImage"));
+                        OnUploadError(this, new ArgumentException($"Image {fileName} not found", "Remove"));
                     }
                     result = false;
                 }
@@ -479,7 +475,7 @@ namespace BlazorInputFileExtended
                 result = false;
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Remove"));
+                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Remove", ex));
                 }
             }
             return result;
@@ -535,9 +531,8 @@ namespace BlazorInputFileExtended
         /// </summary>
         /// <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
         /// <param name="urlEndPoint"></param>
-        /// <param name="ignoreFiles">Indicate if need to ignore the files or not</param>
         /// <returns></returns>
-        public async Task<TModel> UploadAsync<TModel>(string urlEndPoint, bool ignoreFiles = true) =>
+        public async Task<TModel> UploadAsync<TModel>(string urlEndPoint) =>
             await UploadAsync<TModel>(urlEndPoint, new MultipartFormDataContent(), true);
 
         /// <summary>
@@ -621,7 +616,7 @@ namespace BlazorInputFileExtended
             {
                 if (OnUploadError is not null)
                 {
-                    _ = OnUploadError(this, new ArgumentException($"No files to upload", "UploadAsync"));
+                     OnUploadError(this, new ArgumentException($"No files to upload", "UploadAsync"));
                 }
             }
             return await UploadFilesAsync<TModel>(urlEndPoint, content, true);
@@ -638,7 +633,7 @@ namespace BlazorInputFileExtended
         private async Task<TModel> UploadFilesAsync<TModel>(string urlEndPoint, MultipartFormDataContent content,
             bool ignoreFiles)
         {
-            if (HttpClient is null) throw new ArgumentException("At least HttpClient Must be provided.");
+            if (HttpClient is null) throw new ArgumentException("At least HttpClient Must be provided.", "UploadFilesAsync");
             if (!ignoreFiles)
             {
                 int c = UploadedFiles.Count;
@@ -654,7 +649,7 @@ namespace BlazorInputFileExtended
                 }
                 if (OnUploaded is not null)
                 {
-                    _ = OnUploaded(this, new FilesUploadEventArgs { Count = c, Files = UploadedFiles, Size = size });
+                    OnUploaded(this, new FilesUploadEventArgs { Count = c, Files = UploadedFiles, Size = size , Action = "Upload"});
                 }
             }
             try
@@ -682,7 +677,7 @@ namespace BlazorInputFileExtended
                 {
                     if (OnUploadError is not null)
                     {
-                        _ = OnUploadError(this, new ArgumentException($"No files to upload", "UploadAsync"));
+                        OnUploadError(this, new ArgumentException($"No files to upload", "UploadFilesAsync"));
                     }
                     return default(TModel);
                 }
@@ -691,7 +686,7 @@ namespace BlazorInputFileExtended
             {
                 if (OnAPIError is not null)
                 {
-                    OnAPIError(this, new ArgumentException($"{urlEndPoint}: Exception: {ex.Message}", "UploadFilesAsync"));
+                    OnAPIError(this, new ArgumentException($"{urlEndPoint}: Exception: {ex.Message}", "UploadFilesAsync", ex));
                 }
                 return default(TModel);
             }
@@ -728,7 +723,7 @@ namespace BlazorInputFileExtended
         #region dispose
         private bool disposedValue;
         /// <summary>
-        /// Overwride the dispose to clean the object
+        /// Overwrite the dispose to clean the object
         /// </summary>
         /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
@@ -750,7 +745,7 @@ namespace BlazorInputFileExtended
         }
 
         /// <summary>
-        /// Disponse action
+        /// Dispose action
         /// </summary>
         public void Dispose()
         {
@@ -759,80 +754,5 @@ namespace BlazorInputFileExtended
             GC.SuppressFinalize(this);
         }
         #endregion
-    }
-
-    /// <summary>
-    /// Return file name and file stream per each file uploaded
-    /// </summary>
-    public class FileUploadEventArgs : EventArgs
-    {
-        /// <summary>
-        /// File uploaded with all the data
-        /// </summary>
-        public FileUploadContent File { get; set; }
-        /// <summary>
-        /// Index in the object
-        /// </summary>
-        public int FileIndex { get; set; }
-        /// <summary>
-        /// Action used
-        /// </summary>
-        public string Action { get; set; }
-    }
-
-    /// <summary>
-    /// Return all files uploaded
-    /// </summary>
-    public class FilesUploadEventArgs : EventArgs
-    {
-        /// <summary>
-        /// Files uploaded
-        /// </summary>
-        public SortedDictionary<int, FileUploadContent> Files { get; set; }
-        /// <summary>
-        /// Total size of all the files uploated
-        /// </summary>
-        public long Size { get; set; }
-        /// <summary>
-        /// Number of the files uploated
-        /// </summary>
-        public int Count { get; set; }
-        /// <summary>
-        /// Action used
-        /// </summary>
-        public string Action { get; set; }
-    }
-
-    /// <summary>
-    /// Manage the file upload
-    /// </summary>
-    public class FileUploadContent
-    {
-        /// <summary>
-        /// The name of the file as specified by the browser.
-        /// </summary>
-        public string Name { get; set; }
-        /// <summary>
-        /// The last modified date as specified by the browser.
-        /// </summary>
-        public DateTimeOffset LastModified { get; set; }
-        /// <summary>
-        /// The size of the file in bytes as specified by the browser.
-        /// </summary>
-        public long Size { get; set; }
-        /// <summary>
-        /// The MIME type of the file as specified by the browser.
-        /// </summary>
-        public string ContentType { get; set; }
-        /// <summary>
-        /// File bites
-        /// </summary>
-        public StreamContent FileStreamContent { get; set; }
-        /// <summary>
-        /// Get the bytes from the stream
-        /// </summary>
-        /// <returns></returns>
-        public async Task<byte[]> GetFileBytes() => 
-            await FileStreamContent.ReadAsByteArrayAsync();
     }
 }

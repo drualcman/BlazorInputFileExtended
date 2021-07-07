@@ -13,7 +13,8 @@
     <RepositoryUrl>https://github.com/drualcman/BlazorInputFileExtended</RepositoryUrl>
     <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
     <PackageTags>components, blazor, webassembly</PackageTags>
-    <PackageReleaseNotes>Add RenderFragment to personalize content for choose file and content for upload button</PackageReleaseNotes>
+    <PackageReleaseNotes>Add RenderFragment to personalize content for choose file and content for upload button
+Change delegate Task to void</PackageReleaseNotes>
     <RepositoryType>Component Library</RepositoryType>
   </PropertyGroup>
 
