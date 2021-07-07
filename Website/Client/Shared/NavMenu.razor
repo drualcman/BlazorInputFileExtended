@@ -7,17 +7,32 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="license" Match="NavLinkMatch.All">
+                <span class="oi oi-info" aria-hidden="true"></span> License
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="changes-log" Match="NavLinkMatch.All">
+                <span class="oi oi-pencil" aria-hidden="true"></span> Changes Log
+            </NavLink>
+        </li>
         <li>
             <a href="javascript:void()" class="nav-link"><h3>How to use</h3></a>
         </li>
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="how-to-use/basic" Match="NavLinkMatch.All">
-                <span class="oi oi-info" aria-hidden="true"></span> Basic
+                <span class="oi oi-paperclip" aria-hidden="true"></span> Basic
             </NavLink>
         </li>
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="how-to-use/change-buttons" Match="NavLinkMatch.All">
-                <span class="oi oi-info" aria-hidden="true"></span> Change Buttons
+                <span class="oi oi-data-transfer-download" aria-hidden="true"></span> Change Buttons
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="how-to-use/handler" Match="NavLinkMatch.All">
+                <span class="oi oi-question-mark" aria-hidden="true"></span> Handler
             </NavLink>
         </li>
         <li>
