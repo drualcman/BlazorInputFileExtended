@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\drualcman\dataBases\dataBases.csproj" />
     <ProjectReference Include="..\Client\Website.Client.csproj" />
     <ProjectReference Include="..\Shared\Website.Shared.csproj" />
   </ItemGroup>
