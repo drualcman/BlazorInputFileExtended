@@ -212,19 +212,19 @@ namespace BlazorInputFileExtended
         #endregion
 
         #region handlers
-        private async Task Files_OnUploaded(object sender, FilesUploadEventArgs e)
+        private async void Files_OnUploaded(object sender, FilesUploadEventArgs e)
         {
             SelectionInfo = $"{e.Count} {SelectionText}";
             await OnUploadComleted.InvokeAsync(e);
         }
 
-        private async Task Files_OnUploadFile(object sender, FileUploadEventArgs e)
+        private async void Files_OnUploadFile(object sender, FileUploadEventArgs e)
         {
             FileBytes = await e.File.GetFileBytes();
             await OnUploadedFile.InvokeAsync(e);
         }
 
-        private async Task Files_OnUploadError(object sender, ArgumentException e)
+        private async void Files_OnUploadError(object sender, ArgumentException e)
         {
             await OnError.InvokeAsync(e);
         }
@@ -238,7 +238,7 @@ namespace BlazorInputFileExtended
             else
             {
                 if (FormData is not null) await OnSave.InvokeAsync(await Files.UploadAsync<TResponse>(FormAction, FormData, !MultiFile));
-                else await OnSave.InvokeAsync(await Files.UploadAsync<TResponse>(FormAction, !MultiFile));
+                else await OnSave.InvokeAsync(await Files.UploadAsync<TResponse>(FormAction, new MultipartFormDataContent(), !MultiFile));
                 if (CleanOnSuccessUpload) Clean();
             }
         }
