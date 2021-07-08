@@ -24,7 +24,7 @@ namespace Website.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<bool> Disco([FromForm] IEnumerable<IFormFile> files)
+        public bool Disco([FromForm] IEnumerable<IFormFile> files)
         {            
             return true;
         }

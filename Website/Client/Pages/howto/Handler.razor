@@ -57,7 +57,8 @@
                            ButtonShow="false" />
         <button class="btn btn-primary" @onclick="Upload">Upload</button>
         <pre>
-<code>&lt;InputFileExtended TResponse="bool" OnUploadedFile="OnSelect" OnError="OnError" ButtonShow="false" &lt;/InputFileExtended&gt;
+<code>&lt;InputFileExtended TResponse="bool" OnUploadedFile="OnSelect" 
+            OnError="OnError" ButtonShow="false" &lt;/InputFileExtended&gt;
 &lt;button class="btn btn-primary" @@onclick="Upload"&gt;Upload &lt;/button&gt;
 
 @@code{
@@ -70,8 +71,6 @@
     protected override void OnInitialized()
     {
         FileHandler = new InputFileHandler(Client);
-        FileHandler.OnUploadError += FileHandler_OnUploadError;
-        FileHandler.OnUploadFile += FileHandler_OnUploadFile;
     }
 
     void OnError(ArgumentException e)

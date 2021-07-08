@@ -30,13 +30,24 @@ a, .btn-link {
     color: red;
 }
 
-pre {
+body pre {
     background: black;
     color: white;
     font-family: sans-serif;
     border-radius: 1rem;
     box-shadow: inset whitesmoke 0px 0px 1rem 0.15rem;
     padding: 1rem;
+}
+
+body pre code {
+    color: white;
+}
+body var {
+    background-color: black;
+    color: white;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: x-small;
 }
 
 /* Error */
