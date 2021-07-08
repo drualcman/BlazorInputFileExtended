@@ -21,8 +21,8 @@
 
 <div class="row">
     <div class="col-6">
-        <InputFileExtended TResponse="bool"
-                           FormAction="files"
+        <InputFileExtended 
+                           TargetToPostFile="files"
                            IsImage="true"
                            ShowPreview="true"
                            MaxUploatedFiles="1"
@@ -33,6 +33,7 @@
                            OnUploadedFile="UploadFile"
                            OnUploadComleted="Completed"
                            OnSave="Save"
+                           ButtonShow="true"
                            ButtonCss="btn btn-primary"
                            ButtonTitle="Click here to upload the file">
             <InputContent>@SelectText</InputContent>
@@ -41,14 +42,14 @@
         <p>Code</p>
         <pre class="pre-scrollable">
 <code>&lt;InputFileExtended
-            TResponse="bool"
-            FormAction="simulate"
+            TargetToPostFile="simulate"
             IsImage="true"
             ShowPreview="true"
             MaxUploatedFiles="1"
             MaxFileSize=51200
             CleanOnSuccessUpload="true"
             MultiFile="true"
+            ButtonShow="true"
             ButtonCss="btn btn-primary"
             ButtonTitle="Click here to upload the file"
             OnSave="Save"
