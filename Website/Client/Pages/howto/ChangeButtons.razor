@@ -4,9 +4,9 @@
 <p>This is the most basic use with changing the button texts and message when select files. Also need to set the action form and the response model from the action form to upload files.</p>
     <div class="row">
         <div class="col">
-            <h2>Basic</h2>
-            <InputFileExtended TResponse="bool"
-                               FormAction="files"
+            <h2>Change buttons text</h2>
+            <InputFileExtended 
+                               TargetToPostFile="files"
                                CleanOnSuccessUpload="true"
                                OnSave="Save"
                                SelectionText="@ChosenText">
@@ -21,9 +21,9 @@
             </InputFileExtended>
             <p>@Messages</p>
             <pre>
-<code>&lt;InputFileExtended TResponse="bool"
+<code>&lt;InputFileExtended 
         SelectionText="chosen"
-        FormAction="upload" &gt;
+        TargetToPostFile="upload/file" &gt;
         &lt;InputContent>
             &lt;i class="oi oi-file"&gt;&lt;/i&gt;
             &lt;span&gt;Choose File&lt;/span&gt;
@@ -43,8 +43,8 @@
         <div class="col">
             <h2>Properties</h2>
             <ul>
-                <li><strong>TResponse:</strong> Model to use on the response from the form action.</li>
-                <li><strong>FormAction</strong> Action to call on the upload button. Default field <i>files</i></li>
+                <li><strong>TargetToPopstFile</strong> Url where send the file with the <var>MultipartFormDataContent</var>. Default field <i>files</i></li>
+                <li><strong>TargetResponseType:</strong> Response type when the file is upload.</li>
                 <li><strong>SelectionText</strong> Text after the number of the files selected. Default <i>chosen</i></li>
                 <li><strong>InputContent</strong> Any HTML code. Default plain text<i>Choose File</i></li>
                 <li><strong>ButtonContent</strong>  Any HTML code. Default plain text<i>Upload</i></li>

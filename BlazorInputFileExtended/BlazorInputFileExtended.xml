@@ -85,159 +85,158 @@
             Action used
             </summary>
         </member>
-        <member name="T:BlazorInputFileExtended.InputFileExtended`1">
+        <member name="T:BlazorInputFileExtended.InputFileExtended">
             <summary>
             InputFile Extension with all necessary to upload files.
             </summary>
-            <typeparam name="TResponse">Model used when post action after upload file. This is the model returned the API call.</typeparam>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.Client">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.Client">
             <summary>
             If want to use the upload must be have HttpClient.
             That's why is automatic injected
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.MultiFile">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.MultiFile">
             <summary>
             Set if we will accept multiple files uploaded or not
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.MaxUploatedFiles">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.MaxUploatedFiles">
             <summary>
             Number maximum of files can be uploaded
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.MaxFileSize">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.MaxFileSize">
             <summary>
             Maximum file size per each file
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.CleanOnSuccessUpload">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.CleanOnSuccessUpload">
             <summary>
             Clean all files after success upload
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.SelectionText">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.SelectionText">
             <summary>
             Message to show when files are selected
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.SelectionCss">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.SelectionCss">
             <summary>
             CSS class to personalize the selection text info
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.InputCss">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.InputCss">
             <summary>
             CSS InputFile
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.InputTitle">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.InputTitle">
             <summary>
             InputFile title
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.InputFileTypes">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.InputFileTypes">
             <summary>
             File types accepted. Example: image/*
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.InputContent">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.InputContent">
             <summary>
             Text to show for the file selection
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.ButtonShow">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.ButtonShow">
             <summary>
             Show the save button
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.ButtonCss">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.ButtonCss">
             <summary>
             CSS button save
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.ButtonContent">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.ButtonContent">
             <summary>
             Button text
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.ButtonTitle">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.ButtonTitle">
             <summary>
             Button title
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.IsImage">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.IsImage">
             <summary>
             Inicate if the file it's a image
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.ShowPreview">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.ShowPreview">
             <summary>
             If IsImage = true this indicate if need to do a preview
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.PreviewWrapperCss">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.PreviewWrapperCss">
             <summary>
             CSS class for the preview image wrapper. Default image
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.FileCss">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.FileCss">
             <summary>
             CSS class for the image file
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.FormData">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.TargetFormDataContent">
             <summary>
             Form data to send in a post action with the files
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.FormField">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.TargetFormFieldName">
             <summary>
             Used when send in a post action, this indicate the field name are expecting
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.FormAction">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.TargetToPostFile">
             <summary>
             End point to call in a post action
             </summary>
         </member>
-        <member name="M:BlazorInputFileExtended.InputFileExtended`1.Clean">
+        <member name="M:BlazorInputFileExtended.InputFileExtended.Clean">
             <summary>
             Clean all the files
             </summary>
         </member>
-        <member name="M:BlazorInputFileExtended.InputFileExtended`1.OnInitialized">
+        <member name="M:BlazorInputFileExtended.InputFileExtended.OnInitialized">
             <summary>
             Initialize the component
             </summary>
         </member>
-        <member name="M:BlazorInputFileExtended.InputFileExtended`1.OnParametersSet">
+        <member name="M:BlazorInputFileExtended.InputFileExtended.OnParametersSet">
             <summary>
             Format the component with the properties
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.OnUploadedFile">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.OnUploadedFile">
             <summary>
             When each file is uploaded
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.OnUploadComleted">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.OnUploadComleted">
             <summary>
             When all files is uploaded
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.OnError">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.OnError">
             <summary>
             When some error occurs
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended`1.OnSave">
+        <member name="P:BlazorInputFileExtended.InputFileExtended.OnSave">
             <summary>
             When some error occurs
             </summary>
         </member>
-        <member name="M:BlazorInputFileExtended.InputFileExtended`1.Dispose">
+        <member name="M:BlazorInputFileExtended.InputFileExtended.Dispose">
             <summary>
             Dispose action
             </summary>

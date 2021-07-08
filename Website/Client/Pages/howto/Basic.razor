@@ -4,23 +4,13 @@
 <p>This is the most basic use. Only need to set the action form and the response model from the action form to upload files.</p>
 <div class="row">
     <div class="col">
-        <h2>Basic</h2>
-        <InputFileExtended TResponse="bool"
-                           FormAction="files"
-                           CleanOnSuccessUpload="true"
-                           OnSave="Save" />
-        <p>@Messages</p>
+        <h2>Basic Only show image in a page.</h2>
+        <InputFileExtended />
     </div>
     <div class="col">
-        <h2>Properties</h2>
-        <ul>
-            <li><strong>TResponse:</strong> Model to use on the response from the form action.</li>
-            <li><strong>FormAction</strong> Action to call on the upload button. Default field <i>files</i></li>
-        </ul>
         <p>Code</p>
         <pre>
-<code>&lt;InputFileExtended TResponse="bool"
-    FormAction="upload" /&gt;
+<code>&lt;InputFileExtended /&gt;
 
 @@code{
     //No need nothing else
@@ -29,3 +19,27 @@
         </pre>
     </div>
 </div>
+@*<div class="row">
+    <div class="col">
+        <h2>Basic with sending file to the server</h2>
+        <InputFileExtended TargetToPostFile="files"
+                           CleanOnSuccessUpload="true"
+                           OnSave="Save" />
+        <p>@Messages</p>
+    </div>
+    <div class="col">
+        <h2>Properties</h2>
+        <ul>
+            <li><strong>TargetToPostFile</strong> Url relative or absolute to send the file with a <var>POST</var> action</li>
+        </ul>
+        <p>Code</p>
+        <pre>
+<code>&lt;InputFileExtended TargetToPostFile="http://myserver.com/upload" /&gt;
+
+@@code{
+    //No need nothing else
+}
+</code>
+        </pre>
+    </div>
+</div>*@

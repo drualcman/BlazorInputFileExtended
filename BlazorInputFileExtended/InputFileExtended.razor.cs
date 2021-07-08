@@ -9,8 +9,7 @@ namespace BlazorInputFileExtended
     /// <summary>
     /// InputFile Extension with all necessary to upload files.
     /// </summary>
-    /// <typeparam name="TResponse">Model used when post action after upload file. This is the model returned the API call.</typeparam>
-    public partial class InputFileExtended<TResponse> : ComponentBase, IDisposable
+    public partial class InputFileExtended : ComponentBase, IDisposable
     {
         #region injections
         /// <summary>
@@ -79,7 +78,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Show the save button
         /// </summary>
-        [Parameter] public bool ButtonShow { get; set; } = true;
+        [Parameter] public bool ButtonShow { get; set; } = false;
         /// <summary>
         /// CSS button save
         /// </summary>
@@ -100,11 +99,11 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Inicate if the file it's a image
         /// </summary>
-        [Parameter] public bool IsImage { get; set; }
+        [Parameter] public bool IsImage { get; set; } = true;
         /// <summary>
         /// If IsImage = true this indicate if need to do a preview
         /// </summary>
-        [Parameter] public bool ShowPreview { get; set; }
+        [Parameter] public bool ShowPreview { get; set; } = true;
         /// <summary>
         /// CSS class for the preview image wrapper. Default image
         /// </summary>
@@ -119,17 +118,17 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Form data to send in a post action with the files
         /// </summary>
-        [Parameter] public MultipartFormDataContent FormData { get; set; }
+        [Parameter] public MultipartFormDataContent TargetFormDataContent { get; set; }
 
         /// <summary>
         /// Used when send in a post action, this indicate the field name are expecting
         /// </summary>
-        [Parameter] public string FormField { get; set; } = "files";
+        [Parameter] public string TargetFormFieldName { get; set; } = "files";
 
         /// <summary>
         /// End point to call in a post action
         /// </summary>
-        [Parameter] public string FormAction { get; set; }
+        [Parameter] public string TargetToPostFile { get; set; }
         #endregion
         #endregion
 
@@ -172,7 +171,7 @@ namespace BlazorInputFileExtended
         {
             Files.SetMaxFiles(MaxUploatedFiles);
             Files.SetMaxFileSize(MaxFileSize);
-            Files.SetFormField(FormField);
+            Files.SetFormField(TargetFormFieldName);
 
             if (IsImage && string.IsNullOrEmpty(InputFileTypes)) InputFileTypes = "image/*";
             else InputFileTypes = "*";
@@ -184,6 +183,7 @@ namespace BlazorInputFileExtended
         private void Files_OnAPIError(object sender, ArgumentException e)
         {
             ErrorMessages = e.Message;
+            StateHasChanged();
         }
 
         #endregion
@@ -208,7 +208,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// When some error occurs
         /// </summary>
-        [Parameter] public EventCallback<TResponse> OnSave { get; set; }
+        [Parameter] public EventCallback<object> OnSave { get; set; }
         #endregion
 
         #region handlers
@@ -216,29 +216,32 @@ namespace BlazorInputFileExtended
         {
             SelectionInfo = $"{e.Count} {SelectionText}";
             await OnUploadComleted.InvokeAsync(e);
+            StateHasChanged();
         }
 
         private async void Files_OnUploadFile(object sender, FileUploadEventArgs e)
         {
             FileBytes = await e.File.GetFileBytes();
             await OnUploadedFile.InvokeAsync(e);
+            StateHasChanged();
         }
 
         private async void Files_OnUploadError(object sender, ArgumentException e)
         {
             await OnError.InvokeAsync(e);
+            StateHasChanged();
         }
 
         async Task Save()
         {
-            if (string.IsNullOrEmpty(FormAction))
+            if (string.IsNullOrEmpty(TargetToPostFile))
             {
                 await OnError.InvokeAsync(new ArgumentException("Don't have endpoint to call."));
             }
             else
             {
-                if (FormData is not null) await OnSave.InvokeAsync(await Files.UploadAsync<TResponse>(FormAction, FormData, !MultiFile));
-                else await OnSave.InvokeAsync(await Files.UploadAsync<TResponse>(FormAction, new MultipartFormDataContent(), !MultiFile));
+                if (TargetFormDataContent is not null) await OnSave.InvokeAsync(await Files.UploadAsync<object>(TargetToPostFile, TargetFormDataContent, !MultiFile));
+                else await OnSave.InvokeAsync(await Files.UploadAsync<object>(TargetToPostFile, new MultipartFormDataContent(), !MultiFile));
                 if (CleanOnSuccessUpload) Clean();
             }
         }
