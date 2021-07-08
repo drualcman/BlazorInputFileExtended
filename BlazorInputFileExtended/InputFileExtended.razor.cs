@@ -206,7 +206,7 @@ namespace BlazorInputFileExtended
         [Parameter] public EventCallback<ArgumentException> OnError { get; set; }
 
         /// <summary>
-        /// When some error occurs
+        /// When upload is completed
         /// </summary>
         [Parameter] public EventCallback<object> OnSave { get; set; }
         #endregion

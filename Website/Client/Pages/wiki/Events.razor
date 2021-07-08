@@ -5,14 +5,13 @@
     <li><strong>OnUploadedFile:</strong> When each file is uploaded. Returns <i>FileUploadEventArgs</i>.</li>
     <li><strong>OnUploadComleted:</strong> When all files is uploaded. Returns <i>FilesUploadEventArgs</i>.</li>
     <li><strong>OnError:</strong> When some exception. Returns <i>ArgumentException</i>.</li>
-    <li><strong>OnSave:</strong> When click on <i><strong>SAVE</strong> button</i>. Returns <i>TResponse</i> with the model from the response.</li>
+    <li><strong>OnSave:</strong> When click on <i><strong>UPLOAD</strong> button</i>. Returns <i>Object</i> with the model from the response.</li>
 </ul>
 
 <h2>Arguments return objects</h2>
 <h3>OnUploadedFile</h3>
 <pre>
-<code>
-    /// Return file name and file stream per each file uploaded
+<code>    /// Return file name and file stream per each file uploaded
     public class FileUploadEventArgs : EventArgs
     {
         /// File uploaded with all the data
@@ -28,17 +27,16 @@
 </pre>
 <h3>OnUploadComleted</h3>
 <pre>
-<code>
-    /// Return all files uploaded
+<code>    /// Return all files uploaded
     public class FilesUploadEventArgs : EventArgs
     {
         /// Files uploaded
         public SortedDictionary&lt;int, FileUploadContent&gt; Files { get; set; }
 
-        /// Total size of all the files uploated
+        /// Total size of all the files uploaded
         public long Size { get; set; }
 
-        /// Number of the files uploated
+        /// Number of the files uploaded
         public int Count { get; set; }
 
         /// Action used
@@ -46,10 +44,9 @@
     }
 </code>
 </pre>
-<h4>Auxsiliar object content the file</h4>
+<h4>Auxiliary object content the file</h4>
 <pre>
-<code>
-    /// Manage the file upload
+<code>    /// Manage the file upload
     public class FileUploadContent
     {
         /// The name of the file as specified by the browser.

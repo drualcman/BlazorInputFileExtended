@@ -1,15 +1,30 @@
 ﻿@page "/how-to-use/basic"
 
 <h1>How to use</h1>
-<p>This is the most basic use. Only need to set the action form and the response model from the action form to upload files.</p>
+<h2>Basic use</h2>
+<p>This is the most basic use.</p>
+
 <div class="row">
     <div class="col">
-        <h2>Basic Only show image in a page.</h2>
-        <InputFileExtended />
+        <InputFileExtended TargetToPostFile="files" @ref="Files"
+                           CleanOnSuccessUpload="true"
+                           ButtonShow="ShowUpload"
+                           OnSave="Save" />
     </div>
     <div class="col">
-        <p>Code</p>
-        <pre>
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link @Basic1"  @onclick="()=> ChangeTab(0)" type="button" role="tab" aria-controls="home" aria-selected="true">Basic</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link @Basic2" @onclick="()=> ChangeTab(1)" type="button" role="tab" aria-controls="profile" aria-selected="false">With Upload Button</button>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane @Basic1" role="tabpanel" aria-labelledby="home-tab">
+                <p>This example is the most basic use. Only can select image and show a preview.</p>
+                <pre>
 <code>&lt;InputFileExtended /&gt;
 
 @@code{
@@ -17,29 +32,26 @@
 }
 </code>
         </pre>
-    </div>
-</div>
-@*<div class="row">
-    <div class="col">
-        <h2>Basic with sending file to the server</h2>
-        <InputFileExtended TargetToPostFile="files"
-                           CleanOnSuccessUpload="true"
-                           OnSave="Save" />
-        <p>@Messages</p>
-    </div>
-    <div class="col">
-        <h2>Properties</h2>
-        <ul>
-            <li><strong>TargetToPostFile</strong> Url relative or absolute to send the file with a <var>POST</var> action</li>
-        </ul>
-        <p>Code</p>
-        <pre>
-<code>&lt;InputFileExtended TargetToPostFile="http://myserver.com/upload" /&gt;
+            </div>
+            <div class="tab-pane @Basic2" role="tabpanel" aria-labelledby="profile-tab">
+                <p>This is the most basic example with upload button and send to the server.</p>
+                <h2>Properties</h2>
+                <ul>
+                    <li><strong>TargetToPostFile</strong> Url relative or absolute to send the file with a <var>POST</var> action</li>
+                </ul>
+                <p>Messages log: @Messages</p>
+                <pre>
+<code>&lt;InputFileExtended 
+    TargetToPostFile="http://myserver.com/upload"            
+    ButtonShow="true"
+    /&gt;
 
 @@code{
     //No need nothing else
 }
 </code>
         </pre>
+            </div>
+        </div>
     </div>
-</div>*@
+</div>

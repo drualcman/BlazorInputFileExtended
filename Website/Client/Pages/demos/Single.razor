@@ -77,7 +77,7 @@
         UploadMessage = $"File name: {e.File.Name} File type: {e.File.ContentType} Size: {e.File.Size} Action: {e.Action}";
 
     void Completed(FilesUploadEventArgs e) =>
-        CompletedMessage = $". Files loadted: {e.Count} with total size: {e.Size} Action: {e.Action}";
+        CompletedMessage = $". Files loaded: {e.Count} with total size: {e.Size} Action: {e.Action}";
 }
 </code>
         </pre>
@@ -95,7 +95,7 @@
         <ol>
             <li>Declared UploadImage to do a reference with the component. <i>This is nor required, it's only for the demo can clean the file preview after upload.</i></li>
             <li>In the event Save clear the <strong>Field</strong> UploadImage.FileBytes to remove the preview after upload.</li>
-            <li>In the event Error shows all the errors can happen. If you select 2 files or file is more than 521Kb you can see the example.</li>
+            <li>In the event Error shows all the errors can happen. If you select 2 files or file is more than 512Kb you can see the example.</li>
             <li>In the event UploadFile show the data from the image selected after load the image.</li>
             <li>In the event Completed show how many files are load and the total size about all the files.</li>
         </ol>
