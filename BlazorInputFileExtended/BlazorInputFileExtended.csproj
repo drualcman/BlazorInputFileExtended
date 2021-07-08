@@ -17,7 +17,10 @@
 Change delegate Task to void
 Removed ButttonText. Changed to RenderFragment
 Add some isolated CSS
-Change Property EndPoint with name FromAction</PackageReleaseNotes>
+Change Property EndPoint with name TargetToPostFile
+Change Property FormData with name TargetFormDataContent
+Change Property FormFieldName with name TargetFormFieldName
+Removed Typeparam TResponse</PackageReleaseNotes>
     <RepositoryType>Component Library</RepositoryType>
     <PackageIcon>icon-512.png</PackageIcon>
     <PackageIconUrl />
