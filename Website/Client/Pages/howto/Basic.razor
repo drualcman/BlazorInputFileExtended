@@ -1,30 +1,36 @@
 ﻿@page "/how-to-use/basic"
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-6750814218988007"
+         data-ad-slot="2643405184"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <h1>How to use</h1>
+    <h2>Basic use</h2>
+    <p>This is the most basic use.</p>
 
-<h1>How to use</h1>
-<h2>Basic use</h2>
-<p>This is the most basic use.</p>
+    <div class="row">
+        <div class="col">
+            <InputFileExtended TargetToPostFile="files" @ref="Files"
+                               CleanOnSuccessUpload="true"
+                               ButtonShow="ShowUpload"
+                               OnSave="Save" />
 
-<div class="row">
-    <div class="col">
-        <InputFileExtended TargetToPostFile="files" @ref="Files"
-                           CleanOnSuccessUpload="true"
-                           ButtonShow="ShowUpload"
-                           OnSave="Save" />
-    </div>
-    <div class="col">
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link @Basic1"  @onclick="()=> ChangeTab(0)" type="button" role="tab" aria-controls="home" aria-selected="true">Basic</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link @Basic2" @onclick="()=> ChangeTab(1)" type="button" role="tab" aria-controls="profile" aria-selected="false">With Upload Button</button>
-            </li>
-        </ul>
+        </div>
+        <div class="col">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link @Basic1" @onclick="()=> ChangeTab(0)" type="button" role="tab" aria-controls="home" aria-selected="true">Basic</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link @Basic2" @onclick="()=> ChangeTab(1)" type="button" role="tab" aria-controls="profile" aria-selected="false">With Upload Button</button>
+                </li>
+            </ul>
 
-        <div class="tab-content">
-            <div class="tab-pane @Basic1" role="tabpanel" aria-labelledby="home-tab">
-                <p>This example is the most basic use. Only can select image and show a preview.</p>
-                <pre>
+            <div class="tab-content">
+                <div class="tab-pane @Basic1" role="tabpanel" aria-labelledby="home-tab">
+                    <p>This example is the most basic use. Only can select image and show a preview.</p>
+                    <pre>
 <code>&lt;InputFileExtended /&gt;
 
 @@code{
@@ -32,15 +38,15 @@
 }
 </code>
         </pre>
-            </div>
-            <div class="tab-pane @Basic2" role="tabpanel" aria-labelledby="profile-tab">
-                <p>This is the most basic example with upload button and send to the server.</p>
-                <h2>Properties</h2>
-                <ul>
-                    <li><strong>TargetToPostFile</strong> Url relative or absolute to send the file with a <var>POST</var> action</li>
-                </ul>
-                <p>Messages log: @Messages</p>
-                <pre>
+                </div>
+                <div class="tab-pane @Basic2" role="tabpanel" aria-labelledby="profile-tab">
+                    <p>This is the most basic example with upload button and send to the server.</p>
+                    <h2>Properties</h2>
+                    <ul>
+                        <li><strong>TargetToPostFile</strong> Url relative or absolute to send the file with a <var>POST</var> action</li>
+                    </ul>
+                    <p>Messages log: @Messages</p>
+                    <pre>
 <code>&lt;InputFileExtended 
     TargetToPostFile="http://myserver.com/upload"            
     ButtonShow="true"
@@ -51,7 +57,7 @@
 }
 </code>
         </pre>
+                </div>
             </div>
         </div>
     </div>
-</div>

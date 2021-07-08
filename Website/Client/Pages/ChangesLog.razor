@@ -1,18 +1,25 @@
 ﻿@page  "/changes-log"
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-6750814218988007"
+         data-ad-slot="2643405184"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
     <h1>Changes Log</h1>
-<h2>Version</h2>
-<h3>1.0.3 [2021-07-07]</h3>
-<ul>
-    <li>Removed the <var>typeparam</var> TResponse, is not longer needed. Please remove from the declaration.</li>
-    <li>Change delegates from <var>Task</var> to <var>void</var>. Be aware if you are using events or a derivate class.</li>
-    <li>Change Property  <var>string</var> <i>ButtonText</i> to <var>RenderFragment</var> <i>ButtonContent</i> To personalize the content in button upload. Be aware if you are using.</li>
-    <li>Change Property <i>FormData</i> with name <i>TargetFormDataContent</i>. Be aware if you are using.</li>
-    <li>Change Property <i>FormField</i> with name <i>TargetFormFieldName</i>. Be aware if you are using.</li>
-    <li>Change Property <i>EndPoint</i> with name <i>TargetToPostFile</i>. Be aware if you are using.</li>
-    <li>Add <var>RenderFragment</var> <i>InputContent</i> To personalize the content in input file button.</li>
-    <li>Add isolate CSS for some default style on <i>InputCss</i>. Default class <i>input-file button-file.</i></li>
-    <li>Add isolate CSS for some default style on <i>ButtonCss</i>. Default class <i>input-file button-upload.</i></li>
-    <li>Isolate CSS:
+    <h2>Version</h2>
+    <h3>1.0.3 [2021-07-07]</h3>
+    <ul>
+        <li>Removed the <var>typeparam</var> TResponse, is not longer needed. Please remove from the declaration.</li>
+        <li>Change delegates from <var>Task</var> to <var>void</var>. Be aware if you are using events or a derivate class.</li>
+        <li>Change Property  <var>string</var> <i>ButtonText</i> to <var>RenderFragment</var> <i>ButtonContent</i> To personalize the content in button upload. Be aware if you are using.</li>
+        <li>Change Property <i>FormData</i> with name <i>TargetFormDataContent</i>. Be aware if you are using.</li>
+        <li>Change Property <i>FormField</i> with name <i>TargetFormFieldName</i>. Be aware if you are using.</li>
+        <li>Change Property <i>EndPoint</i> with name <i>TargetToPostFile</i>. Be aware if you are using.</li>
+        <li>Add <var>RenderFragment</var> <i>InputContent</i> To personalize the content in input file button.</li>
+        <li>Add isolate CSS for some default style on <i>InputCss</i>. Default class <i>input-file button-file.</i></li>
+        <li>Add isolate CSS for some default style on <i>ButtonCss</i>. Default class <i>input-file button-upload.</i></li>
+        <li>
+            Isolate CSS:
 <pre>
 <code>    ::deep input[type="file"] {
     display: none;
@@ -42,12 +49,12 @@
     }
 </code>
 </pre>
-    </li>
+        </li>
 
-</ul>
-<h3>1.0.2 [2021-07-06]</h3>
-<ul>
-    <li>Add Clean() method to remove all files loaded into the InputFileHandler</li>
-    <li>Add CleanOnSuccessUpload Property in InputFileExtended. Default value <i>false</i>. This automatic clean the files load into the component after send with the upload form action.</li>
-    <li>Add methods to manage events from a derivate class.</li>
-</ul>
+    </ul>
+    <h3>1.0.2 [2021-07-06]</h3>
+    <ul>
+        <li>Add Clean() method to remove all files loaded into the InputFileHandler</li>
+        <li>Add CleanOnSuccessUpload Property in InputFileExtended. Default value <i>false</i>. This automatic clean the files load into the component after send with the upload form action.</li>
+        <li>Add methods to manage events from a derivate class.</li>
+    </ul>

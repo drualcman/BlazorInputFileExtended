@@ -1,41 +1,46 @@
 ﻿@page "/wiki/properties"
-
-<h1>Properties</h1>
-<h2>Upload management</h2>
-<ul>
-    <li><strong>MultiFile:</strong> Indicates can accept multiple files on the selection box. Default <i>false</i></li>
-    <li><strong>MaxUploatedFiles:</strong> Indicates how many files can be selected. Default <i>5</i>.</li>
-    <li><strong>MaxFileSize:</strong> Indicates maximum file size per each file selected. Default <i>512000 bytes</i>.</li>
-    <li><strong>CleanOnSuccessUpload:</strong> Indicates clean all loaded files after upload to the server. Default <i>false</i></li>
-    <li><strong>SelectionText:</strong> Set the text when files are chosen. Default <i>chosen</i></li>
-    <li><strong>SelectionCss:</strong> Set the CSS to format the text when files are chosen. Default <i>info</i></li>
-</ul>
-<h2>Input formating</h2>
-<ul>
-    <li><strong>InputContent:</strong> HTML for the choose file input. Ex: <i>&lt;span&gt;Choose File&lt;/span&gt;</i>.</li>
-    <li><strong>InputCss:</strong> Set the CSS to format the input file tag. Default isolated CSS class <i>.input-file .button-file</i></li>
-    <li><strong>InputTitle:</strong> Set the title when the user hover the input file tag.</li>
-    <li><strong>InputFileTypes:</strong> Indicates what kind of files can be selected. Ex: <i>images/*</i>.</li>
-</ul>
-<h2>Button formating</h2>
-<ul>
-    <li><strong>ButtonContent:</strong>  HTML inside the button for upload. Ex: <i>&lt;span&gt;Upload&lt;/span&gt;</i></li>
-    <li><strong>ButtonShow:</strong> Button to upload can be hide if you want to manage externally. Default <i>false</i>.</li>
-    <li><strong>ButtonCss:</strong> Set the CSS to format the button. Default isolated CSS class <i>.input-file .button-upload</i></li>
-    <li><strong>ButtonTitle:</strong> Set the title when the user hover the button.</li>
-</ul>
-<h2>Preview setup <i>only for images</i></h2>
-<ul>
-    <li><strong>IsImage:</strong> Indicate the files to select is images. Default <i>true</i>.</li>
-    <li><strong>ShowPreview:</strong> Indicates if need to show a preview for the file selected. Default <i>true</i></li>
-    <li><strong>PreviewWrapperCss:</strong> Set the CSS to format the wrapper for the figure tag content the image. Default <i>image</i></li>
-    <li><strong>FileCss:</strong> Set the CSS to format the image tag.</li>
-    <li><strong>FileBytes:</strong> Store the byte[] about the last image selected.</li>
-</ul>
-<h2>Post actions</h2>
-<p>If you want to upload files with some other data, send the model data.</p>
-<ul>
-    <li><strong>TargetFormDataContent:</strong> Object <var>MultipartFormDataContent</var> with the form data to send with the files.</li>
-    <li><strong>TargetFormFieldName:</strong> Indicates the field form name to send the files. Default <i>files</i></li>
-    <li><strong>TargetToPostFile:</strong> Indicate the URL to use for the post action. If it's not setup return a event error if try to upload images.</li>
-</ul>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-6750814218988007"
+         data-ad-slot="2643405184"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <h1>Properties</h1>
+    <h2>Upload management</h2>
+    <ul>
+        <li><strong>MultiFile:</strong> Indicates can accept multiple files on the selection box. Default <i>false</i></li>
+        <li><strong>MaxUploatedFiles:</strong> Indicates how many files can be selected. Default <i>5</i>.</li>
+        <li><strong>MaxFileSize:</strong> Indicates maximum file size per each file selected. Default <i>512000 bytes</i>.</li>
+        <li><strong>CleanOnSuccessUpload:</strong> Indicates clean all loaded files after upload to the server. Default <i>false</i></li>
+        <li><strong>SelectionText:</strong> Set the text when files are chosen. Default <i>chosen</i></li>
+        <li><strong>SelectionCss:</strong> Set the CSS to format the text when files are chosen. Default <i>info</i></li>
+    </ul>
+    <h2>Input formating</h2>
+    <ul>
+        <li><strong>InputContent:</strong> HTML for the choose file input. Ex: <i>&lt;span&gt;Choose File&lt;/span&gt;</i>.</li>
+        <li><strong>InputCss:</strong> Set the CSS to format the input file tag. Default isolated CSS class <i>.input-file .button-file</i></li>
+        <li><strong>InputTitle:</strong> Set the title when the user hover the input file tag.</li>
+        <li><strong>InputFileTypes:</strong> Indicates what kind of files can be selected. Ex: <i>images/*</i>.</li>
+    </ul>
+    <h2>Button formating</h2>
+    <ul>
+        <li><strong>ButtonContent:</strong>  HTML inside the button for upload. Ex: <i>&lt;span&gt;Upload&lt;/span&gt;</i></li>
+        <li><strong>ButtonShow:</strong> Button to upload can be hide if you want to manage externally. Default <i>false</i>.</li>
+        <li><strong>ButtonCss:</strong> Set the CSS to format the button. Default isolated CSS class <i>.input-file .button-upload</i></li>
+        <li><strong>ButtonTitle:</strong> Set the title when the user hover the button.</li>
+    </ul>
+    <h2>Preview setup <i>only for images</i></h2>
+    <ul>
+        <li><strong>IsImage:</strong> Indicate the files to select is images. Default <i>true</i>.</li>
+        <li><strong>ShowPreview:</strong> Indicates if need to show a preview for the file selected. Default <i>true</i></li>
+        <li><strong>PreviewWrapperCss:</strong> Set the CSS to format the wrapper for the figure tag content the image. Default <i>image</i></li>
+        <li><strong>FileCss:</strong> Set the CSS to format the image tag.</li>
+        <li><strong>FileBytes:</strong> Store the byte[] about the last image selected.</li>
+    </ul>
+    <h2>Post actions</h2>
+    <p>If you want to upload files with some other data, send the model data.</p>
+    <ul>
+        <li><strong>TargetFormDataContent:</strong> Object <var>MultipartFormDataContent</var> with the form data to send with the files.</li>
+        <li><strong>TargetFormFieldName:</strong> Indicates the field form name to send the files. Default <i>files</i></li>
+        <li><strong>TargetToPostFile:</strong> Indicate the URL to use for the post action. If it's not setup return a event error if try to upload images.</li>
+    </ul>
