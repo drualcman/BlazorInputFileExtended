@@ -238,6 +238,10 @@ namespace BlazorInputFileExtended
             {
                 await OnError.InvokeAsync(new ArgumentException("Don't have endpoint to call."));
             }
+            else if (Files.Count < 1)
+            {
+                await OnError.InvokeAsync(new ArgumentException("No files chosen"));
+            }
             else
             {
                 if (TargetFormDataContent is not null) await OnSave.InvokeAsync(await Files.UploadAsync<object>(TargetToPostFile, TargetFormDataContent, !MultiFile));

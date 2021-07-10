@@ -233,7 +233,7 @@
         </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended.OnSave">
             <summary>
-            When some error occurs
+            When upload is completed
             </summary>
         </member>
         <member name="M:BlazorInputFileExtended.InputFileExtended.Dispose">

@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <Authors>Sergi Ortiz Gomez</Authors>
     <Company>DrUalcman</Company>
     <Description>Component Blazor extend the normal InputFile with all the necessary to upload files. Also have a InputFileHandler can be inherit and add more functions</Description>
@@ -13,17 +13,12 @@
     <RepositoryUrl>https://github.com/drualcman/BlazorInputFileExtended</RepositoryUrl>
     <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
     <PackageTags>components, blazor, webassembly</PackageTags>
-    <PackageReleaseNotes>Add RenderFragment to personalize content for choose file and content for upload button
-Change delegate Task to void
-Removed ButttonText. Changed to RenderFragment
-Add some isolated CSS
-Change Property EndPoint with name TargetToPostFile
-Change Property FormData with name TargetFormDataContent
-Change Property FormFieldName with name TargetFormFieldName
-Removed Typeparam TResponse</PackageReleaseNotes>
+    <PackageReleaseNotes>Control if have files selected when click on the buton for upload files. If not fire a OnError Event</PackageReleaseNotes>
     <RepositoryType>Component Library</RepositoryType>
     <PackageIcon>icon-512.png</PackageIcon>
     <PackageIconUrl />
+    <AssemblyVersion>1.0.4.0</AssemblyVersion>
+    <FileVersion>1.0.4.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

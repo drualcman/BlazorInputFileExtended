@@ -17,5 +17,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
-
+	<PropertyGroup>
+		<ServerGarbageCollection>false</ServerGarbageCollection>
+	</PropertyGroup>
+	
 </Project>
