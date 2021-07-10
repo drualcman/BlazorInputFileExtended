@@ -14,7 +14,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Files uploaded
         /// </summary>
-        public SortedDictionary<int, FileUploadContent> Files { get; set; }
+        public List<FileUploadContent> Files { get; set; }
         /// <summary>
         /// Total size of all the files uploated
         /// </summary>

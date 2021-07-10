@@ -18,7 +18,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Index in the object
         /// </summary>
-        public int FileIndex { get; set; }
+        public Guid FileId { get; set; }
         /// <summary>
         /// Action used
         /// </summary>

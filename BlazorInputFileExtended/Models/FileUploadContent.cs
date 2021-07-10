@@ -34,14 +34,27 @@ namespace BlazorInputFileExtended
         /// </summary>
         public StreamContent FileStreamContent { get; set; }
         /// <summary>
-        /// Store the index for the file in the dictionary
+        /// Set a identifier for the file in the object
         /// </summary>
-        public int Index { get; set; }
+        public Guid Id { get; private set; } = Guid.NewGuid();
         /// <summary>
-        /// Get the bytes from the stream
+        /// Set the bytes from the stream
         /// </summary>
         /// <returns></returns>
-        public async Task<byte[]> GetFileBytes() =>
-            await FileStreamContent.ReadAsByteArrayAsync();
+        public async Task SetFileBytes()
+        {
+            byte[] bytes = await FileStreamContent.ReadAsByteArrayAsync();
+            ToImageHTML = $"data:image;base64,{Convert.ToBase64String(bytes)}";
+            FileBytes = bytes;
+        }
+        /// <summary>
+        /// Get the image to show in HTML pages directly
+        /// </summary>
+        /// <returns></returns>
+        public string ToImageHTML { get; private set; }
+        /// <summary>
+        /// Get the file bytes
+        /// </summary>
+        public byte[] FileBytes { get; set; }
     }
 }

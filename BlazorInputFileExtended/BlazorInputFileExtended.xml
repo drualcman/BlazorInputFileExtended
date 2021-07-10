@@ -4,87 +4,6 @@
         <name>BlazorInputFileExtended</name>
     </assembly>
     <members>
-        <member name="T:BlazorInputFileExtended.FilesUploadEventArgs">
-            <summary>
-            Return all files uploaded
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.FilesUploadEventArgs.Files">
-            <summary>
-            Files uploaded
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.FilesUploadEventArgs.Size">
-            <summary>
-            Total size of all the files uploated
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.FilesUploadEventArgs.Count">
-            <summary>
-            Number of the files uploated
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.FilesUploadEventArgs.Action">
-            <summary>
-            Action used
-            </summary>
-        </member>
-        <member name="T:BlazorInputFileExtended.FileUploadContent">
-            <summary>
-            Manage the file upload
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.FileUploadContent.Name">
-            <summary>
-            The name of the file as specified by the browser.
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.FileUploadContent.LastModified">
-            <summary>
-            The last modified date as specified by the browser.
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.FileUploadContent.Size">
-            <summary>
-            The size of the file in bytes as specified by the browser.
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.FileUploadContent.ContentType">
-            <summary>
-            The MIME type of the file as specified by the browser.
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.FileUploadContent.FileStreamContent">
-            <summary>
-            File bites
-            </summary>
-        </member>
-        <member name="M:BlazorInputFileExtended.FileUploadContent.GetFileBytes">
-            <summary>
-            Get the bytes from the stream
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:BlazorInputFileExtended.FileUploadEventArgs">
-            <summary>
-            Return file name and file stream per each file uploaded
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.FileUploadEventArgs.File">
-            <summary>
-            File uploaded with all the data
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.FileUploadEventArgs.FileIndex">
-            <summary>
-            Index in the object
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.FileUploadEventArgs.Action">
-            <summary>
-            Action used
-            </summary>
-        </member>
         <member name="T:BlazorInputFileExtended.InputFileExtended">
             <summary>
             InputFile Extension with all necessary to upload files.
@@ -191,6 +110,11 @@
             Form data to send in a post action with the files
             </summary>
         </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.TargetDataObject">
+            <summary>
+            Form data to send in a post action with the files
+            </summary>
+        </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended.TargetFormFieldName">
             <summary>
             Used when send in a post action, this indicate the field name are expecting
@@ -199,6 +123,11 @@
         <member name="P:BlazorInputFileExtended.InputFileExtended.TargetToPostFile">
             <summary>
             End point to call in a post action
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.Files">
+            <summary>
+            Expose InputFileHandler to manage the files when the component have reference. Example to show all the images.
             </summary>
         </member>
         <member name="M:BlazorInputFileExtended.InputFileExtended.Clean">
@@ -427,6 +356,13 @@
             <param name="index"></param>
             <returns></returns>
         </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.Remove(BlazorInputFileExtended.FileUploadContent)">
+            <summary>
+            Remove image
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
         <member name="M:BlazorInputFileExtended.InputFileHandler.Remove(System.String)">
             <summary>
             Remove image from file name
@@ -463,20 +399,31 @@
             </summary>
             <param name="field"></param>
         </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.UploadAsync``2(System.String,``1,System.Boolean)">
+            <summary>
+            Upload image using the object with the data for the form content
+            </summary>
+            <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+            <typeparam name="TData">Model of the data to send with the form and the file</typeparam>
+            <param name="TargetToPostFile"></param>
+            <param name="data">Object with the data to send with the file</param>
+            <param name="ignoreFiles">Indicate if need to ignore the dictionary files or not. False upload the last image selected.</param>
+            <returns></returns>
+        </member>
         <member name="M:BlazorInputFileExtended.InputFileHandler.UploadAsync``1(System.String)">
             <summary>
             Upload a image using the endpoint send
             </summary>
-            <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
-            <param name="urlEndPoint"></param>
+            <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+            <param name="TargetToPostFile"></param>
             <returns></returns>
         </member>
         <member name="M:BlazorInputFileExtended.InputFileHandler.UploadAsync``1(System.String,Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs)">
             <summary>
             Upload a image using the endpoint send
             </summary>
-            <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
-            <param name="urlEndPoint"></param>
+            <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+            <param name="TargetToPostFile"></param>
             <param name="files"></param>
             <returns></returns>
         </member>
@@ -484,8 +431,8 @@
             <summary>
             Upload a image using the endpoint send
             </summary>
-            <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
-            <param name="urlEndPoint"></param>
+            <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+            <param name="TargetToPostFile"></param>
             <param name="content">form content to send to the url end point</param>
             <returns></returns>
         </member>
@@ -493,18 +440,18 @@
             <summary>
             Upload a image using the endpoint send
             </summary>
-            <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
-            <param name="urlEndPoint"></param>
+            <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+            <param name="TargetToPostFile"></param>
             <param name="content">form content to send to the url end point</param>
-            <param name="ignoreFiles">Indicate if need to ignore the files or not</param>
+            <param name="ignoreFiles">Indicate if need to ignore the dictionary files or not. False upload the last image selected.</param>
             <returns></returns>
         </member>
         <member name="M:BlazorInputFileExtended.InputFileHandler.UploadAsync``1(System.String,System.Net.Http.MultipartFormDataContent,Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs)">
             <summary>
             Upload a image using the endpoint send
             </summary>
-            <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
-            <param name="urlEndPoint"></param>
+            <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+            <param name="TargetToPostFile"></param>
             <param name="content">form content to send to the url end point</param>
             <param name="files"></param>
             <returns></returns>
@@ -513,8 +460,8 @@
             <summary>
             Upload a image using the endpoint send
             </summary>
-            <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
-            <param name="urlEndPoint"></param>
+            <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+            <param name="TargetToPostFile"></param>
             <param name="content">form content to send to the url end point</param>
             <param name="file"></param>
             <param name="fileName"></param>
@@ -525,16 +472,16 @@
             Upload all files uploaded
             </summary>
             <typeparam name="TModel"></typeparam>
-            <param name="urlEndPoint"></param>
+            <param name="TargetToPostFile"></param>
             <param name="content"></param>
-            <param name="ignoreFiles">if need to ignore the dictionaty files</param>
+            <param name="ignoreFiles">Indicate if need to ignore the dictionary files or not. False upload the last image selected.</param>
             <returns></returns>
         </member>
         <member name="M:BlazorInputFileExtended.InputFileHandler.DeleteAsync(System.String,System.Int32)">
             <summary>
             Delete the image
             </summary>
-            <param name="endPoint">Must be return boolean the endpoint</param>
+            <param name="TargetToPostFile">Must be return boolean the endpoint</param>
             <param name="index"></param>
             <returns></returns>
         </member>
@@ -542,7 +489,7 @@
             <summary>
             Delete the image from the filename
             </summary>
-            <param name="endPoint">Must be return boolean the endpoint</param>
+            <param name="TargetToPostFile">Must be return boolean the endpoint</param>
             <param name="filename"></param>
             <returns></returns>
         </member>
@@ -555,6 +502,103 @@
         <member name="M:BlazorInputFileExtended.InputFileHandler.Dispose">
             <summary>
             Dispose action
+            </summary>
+        </member>
+        <member name="T:BlazorInputFileExtended.FilesUploadEventArgs">
+            <summary>
+            Return all files uploaded
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FilesUploadEventArgs.Files">
+            <summary>
+            Files uploaded
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FilesUploadEventArgs.Size">
+            <summary>
+            Total size of all the files uploated
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FilesUploadEventArgs.Count">
+            <summary>
+            Number of the files uploated
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FilesUploadEventArgs.Action">
+            <summary>
+            Action used
+            </summary>
+        </member>
+        <member name="T:BlazorInputFileExtended.FileUploadContent">
+            <summary>
+            Manage the file upload
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadContent.Name">
+            <summary>
+            The name of the file as specified by the browser.
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadContent.LastModified">
+            <summary>
+            The last modified date as specified by the browser.
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadContent.Size">
+            <summary>
+            The size of the file in bytes as specified by the browser.
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadContent.ContentType">
+            <summary>
+            The MIME type of the file as specified by the browser.
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadContent.FileStreamContent">
+            <summary>
+            File bites
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadContent.Id">
+            <summary>
+            Set a identifier for the file in the object
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.FileUploadContent.SetFileBytes">
+            <summary>
+            Set the bytes from the stream
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadContent.ToImageHTML">
+            <summary>
+            Get the image to show in HTML pages directly
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadContent.FileBytes">
+            <summary>
+            Get the file bytes
+            </summary>
+        </member>
+        <member name="T:BlazorInputFileExtended.FileUploadEventArgs">
+            <summary>
+            Return file name and file stream per each file uploaded
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadEventArgs.File">
+            <summary>
+            File uploaded with all the data
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadEventArgs.FileId">
+            <summary>
+            Index in the object
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.FileUploadEventArgs.Action">
+            <summary>
+            Action used
             </summary>
         </member>
     </members>

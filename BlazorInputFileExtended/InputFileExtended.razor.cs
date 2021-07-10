@@ -225,10 +225,11 @@ namespace BlazorInputFileExtended
 
         private async void Files_OnUploadFile(object sender, FileUploadEventArgs e)
         {
-            FileBytes = await e.File.GetFileBytes();
+            await e.File.SetFileBytes();
+            FileBytes = e.File.FileBytes;
             if (Files.Count > 0) SelectionInfo = $"{Files.Count} {SelectionText}";
             else SelectionInfo = string.Empty;
-            await OnUploadedFile.InvokeAsync(e);
+            OnUploadedFile.InvokeAsync(e);
             StateHasChanged();
         }
 

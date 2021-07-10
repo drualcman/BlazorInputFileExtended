@@ -27,7 +27,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// All files uploaded
         /// </summary>
-        protected SortedDictionary<int, FileUploadContent> UploadedFiles = new SortedDictionary<int, FileUploadContent>();
+        protected List<FileUploadContent> UploadedFiles = new List<FileUploadContent>();
         #endregion
 
         #region constructor
@@ -61,7 +61,7 @@ namespace BlazorInputFileExtended
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public FileUploadContent this[string fileName] => UploadedFiles.First(n => n.Value.Name == fileName).Value;
+        public FileUploadContent this[string fileName] => UploadedFiles.First(n => n.Name == fileName);
 
         /// <summary>
         /// Return first image from the dictionary
@@ -117,7 +117,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Return total file size uploaded
         /// </summary>
-        public long Size => UploadedFiles.Sum(s => s.Value.Size);
+        public long Size => UploadedFiles.Sum(s => s.Size);
         #endregion
 
         #region fields
@@ -243,8 +243,8 @@ namespace BlazorInputFileExtended
         /// <returns></returns>
         public IEnumerator<FileUploadContent> GetEnumerator()
         {
-            foreach (var item in UploadedFiles)
-                yield return item.Value;
+            foreach (FileUploadContent item in UploadedFiles)
+                yield return item;
         }
 
         /// <summary>
@@ -283,9 +283,9 @@ namespace BlazorInputFileExtended
                     else
                     {
                         if (this.MaxAllowedFiles == 1)          //if only allowed 1 file always reset the dictionary
-                            UploadedFiles = new SortedDictionary<int, FileUploadContent>();
+                            UploadedFiles = new List<FileUploadContent>();
 
-                        int files = UploadedFiles.Count - 1;
+                        int files = 0;
                         long size = 0;
                         foreach (IBrowserFile file in e.GetMultipleFiles(maximumFileCount: MaxAllowedFiles))
                         {
@@ -303,7 +303,7 @@ namespace BlazorInputFileExtended
 
                         if (OnUploaded is not null)
                         {
-                            OnUploaded(this, new FilesUploadEventArgs { Files = UploadedFiles, Count = files + 1, Size = size, Action = "Added" });
+                            OnUploaded(this, new FilesUploadEventArgs { Files = UploadedFiles, Count = files, Size = size, Action = "Added" });
                         }
                     }
                 }
@@ -329,20 +329,19 @@ namespace BlazorInputFileExtended
                 if (image.Size < this.MaxAllowedSize)
                 {
                     if (this.MaxAllowedFiles == 1)          //if only allowed 1 file always reset the dictionary
-                        UploadedFiles = new SortedDictionary<int, FileUploadContent>();
+                        UploadedFiles = new List<FileUploadContent>();
 
-                    int index = UploadedFiles.Count;
+                    int count = UploadedFiles.Count;
 
-                    if (index < this.MaxAllowedFiles)
+                    if (count < this.MaxAllowedFiles)
                     {
                         //last image added is the default image to send
                         UploadedImage = image.FileStreamContent;
                         FileName = image.Name;
-                        image.Index = index;
-                        UploadedFiles.Add(index, image);
+                        UploadedFiles.Add(image);
                         if (OnUploadFile is not null)
                         {
-                            OnUploadFile(this, new FileUploadEventArgs { File = image, FileIndex = index, Action = "Added" });
+                            OnUploadFile(this, new FileUploadEventArgs { File = image, FileId = image.Id, Action = "Added" });
                         }
                     }
                     else
@@ -376,13 +375,35 @@ namespace BlazorInputFileExtended
         /// </summary>
         /// <param name="index"></param>
         /// <param name="image"></param>
-        public void Update(int index, FileUploadContent image)
+        public bool Update(int index, FileUploadContent image)
         {
-            UploadedFiles[index] = image;
-            if (OnUploadFile is not null)
+            bool result;
+            try
             {
-                OnUploadFile(this, new FileUploadEventArgs { File = image, FileIndex = index, Action = "Updated" });
+                UploadedFiles[index] = image;
+                result = true;
+                if (OnUploadFile is not null)
+                {
+                    OnUploadFile(this, new FileUploadEventArgs { File = image, FileId = image.Id, Action = "Updated" });
+                }
             }
+            catch (IndexOutOfRangeException ix)
+            {
+                result = false;
+                if (OnUploadError is not null)
+                {
+                    OnUploadError(this, new ArgumentException($"File index {index} not found", "Update", ix));
+                }
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                if (OnUploadError is not null)
+                {
+                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Remove", ex));
+                }
+            }
+            return result;
         }
 
         /// <summary>
@@ -395,19 +416,53 @@ namespace BlazorInputFileExtended
             bool result;
             try
             {
-                var file = UploadedFiles.First(i => i.Value.Name == fileName);
-                if (file.Value is null)
+                FileUploadContent file = UploadedFiles.First(i => i.Name == fileName);
+                if (file is null)
                 {
+                    result = false;
                     if (OnUploadError is not null)
                     {
                         OnUploadError(this, new ArgumentException($"File {fileName} not found", "Update"));
                     }
+                }
+                else
+                {                    
+                    result = Update(UploadedFiles.IndexOf(file), image);
+                }
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                if (OnUploadError is not null)
+                {
+                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Update", ex));
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Update image by file name
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="image"></param>
+        public bool Update(Guid id, FileUploadContent image)
+        {
+            bool result;
+            try
+            {
+                FileUploadContent file = UploadedFiles.First(i => i.Id == id);
+                if (file is null)
+                {
                     result = false;
+                    if (OnUploadError is not null)
+                    {
+                        OnUploadError(this, new ArgumentException($"File {id} not found", "Update"));
+                    }
                 }
                 else
                 {
-                    Update(file.Key, image);
-                    result = true;
+                    result = Update(UploadedFiles.IndexOf(file), image);
                 }
             }
             catch (Exception ex)
@@ -428,23 +483,102 @@ namespace BlazorInputFileExtended
         /// <returns></returns>
         public bool Remove(int index)
         {
-            FileUploadContent selection = UploadedFiles[index];
-            bool result = UploadedFiles.Remove(index);
-            if (result)
+            bool result;
+            try
             {
-                if (OnUploadFile is not null)
+                result = Remove(UploadedFiles[index]);
+            }
+            catch (IndexOutOfRangeException ix)
+            {
+                result = false;
+                if (OnUploadError is not null)
                 {
-                    OnUploadFile(this, new FileUploadEventArgs { File = selection, FileIndex = index, Action = "Removed" });
+                    OnUploadError(this, new ArgumentException($"File index {index} not found", "Remove", ix));
                 }
             }
-            else
+            catch (Exception ex)
             {
-                if (OnUploadFile is not null)
+                result = false;
+                if (OnUploadError is not null)
                 {
-                    OnUploadFile(this, new FileUploadEventArgs { File = selection, FileIndex = index, Action = "Remove failed" });
+                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Remove", ex));
+                }
+            }            
+            return result;
+        }
+
+        /// <summary>
+        /// Remove image
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public bool Remove(FileUploadContent file)
+        {
+            bool result;
+            try
+            {
+                result = UploadedFiles.Remove(file);
+                if (result)
+                {
+                    if (OnUploadFile is not null)
+                    {
+                        OnUploadFile(this, new FileUploadEventArgs { File = file, FileId = file.Id, Action = "Removed" });
+                    }
+                }
+                else
+                {
+                    if (OnUploadFile is not null)
+                    {
+                        OnUploadFile(this, new FileUploadEventArgs { File = file, FileId = file.Id, Action = "Remove failed" });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                if (OnUploadError is not null)
+                {
+                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Remove", ex));
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Remove image from file name
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool Remove(Guid id)
+        {
+            bool result;
+            try
+            {
+                FileUploadContent file = UploadedFiles.First(i => i.Id == id);
+                if (file is null)
+                {
+                    result = false;
+                    if (OnUploadError is not null)
+                    {
+                        OnUploadError(this, new ArgumentException($"File {id} not found", "Remove"));
+                    }
+                }
+                else
+                {
+                    result = Remove(file);
+                }
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                if (OnUploadError is not null)
+                {
+                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Remove", ex));
                 }
             }
             return result;
+
         }
 
         /// <summary>
@@ -457,18 +591,18 @@ namespace BlazorInputFileExtended
             bool result;
             try
             {
-                var file = UploadedFiles.First(i => i.Value.Name == fileName);
-                if (file.Value is null)
+                FileUploadContent file = UploadedFiles.First(i => i.Name == fileName);
+                if (file is null)
                 {
+                    result = false;
                     if (OnUploadError is not null)
                     {
                         OnUploadError(this, new ArgumentException($"File {fileName} not found", "Remove"));
                     }
-                    result = false;
                 }
                 else
                 {
-                    result = Remove(file.Key);
+                    result = Remove(file);
                 }
             }
             catch (Exception ex)
@@ -649,18 +783,19 @@ namespace BlazorInputFileExtended
         {
             if (HttpClient is null) throw new ArgumentException("At least HttpClient Must be provided.", "UploadFilesAsync");
             if (!ignoreFiles)
-            {
-                int c = UploadedFiles.Count;
+            {                
                 long size = 0;
-                for (int i = 0; i < c; i++)
+                int c = 0;
+                foreach (FileUploadContent item in this)
                 {
                     content.Add(
-                        content: UploadedFiles[i].FileStreamContent,
+                        content: item.FileStreamContent,
                         name: FormField,
-                        fileName: UploadedFiles[i].Name
+                        fileName: item.Name
                     );
-                    size += UploadedFiles[i].Size;
-                }
+                    size += item.Size;
+                    c++;
+                }               
                 if (OnUploaded is not null)
                 {
                     OnUploaded(this, new FilesUploadEventArgs { Count = c, Files = UploadedFiles, Size = size , Action = "Upload"});
