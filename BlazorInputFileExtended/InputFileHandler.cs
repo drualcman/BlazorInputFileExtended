@@ -338,7 +338,7 @@ namespace BlazorInputFileExtended
                         //last image added is the default image to send
                         UploadedImage = image.FileStreamContent;
                         FileName = image.Name;
-
+                        image.Index = index;
                         UploadedFiles.Add(index, image);
                         if (OnUploadFile is not null)
                         {
@@ -400,7 +400,7 @@ namespace BlazorInputFileExtended
                 {
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException($"Image {fileName} not found", "Update"));
+                        OnUploadError(this, new ArgumentException($"File {fileName} not found", "Update"));
                     }
                     result = false;
                 }
@@ -462,7 +462,7 @@ namespace BlazorInputFileExtended
                 {
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException($"Image {fileName} not found", "Remove"));
+                        OnUploadError(this, new ArgumentException($"File {fileName} not found", "Remove"));
                     }
                     result = false;
                 }
@@ -709,19 +709,19 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Delete the image
         /// </summary>
-        /// <param name="endPoint">Must be return boolean the endpoint</param>
+        /// <param name="TargetToPostFile">Must be return boolean the endpoint</param>
         /// <param name="index"></param>
         /// <returns></returns>
-        public async Task<bool> DeleteAsync(string endPoint, int index) =>
-            await DeleteAsync(endPoint, this[index].Name);
+        public async Task<bool> DeleteAsync(string TargetToPostFile, int index) =>
+            await DeleteAsync(TargetToPostFile, this[index].Name);
 
         /// <summary>
         /// Delete the image from the filename
         /// </summary>
-        /// <param name="endPoint">Must be return boolean the endpoint</param>
+        /// <param name="TargetToPostFile">Must be return boolean the endpoint</param>
         /// <param name="filename"></param>
         /// <returns></returns>
-        public async Task<bool> DeleteAsync(string endPoint, string filename)
+        public async Task<bool> DeleteAsync(string TargetToPostFile, string filename)
         {
             if (HttpClient is null) throw new ArgumentException("At least HttpClient Must be provided. Use HttpClient or IDefaultServices.");
             if (string.IsNullOrEmpty(filename)) return false;
@@ -729,7 +729,7 @@ namespace BlazorInputFileExtended
             MultipartFormDataContent content = new MultipartFormDataContent();
             content.Add(new StringContent(filename));
 
-            using HttpResponseMessage response = await HttpClient.PostAsync(endPoint, content);
+            using HttpResponseMessage response = await HttpClient.PostAsync(TargetToPostFile, content);
             return await response.Content.ReadFromJsonAsync<bool>();
         }
         #endregion

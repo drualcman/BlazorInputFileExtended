@@ -34,6 +34,10 @@ namespace BlazorInputFileExtended
         /// </summary>
         public StreamContent FileStreamContent { get; set; }
         /// <summary>
+        /// Store the index for the file in the dictionary
+        /// </summary>
+        public int Index { get; set; }
+        /// <summary>
         /// Get the bytes from the stream
         /// </summary>
         /// <returns></returns>
