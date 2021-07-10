@@ -138,7 +138,10 @@ namespace BlazorInputFileExtended
         #endregion
 
         #region variables
-        InputFileHandler Files;
+        /// <summary>
+        /// Expose InputFileHandler to manage the files when the component have reference. Example to show all the images.
+        /// </summary>
+        public InputFileHandler Files { get; private set; }
         string ErrorMessages;
         byte[] FileBytes = null;
         string SelectionInfo;
@@ -217,25 +220,20 @@ namespace BlazorInputFileExtended
         #endregion
 
         #region handlers
-        private async void Files_OnUploaded(object sender, FilesUploadEventArgs e)
-        {
-            SelectionInfo = $"{e.Count} {SelectionText}";
-            await OnUploadComleted.InvokeAsync(e);
-            StateHasChanged();
-        }
+        private void Files_OnUploaded(object sender, FilesUploadEventArgs e) =>
+            OnUploadComleted.InvokeAsync(e);
 
         private async void Files_OnUploadFile(object sender, FileUploadEventArgs e)
         {
             FileBytes = await e.File.GetFileBytes();
+            if (Files.Count > 0) SelectionInfo = $"{Files.Count} {SelectionText}";
+            else SelectionInfo = string.Empty;
             await OnUploadedFile.InvokeAsync(e);
             StateHasChanged();
         }
 
-        private async void Files_OnUploadError(object sender, ArgumentException e)
-        {
-            await OnError.InvokeAsync(e);
-            StateHasChanged();
-        }
+        private void Files_OnUploadError(object sender, ArgumentException e) =>
+            OnError.InvokeAsync(e);
 
         async Task Save()
         {
@@ -254,6 +252,7 @@ namespace BlazorInputFileExtended
                 else await OnSave.InvokeAsync(await Files.UploadAsync<object>(TargetToPostFile, new MultipartFormDataContent(), !MultiFile));
                 if (CleanOnSuccessUpload) Clean();
             }
+            StateHasChanged();
         }
         #endregion
         #endregion
