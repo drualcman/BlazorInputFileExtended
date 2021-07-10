@@ -70,8 +70,11 @@
     public void Add(FileUploadContent image)
     public void Update(int index, FileUploadContent image)
     public bool Update(string fileName, FileUploadContent image)
+    public bool Update(Guid id, FileUploadContent image)
     public bool Remove(int index)
     public bool Remove(string fileName)
+    public bool Remove(FileUploadContent file)
+    public bool Remove(Guid id)
 
     public void SetHttpClient(HttpClient httpClient)
     public void SetMaxFiles(int maxfile)
@@ -81,15 +84,16 @@
 </pre>
     <h3>HttpClient calls</h3>
 <pre>
-<code>    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint)
-    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, InputFileChangeEventArgs files)
-    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, MultipartFormDataContent content)
-    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, MultipartFormDataContent content, bool ignoreFiles)
-    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, MultipartFormDataContent content, InputFileChangeEventArgs files)
-    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string urlEndPoint, MultipartFormDataContent content, StreamContent file, string fileName = "")
+<code>    public async Task&lt;TModel&gt; UploadAsync&lt;TModel, TData&gt;(string TargetToPostFile, TData data, bool ignoreFiles = true)
+    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile)
+    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, InputFileChangeEventArgs files)
+    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content)
+    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, bool ignoreFiles)
+    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
+    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, StreamContent file, string fileName = "")
 
-    public async Task&lt;bool&gt; DeleteAsync(string endPoint, int index)
-    public async Task&lt;bool&gt; DeleteAsync(string endPoint, string filename)
+    public async Task&lt;bool&gt; DeleteAsync(string TargetToPostFile, int index)
+    public async Task&lt;bool&gt; DeleteAsync(string TargetToPostFile, string filename)
 </code>
 </pre>
 

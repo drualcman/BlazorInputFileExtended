@@ -7,10 +7,27 @@
          data-full-width-responsive="true"></ins>
     <h1>Changes Log</h1>
     <h2>Version</h2>
-    <h3>1.0.3 [2021-07-07]</h3>
+    <h3>1.0.4 [2021-07-10]</h3>
+<ul>
+    <li><strong>InputFileExtendend:</strong></li>
+    <li>Add property <var>object</var> TargetDataObject. Used to send all form data to the server. This create <var>MultipartFormDataContent</var> with the content about the object and send to the target post.</li>
+    <li>Add property <i>Files</i> expose InputFileHandler can be used when have @@ref manage the files. Property read only.</li>
+    <li>Control if have files selected when click on the button for upload files. If not fire a OnError Event</li>
+    <li><strong>InputFileHandler:</strong></li>
+    <li>Add new UploadAsyc with 2 generic type <var>TModel</var> with the value must be return after send the files to the target post. And <var>TData</var> with the object content the form data the content to create <var>MultipartFormDataContent</var> with the content about the object and send to the target post</li>
+    <li>Add methods to update by <var>Guid</var> <i>FileId</i></li>
+    <li>Add methods to remove by <var>Guid</var> <i>FileId</i> or <var>FileUploadContent</var> <i>file</i></li>
+    <li><strong>FileUploadContent:</strong></li>
+    <li>Add property <var>Guid</var> <i>FileId</i> to identify the image in the object</li>
+    <li>Add property <var>byte[]</var> <i>FileBytes</i> return file bytes</li>
+    <li>Add property <var>string</var> <i>ToImageHTML</i> return a Base64String in a format to use in the tag image property src</li>
+    <li><strong>FileUploadEventArgs:</strong></li>
+    <li>Change property from <var>int</var> <i>FileIndex</i> to <var>Guid</var> <i>FileId</i>. Be aware if you are using.</li>
+</ul>
+    <h3>1.0.3 [2021-07-08]</h3>
     <ul>
+        <li><strong>InputFileExtendend:</strong></li>
         <li>Removed the <var>typeparam</var> TResponse, is not longer needed. Please remove from the declaration.</li>
-        <li>Change delegates from <var>Task</var> to <var>void</var>. Be aware if you are using events or a derivate class.</li>
         <li>Change Property  <var>string</var> <i>ButtonText</i> to <var>RenderFragment</var> <i>ButtonContent</i> To personalize the content in button upload. Be aware if you are using.</li>
         <li>Change Property <i>FormData</i> with name <i>TargetFormDataContent</i>. Be aware if you are using.</li>
         <li>Change Property <i>FormField</i> with name <i>TargetFormFieldName</i>. Be aware if you are using.</li>
@@ -50,11 +67,14 @@
 </code>
 </pre>
         </li>
-
+        <li><strong>InputFileHandler:</strong></li>
+        <li>Change delegates from <var>Task</var> to <var>void</var>. Be aware if you are using events or a derivate class.</li>
     </ul>
     <h3>1.0.2 [2021-07-06]</h3>
     <ul>
-        <li>Add Clean() method to remove all files loaded into the InputFileHandler</li>
+        <li><strong>InputFileExtendend:</strong></li>
         <li>Add CleanOnSuccessUpload Property in InputFileExtended. Default value <i>false</i>. This automatic clean the files load into the component after send with the upload form action.</li>
+        <li><strong>InputFileHandler:</strong></li>
+        <li>Add Clean() method to remove all files loaded</li>
         <li>Add methods to manage events from a derivate class.</li>
     </ul>

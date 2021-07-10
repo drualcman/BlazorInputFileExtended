@@ -69,9 +69,15 @@
         /// File bites
         public StreamContent FileStreamContent { get; set; }
 
+        // File index in the object
+        public int Index { get; set; }
+
         /// Get the bytes from the stream
         public async Task&lt;byte[]&gt; GetFileBytes() =>
             await FileStreamContent.ReadAsByteArrayAsync();
+
+        // Return a Base64String to use in the tag image directly like a source
+         public string ToImageHTML()
     }
 </code>
 </pre>

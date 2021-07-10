@@ -36,7 +36,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Set a identifier for the file in the object
         /// </summary>
-        public Guid Id { get; private set; } = Guid.NewGuid();
+        public Guid FileId { get; private set; } = Guid.NewGuid();
         /// <summary>
         /// Set the bytes from the stream
         /// </summary>
@@ -55,6 +55,6 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Get the file bytes
         /// </summary>
-        public byte[] FileBytes { get; set; }
+        public byte[] FileBytes { get; private set; }
     }
 }

@@ -341,7 +341,7 @@ namespace BlazorInputFileExtended
                         UploadedFiles.Add(image);
                         if (OnUploadFile is not null)
                         {
-                            OnUploadFile(this, new FileUploadEventArgs { File = image, FileId = image.Id, Action = "Added" });
+                            OnUploadFile(this, new FileUploadEventArgs { File = image, FileId = image.FileId, Action = "Added" });
                         }
                     }
                     else
@@ -384,7 +384,7 @@ namespace BlazorInputFileExtended
                 result = true;
                 if (OnUploadFile is not null)
                 {
-                    OnUploadFile(this, new FileUploadEventArgs { File = image, FileId = image.Id, Action = "Updated" });
+                    OnUploadFile(this, new FileUploadEventArgs { File = image, FileId = image.FileId, Action = "Updated" });
                 }
             }
             catch (IndexOutOfRangeException ix)
@@ -442,7 +442,7 @@ namespace BlazorInputFileExtended
         }
 
         /// <summary>
-        /// Update image by file name
+        /// Update image by file FileId
         /// </summary>
         /// <param name="id"></param>
         /// <param name="image"></param>
@@ -451,7 +451,7 @@ namespace BlazorInputFileExtended
             bool result;
             try
             {
-                FileUploadContent file = UploadedFiles.First(i => i.Id == id);
+                FileUploadContent file = UploadedFiles.First(i => i.FileId == id);
                 if (file is null)
                 {
                     result = false;
@@ -522,14 +522,14 @@ namespace BlazorInputFileExtended
                 {
                     if (OnUploadFile is not null)
                     {
-                        OnUploadFile(this, new FileUploadEventArgs { File = file, FileId = file.Id, Action = "Removed" });
+                        OnUploadFile(this, new FileUploadEventArgs { File = file, FileId = file.FileId, Action = "Removed" });
                     }
                 }
                 else
                 {
                     if (OnUploadFile is not null)
                     {
-                        OnUploadFile(this, new FileUploadEventArgs { File = file, FileId = file.Id, Action = "Remove failed" });
+                        OnUploadFile(this, new FileUploadEventArgs { File = file, FileId = file.FileId, Action = "Remove failed" });
                     }
                 }
             }
@@ -555,7 +555,7 @@ namespace BlazorInputFileExtended
             bool result;
             try
             {
-                FileUploadContent file = UploadedFiles.First(i => i.Id == id);
+                FileUploadContent file = UploadedFiles.First(i => i.FileId == id);
                 if (file is null)
                 {
                     result = false;
