@@ -15,7 +15,7 @@ namespace BlazorInputFileExtended.Helpers
         {
             MultipartFormDataContent formData = new MultipartFormDataContent();
             Type t = data.GetType();
-            PropertyInfo[] properties = t.GetProperties(BindingFlags.GetProperty);      //get properties only
+            PropertyInfo[] properties = t.GetProperties(BindingFlags.Public | BindingFlags.Instance);      //get properties only
             int c = properties.Length;
             for (int i = 0; i < c; i++)
             {
