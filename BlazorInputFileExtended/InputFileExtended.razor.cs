@@ -121,6 +121,11 @@ namespace BlazorInputFileExtended
         [Parameter] public MultipartFormDataContent TargetFormDataContent { get; set; }
 
         /// <summary>
+        /// Form data to send in a post action with the files
+        /// </summary>
+        [Parameter] public object TargetDataObject { get; set; }
+
+        /// <summary>
         /// Used when send in a post action, this indicate the field name are expecting
         /// </summary>
         [Parameter] public string TargetFormFieldName { get; set; } = "files";
@@ -241,10 +246,11 @@ namespace BlazorInputFileExtended
             else if (Files.Count < 1)
             {
                 await OnError.InvokeAsync(new ArgumentException("No files chosen"));
-            }
+            }            
             else
             {
                 if (TargetFormDataContent is not null) await OnSave.InvokeAsync(await Files.UploadAsync<object>(TargetToPostFile, TargetFormDataContent, !MultiFile));
+                else if (TargetDataObject is not null) await OnSave.InvokeAsync(await Files.UploadAsync<object, object>(TargetToPostFile, TargetDataObject, !MultiFile));
                 else await OnSave.InvokeAsync(await Files.UploadAsync<object>(TargetToPostFile, new MultipartFormDataContent(), !MultiFile));
                 if (CleanOnSuccessUpload) Clean();
             }

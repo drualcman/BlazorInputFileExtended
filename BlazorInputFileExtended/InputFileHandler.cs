@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using BlazorInputFileExtended.Helpers;
 
 namespace BlazorInputFileExtended
 {
@@ -527,43 +528,56 @@ namespace BlazorInputFileExtended
 
         #region HttpClient calls
         /// <summary>
-        /// Upload a image using the endpoint send
+        /// Upload image using the object with the data for the form content
         /// </summary>
-        /// <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
-        /// <param name="urlEndPoint"></param>
+        /// <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+        /// <typeparam name="TData">Model of the data to send with the form and the file</typeparam>
+        /// <param name="TargetToPostFile"></param>
+        /// <param name="data">Object with the data to send with the file</param>
+        /// <param name="ignoreFiles">Indicate if need to ignore the dictionary files or not. False upload the last image selected.</param>
         /// <returns></returns>
-        public async Task<TModel> UploadAsync<TModel>(string urlEndPoint) =>
-            await UploadAsync<TModel>(urlEndPoint, new MultipartFormDataContent(), true);
+        public async Task<TModel> UploadAsync<TModel, TData>(string TargetToPostFile, TData data, bool ignoreFiles = true) =>
+            await UploadAsync<TModel>(TargetToPostFile, FormData.SetMultipartFormDataContent(data), ignoreFiles);
+
 
         /// <summary>
         /// Upload a image using the endpoint send
         /// </summary>
-        /// <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
-        /// <param name="urlEndPoint"></param>
+        /// <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+        /// <param name="TargetToPostFile"></param>
+        /// <returns></returns>
+        public async Task<TModel> UploadAsync<TModel>(string TargetToPostFile) =>
+            await UploadAsync<TModel>(TargetToPostFile, new MultipartFormDataContent(), true);
+
+        /// <summary>
+        /// Upload a image using the endpoint send
+        /// </summary>
+        /// <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+        /// <param name="TargetToPostFile"></param>
         /// <param name="files"></param>
         /// <returns></returns>
-        public async Task<TModel> UploadAsync<TModel>(string urlEndPoint, InputFileChangeEventArgs files) =>
-            await UploadAsync<TModel>(urlEndPoint, new MultipartFormDataContent(), files);
+        public async Task<TModel> UploadAsync<TModel>(string TargetToPostFile, InputFileChangeEventArgs files) =>
+            await UploadAsync<TModel>(TargetToPostFile, new MultipartFormDataContent(), files);
 
         /// <summary>
         /// Upload a image using the endpoint send
         /// </summary>
-        /// <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
-        /// <param name="urlEndPoint"></param>
+        /// <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+        /// <param name="TargetToPostFile"></param>
         /// <param name="content">form content to send to the url end point</param>
         /// <returns></returns>
-        public async Task<TModel> UploadAsync<TModel>(string urlEndPoint, MultipartFormDataContent content) =>
-            await UploadAsync<TModel>(urlEndPoint, content, true);
+        public async Task<TModel> UploadAsync<TModel>(string TargetToPostFile, MultipartFormDataContent content) =>
+            await UploadAsync<TModel>(TargetToPostFile, content, true);
 
         /// <summary>
         /// Upload a image using the endpoint send
         /// </summary>
-        /// <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
-        /// <param name="urlEndPoint"></param>
+        /// <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+        /// <param name="TargetToPostFile"></param>
         /// <param name="content">form content to send to the url end point</param>
-        /// <param name="ignoreFiles">Indicate if need to ignore the files or not</param>
+        /// <param name="ignoreFiles">Indicate if need to ignore the dictionary files or not. False upload the last image selected.</param>
         /// <returns></returns>
-        public async Task<TModel> UploadAsync<TModel>(string urlEndPoint, MultipartFormDataContent content, bool ignoreFiles)
+        public async Task<TModel> UploadAsync<TModel>(string TargetToPostFile, MultipartFormDataContent content, bool ignoreFiles)
         {
             if (ignoreFiles)
             {
@@ -576,33 +590,33 @@ namespace BlazorInputFileExtended
                     );
                 }
             }
-            return await UploadFilesAsync<TModel>(urlEndPoint, content, ignoreFiles);
+            return await UploadFilesAsync<TModel>(TargetToPostFile, content, ignoreFiles);
         }
 
         /// <summary>
         /// Upload a image using the endpoint send
         /// </summary>
-        /// <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
-        /// <param name="urlEndPoint"></param>
+        /// <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+        /// <param name="TargetToPostFile"></param>
         /// <param name="content">form content to send to the url end point</param>
         /// <param name="files"></param>
         /// <returns></returns>
-        public async Task<TModel> UploadAsync<TModel>(string urlEndPoint, MultipartFormDataContent content, InputFileChangeEventArgs files)
+        public async Task<TModel> UploadAsync<TModel>(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
         {
             UploadFile(files);
-            return await UploadFilesAsync<TModel>(urlEndPoint, content, false);
+            return await UploadFilesAsync<TModel>(TargetToPostFile, content, false);
         }
 
         /// <summary>
         /// Upload a image using the endpoint send
         /// </summary>
-        /// <typeparam name="TModel">Model to use on the response from the url end point</typeparam>
-        /// <param name="urlEndPoint"></param>
+        /// <typeparam name="TModel">Model to use on the response from the Target to post file</typeparam>
+        /// <param name="TargetToPostFile"></param>
         /// <param name="content">form content to send to the url end point</param>
         /// <param name="file"></param>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public async Task<TModel> UploadAsync<TModel>(string urlEndPoint, MultipartFormDataContent content, StreamContent file, string fileName = "")
+        public async Task<TModel> UploadAsync<TModel>(string TargetToPostFile, MultipartFormDataContent content, StreamContent file, string fileName = "")
         {
             if (file is not null)
             {
@@ -619,18 +633,18 @@ namespace BlazorInputFileExtended
                      OnUploadError(this, new ArgumentException($"No files to upload", "UploadAsync"));
                 }
             }
-            return await UploadFilesAsync<TModel>(urlEndPoint, content, true);
+            return await UploadFilesAsync<TModel>(TargetToPostFile, content, true);
         }
 
         /// <summary>
         /// Upload all files uploaded
         /// </summary>
         /// <typeparam name="TModel"></typeparam>
-        /// <param name="urlEndPoint"></param>
+        /// <param name="TargetToPostFile"></param>
         /// <param name="content"></param>
-        /// <param name="ignoreFiles">if need to ignore the dictionaty files</param>
+        /// <param name="ignoreFiles">Indicate if need to ignore the dictionary files or not. False upload the last image selected.</param>
         /// <returns></returns>
-        private async Task<TModel> UploadFilesAsync<TModel>(string urlEndPoint, MultipartFormDataContent content,
+        private async Task<TModel> UploadFilesAsync<TModel>(string TargetToPostFile, MultipartFormDataContent content,
             bool ignoreFiles)
         {
             if (HttpClient is null) throw new ArgumentException("At least HttpClient Must be provided.", "UploadFilesAsync");
@@ -656,7 +670,7 @@ namespace BlazorInputFileExtended
             {
                 if (this.Size > 0)
                 {
-                    using HttpResponseMessage result = await HttpClient.PostAsync(urlEndPoint, content);
+                    using HttpResponseMessage result = await HttpClient.PostAsync(TargetToPostFile, content);
                     if (result.IsSuccessStatusCode)
                     {
                         TModel response = await result.Content.ReadFromJsonAsync<TModel>();
@@ -668,7 +682,7 @@ namespace BlazorInputFileExtended
                         {
                             //decode the error from the call of the end point                        
                             string jsonElement = await result.Content.ReadAsStringAsync();
-                            OnAPIError(this, new ArgumentException($"{urlEndPoint}: {result.ReasonPhrase} [{(int)result.StatusCode} {result.StatusCode}]: {jsonElement}", "UploadFilesAsync"));
+                            OnAPIError(this, new ArgumentException($"{TargetToPostFile}: {result.ReasonPhrase} [{(int)result.StatusCode} {result.StatusCode}]: {jsonElement}", "UploadFilesAsync"));
                         }
                         return default(TModel);
                     }
@@ -686,7 +700,7 @@ namespace BlazorInputFileExtended
             {
                 if (OnAPIError is not null)
                 {
-                    OnAPIError(this, new ArgumentException($"{urlEndPoint}: Exception: {ex.Message}", "UploadFilesAsync", ex));
+                    OnAPIError(this, new ArgumentException($"{TargetToPostFile}: Exception: {ex.Message}", "UploadFilesAsync", ex));
                 }
                 return default(TModel);
             }
