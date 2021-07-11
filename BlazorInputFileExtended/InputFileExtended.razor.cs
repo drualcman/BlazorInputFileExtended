@@ -145,6 +145,7 @@ namespace BlazorInputFileExtended
         string ErrorMessages;
         byte[] FileBytes = null;
         string SelectionInfo;
+        string InputFileId = Guid.NewGuid().ToString();
         #endregion
 
         #region methods

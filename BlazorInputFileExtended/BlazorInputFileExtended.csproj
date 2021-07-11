@@ -12,7 +12,7 @@
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/drualcman/BlazorInputFileExtended</RepositoryUrl>
     <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
-    <PackageTags>components, blazor, webassembly</PackageTags>
+    <PackageTags>Components, Blazor, WebAssembly, InputFile, FileUpload, BlazorFileUpload</PackageTags>
     <PackageReleaseNotes>Set public the helper class FormData for can be used from a derivate class.</PackageReleaseNotes>
     <RepositoryType>Component Library</RepositoryType>
     <PackageIcon>icon-512.png</PackageIcon>
