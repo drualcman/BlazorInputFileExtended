@@ -266,6 +266,9 @@ namespace BlazorInputFileExtended
                 }
                 else
                 {
+                    if (this.MaxAllowedFiles == 1)          //if only allowed 1 file always reset the dictionary
+                        UploadedFiles.Clear();
+
                     if (e.FileCount > this.MaxAllowedFiles)
                     {
                         if (OnUploadError is not null)
@@ -282,9 +285,6 @@ namespace BlazorInputFileExtended
                     }
                     else
                     {
-                        if (this.MaxAllowedFiles == 1)          //if only allowed 1 file always reset the dictionary
-                            UploadedFiles = new List<FileUploadContent>();
-
                         int files = 0;
                         long size = 0;
                         foreach (IBrowserFile file in e.GetMultipleFiles(maximumFileCount: MaxAllowedFiles))
