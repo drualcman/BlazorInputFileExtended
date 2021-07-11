@@ -103,18 +103,22 @@
 </div>
     <div class="col">
         <h3>Gallery</h3>
-        <ul>            
+        <ul class="gallery">            
             @if (Files?.Files.Count > 0)
             {
                 foreach (var file in Files.Files)
                 {
             <li>
-                <figure class="img">
-                    <img src="@file.ToImageHTML" class="img-thumbnail" />
-                </figure>
-                <strong><span>@file.FileId</span></strong> 
-                <span>@file.Name</span>
-                <span class="btn btn-outline-danger" @onclick="() => Files.Files.Remove(file)">X</span>
+                <div class="row">
+                    <div class="col image">
+                        <img src="@file.ToImageHTML" class="img-fluid" />
+                        <div class="data">
+                            <span class="file-id"><strong>File Id: </strong>@file.FileId</span>
+                            <span>Name: @file.Name</span>
+                        </div>
+                        <span class="btn btn-outline-danger" @onclick="() => Files.Files.Remove(file)">X</span>
+                    </div>
+                </div>
             </li>
                 }
             }

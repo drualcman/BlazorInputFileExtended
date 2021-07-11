@@ -24,13 +24,14 @@
 * FileBytes: Store the byte[] about the last image selected.
 ## Post actions
 If you want to upload files with some other data, send the model data.
-* TargetFormDataContent: Object MultipartFormDataContent with the form data to send with the files.
+* TargetFormDataContent: MultipartFormDataContent with the form data to send with the files.
+* TargetDataObject: Object with the data model to send with the files. This will encapsulated into a MultipartFormDataContent before send to server.
 * TargetFormFieldName: Indicates the field form name to send the files. Default files
 * TargetToPostFile: Indicate the URL to use for the post action. If it's not setup return a event error if try to upload images.
 # Events
 * OnUploadedFile: When each file is uploaded. Returns FileUploadEventArgs.
 * OnUploadComleted: When all files is uploaded. Returns FilesUploadEventArgs.
 * OnError: When some exception. Returns ArgumentException.
-* OnSave: When click on SAVE button. Returns TResponse with the model from the response.
+* OnSave: When click on SAVE button. Returns HttpMessageResponse.
 # Handler
-You can use the classe BlazorInputFileExtenden.InputFileHandler to implement your own logic or the logic for the Authorization send files.
+You can use the class BlazorInputFileExtenden.InputFileHandler to implement your own logic or the logic for the Authorization send files.
