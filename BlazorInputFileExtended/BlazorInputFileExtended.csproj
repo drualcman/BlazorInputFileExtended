@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.1.4</Version>
+    <Version>1.1.5</Version>
     <Authors>Sergi Ortiz Gomez</Authors>
     <Company>DrUalcman</Company>
     <Description>Component Blazor extend the normal InputFile with all the necessary to upload files. Also have a InputFileHandler can be inherit and add more functions</Description>
@@ -13,19 +13,12 @@
     <RepositoryUrl>https://github.com/drualcman/BlazorInputFileExtended</RepositoryUrl>
     <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
     <PackageTags>components, blazor, webassembly</PackageTags>
-    <PackageReleaseNotes>Control if have files selected when click on the button for upload files. If not fire a OnError Event.
-Add property object TargetDataObject. Used to send all form data to the server. This create MultipartFormDataContent with the content about the object and send to the target post.
-Add in InputFileHandler new UploadAsyc with 2 generic type TModel with the value must be return after send the files to the target post. And TData with the object content the form data the content to create <var>MultipartFormDataContent</var> with the Add methods update by FileId and remove by FileId or FileUploadContent object
-content about the object and send to the target post.
-Change property in FileUploadEventArgs from FileIndex to FileId.
-In FileUploadContent ad properties FileId, FileBytes and ToImageHTML.
-In InputFileExtended change OnSave return object to HttpResponseMessage
-In InputFileHandler add Methods UploadAsync return HttpResponseMessage</PackageReleaseNotes>
+    <PackageReleaseNotes>Set public the helper class FormData for can be used from a derivate class.</PackageReleaseNotes>
     <RepositoryType>Component Library</RepositoryType>
     <PackageIcon>icon-512.png</PackageIcon>
     <PackageIconUrl />
-    <AssemblyVersion>1.1.4.0</AssemblyVersion>
-    <FileVersion>1.1.4.0</FileVersion>
+    <AssemblyVersion>1.1.5.0</AssemblyVersion>
+    <FileVersion>1.1.5.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

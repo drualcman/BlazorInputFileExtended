@@ -8,9 +8,17 @@ using System.Threading.Tasks;
 
 namespace BlazorInputFileExtended.Helpers
 {
-    class FormData
+    /// <summary>
+    /// Class with helpers about the form data
+    /// </summary>
+    public class FormData
     {
-
+        /// <summary>
+        /// Get a object and encaprulate into a MultipartFormDataContent
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static MultipartFormDataContent SetMultipartFormDataContent<TModel>(TModel data)
         {
             MultipartFormDataContent formData = new MultipartFormDataContent();

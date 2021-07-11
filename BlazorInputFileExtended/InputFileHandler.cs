@@ -945,7 +945,7 @@ namespace BlazorInputFileExtended
             TModel response;
             try
             {
-                if (this.Size > 0)
+                if (this.Count > 0)
                 {
                     using HttpResponseMessage result = await UploadFilesAsync(TargetToPostFile, content, ignoreFiles);
                     if (result.IsSuccessStatusCode) response = await result.Content.ReadFromJsonAsync<TModel>();
