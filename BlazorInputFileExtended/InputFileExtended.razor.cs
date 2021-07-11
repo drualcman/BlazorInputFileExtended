@@ -142,7 +142,7 @@ namespace BlazorInputFileExtended
         /// Expose InputFileHandler to manage the files when the component have reference. Example to show all the images.
         /// </summary>
         public InputFileHandler Files { get; private set; }
-        string ErrorMessages;
+        string APIErrorMessages;
         byte[] FileBytes = null;
         string SelectionInfo;
         string InputFileId = Guid.NewGuid().ToString();
@@ -191,7 +191,7 @@ namespace BlazorInputFileExtended
 
         private void Files_OnAPIError(object sender, ArgumentException e)
         {
-            ErrorMessages = e.Message;
+            APIErrorMessages = e.Message;
             StateHasChanged();
         }
 
