@@ -38,7 +38,8 @@ namespace BlazorInputFileExtended
         /// </summary>
         public Guid FileId { get; private set; } = Guid.NewGuid();
         /// <summary>
-        /// Set the bytes from the stream
+        /// Set the bytes from the stream.
+        /// Must be executed in the event OnUploadFile if you work direclt with image tag.
         /// </summary>
         /// <returns></returns>
         public async Task SetFileBytes()

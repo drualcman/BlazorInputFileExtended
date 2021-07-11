@@ -13,10 +13,12 @@
     <li>Add property <var>object</var> TargetDataObject. Used to send all form data to the server. This create <var>MultipartFormDataContent</var> with the content about the object and send to the target post.</li>
     <li>Add property <i>Files</i> expose InputFileHandler can be used when have @@ref manage the files. Property read only.</li>
     <li>Control if have files selected when click on the button for upload files. If not fire a OnError Event</li>
+    <li>Change OnSave return <var>object</var> to <var>HttpResponseMessage</var>. you have more control about what is the response from the server when upload file.</li>
     <li><strong>InputFileHandler:</strong></li>
     <li>Add new UploadAsyc with 2 generic type <var>TModel</var> with the value must be return after send the files to the target post. And <var>TData</var> with the object content the form data the content to create <var>MultipartFormDataContent</var> with the content about the object and send to the target post</li>
     <li>Add methods to update by <var>Guid</var> <i>FileId</i></li>
     <li>Add methods to remove by <var>Guid</var> <i>FileId</i> or <var>FileUploadContent</var> <i>file</i></li>
+    <li>Add methods UploadAsync no generic with return <var>HttpResponseMessage</var></li>
     <li><strong>FileUploadContent:</strong></li>
     <li>Add property <var>Guid</var> <i>FileId</i> to identify the image in the object</li>
     <li>Add property <var>byte[]</var> <i>FileBytes</i> return file bytes</li>

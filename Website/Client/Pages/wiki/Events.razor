@@ -7,10 +7,10 @@
          data-full-width-responsive="true"></ins>
     <h1>Events</h1>
     <ul>
-        <li><strong>OnUploadedFile:</strong> When each file is uploaded. Returns <i>FileUploadEventArgs</i>.</li>
-        <li><strong>OnUploadComleted:</strong> When all files is uploaded. Returns <i>FilesUploadEventArgs</i>.</li>
-        <li><strong>OnError:</strong> When some exception. Returns <i>ArgumentException</i>.</li>
-        <li><strong>OnSave:</strong> When click on <i><strong>UPLOAD</strong> button</i>. Returns <i>Object</i> with the model from the response.</li>
+        <li><strong>OnUploadedFile:</strong> When each file is uploaded. Returns <var>FileUploadEventArgs</var>.</li>
+        <li><strong>OnUploadComleted:</strong> When all files is uploaded. Returns <var>FilesUploadEventArgs</var>.</li>
+        <li><strong>OnError:</strong> When some exception. Returns <var>ArgumentException</var>.</li>
+        <li><strong>OnSave:</strong> When click on <i><strong>UPLOAD</strong> button</i>. Returns <var>HttpResponseMessage</var> with the response.</li>
     </ul>
 
     <h2>Arguments return objects</h2>
@@ -23,7 +23,7 @@
         public FileUploadContent File { get; set; }
 
         /// Index in the object
-        public int FileIndex { get; set; }
+        public Guid FileId { get; set; }
 
         /// Action used
         public string Action { get; set; }
@@ -36,7 +36,7 @@
     public class FilesUploadEventArgs : EventArgs
     {
         /// Files uploaded
-        public SortedDictionary&lt;int, FileUploadContent&gt; Files { get; set; }
+        public List&lt;FileUploadContent&gt; Files { get; set; }
 
         /// Total size of all the files uploaded
         public long Size { get; set; }
@@ -70,14 +70,21 @@
         public StreamContent FileStreamContent { get; set; }
 
         // File index in the object
-        public int Index { get; set; }
+        public Guid FileId { get; set; }
 
         /// Get the bytes from the stream
         public async Task&lt;byte[]&gt; GetFileBytes() =>
             await FileStreamContent.ReadAsByteArrayAsync();
 
+        // Prepare the objet to return FileBytes and ToImageHTML
+        // Must be executed in the event the OnUploadFile if you work directly with image tag.
+        public async Task SetFileBytes()
+
         // Return a Base64String to use in the tag image directly like a source
-         public string ToImageHTML()
+         public string ToImageHTML { get; }
+
+        // Byte from the stream
+        public byte[] FileBytes { get; }
     }
 </code>
 </pre>

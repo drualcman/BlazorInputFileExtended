@@ -94,6 +94,14 @@
 
     public async Task&lt;bool&gt; DeleteAsync(string TargetToPostFile, int index)
     public async Task&lt;bool&gt; DeleteAsync(string TargetToPostFile, string filename)
+
+    public async Task&lt;HttpResponseMessage&gt; UploadAsync&lt;TData&gt; (string TargetToPostFile, TData data, bool ignoreFiles = true)
+    public async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile)
+    public async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, InputFileChangeEventArgs files)
+    public async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content)
+    public async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, bool ignoreFiles)
+    public async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
+    public async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, StreamContent file, string fileName = "")
 </code>
 </pre>
 
