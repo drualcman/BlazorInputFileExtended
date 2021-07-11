@@ -660,7 +660,172 @@ namespace BlazorInputFileExtended
         public void SetFormField(string field) => FormField = field;
         #endregion
 
-        #region HttpClient calls
+        #region HttpClient
+
+        #region HttpResponseMessage
+        /// <summary>
+        /// Upload image using the object with the data for the form content
+        /// </summary>
+        /// <typeparam name="TData">Model of the data to send with the form and the file</typeparam>
+        /// <param name="TargetToPostFile"></param>
+        /// <param name="data">Object with the data to send with the file</param>
+        /// <param name="ignoreFiles">Indicate if need to ignore the dictionary files or not. False upload the last image selected.</param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> UploadAsync<TData>(string TargetToPostFile, TData data, bool ignoreFiles = true) =>
+            await UploadAsync(TargetToPostFile, FormData.SetMultipartFormDataContent(data), ignoreFiles);
+
+
+        /// <summary>
+        /// Upload a image using the endpoint send
+        /// </summary>
+        /// <param name="TargetToPostFile"></param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> UploadAsync(string TargetToPostFile) =>
+            await UploadAsync(TargetToPostFile, new MultipartFormDataContent(), true);
+
+        /// <summary>
+        /// Upload a image using the endpoint send
+        /// </summary>
+        /// <param name="TargetToPostFile"></param>
+        /// <param name="files"></param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> UploadAsync(string TargetToPostFile, InputFileChangeEventArgs files) =>
+            await UploadAsync(TargetToPostFile, new MultipartFormDataContent(), files);
+
+        /// <summary>
+        /// Upload a image using the endpoint send
+        /// </summary>
+        /// <param name="TargetToPostFile"></param>
+        /// <param name="content">form content to send to the url end point</param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> UploadAsync(string TargetToPostFile, MultipartFormDataContent content) =>
+            await UploadAsync(TargetToPostFile, content, true);
+
+        /// <summary>
+        /// Upload a image using the endpoint send
+        /// </summary>
+        /// <param name="TargetToPostFile"></param>
+        /// <param name="content">form content to send to the url end point</param>
+        /// <param name="ignoreFiles">Indicate if need to ignore the dictionary files or not. False upload the last image selected.</param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> UploadAsync(string TargetToPostFile, MultipartFormDataContent content, bool ignoreFiles)
+        {
+            if (ignoreFiles)
+            {
+                if (UploadedImage is not null)
+                {
+                    content.Add(
+                        content: UploadedImage,
+                        name: FormField,
+                        fileName: FileName
+                    );
+                }
+            }
+            return await UploadFilesAsync(TargetToPostFile, content, ignoreFiles);
+        }
+
+        /// <summary>
+        /// Upload a image using the endpoint send
+        /// </summary>
+        /// <param name="TargetToPostFile"></param>
+        /// <param name="content">form content to send to the url end point</param>
+        /// <param name="files"></param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> UploadAsync(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
+        {
+            UploadFile(files);
+            return await UploadFilesAsync(TargetToPostFile, content, false);
+        }
+
+        /// <summary>
+        /// Upload a image using the endpoint send
+        /// </summary>
+        /// <param name="TargetToPostFile"></param>
+        /// <param name="content">form content to send to the url end point</param>
+        /// <param name="file"></param>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> UploadAsync(string TargetToPostFile, MultipartFormDataContent content, StreamContent file, string fileName = "")
+        {
+            if (file is not null)
+            {
+                content.Add(
+                    content: file,
+                    name: FormField,
+                    fileName: string.IsNullOrEmpty(fileName) ? FileName : fileName
+                );
+            }
+            else
+            {
+                if (OnUploadError is not null)
+                {
+                    OnUploadError(this, new ArgumentException($"No files to upload", "UploadAsync"));
+                }
+            }
+            return await UploadFilesAsync(TargetToPostFile, content, true);
+        }
+
+        /// <summary>
+        /// Upload all files uploaded
+        /// </summary>
+        /// <param name="TargetToPostFile"></param>
+        /// <param name="content"></param>
+        /// <param name="ignoreFiles">Indicate if need to ignore the dictionary files or not. False upload the last image selected.</param>
+        /// <returns></returns>
+        private async Task<HttpResponseMessage> UploadFilesAsync(string TargetToPostFile, MultipartFormDataContent content,
+            bool ignoreFiles)
+        {
+            if (HttpClient is null) throw new ArgumentException("At least HttpClient Must be provided.", "UploadFilesAsync");
+            if (!ignoreFiles)
+            {
+                long size = 0;
+                int c = 0;
+                foreach (FileUploadContent item in this)
+                {
+                    content.Add(
+                        content: item.FileStreamContent,
+                        name: FormField,
+                        fileName: item.Name
+                    );
+                    size += item.Size;
+                    c++;
+                }
+                if (OnUploaded is not null)
+                {
+                    OnUploaded(this, new FilesUploadEventArgs { Count = c, Files = UploadedFiles, Size = size, Action = "Upload" });
+                }
+            }
+
+            HttpResponseMessage response;
+            try
+            {
+                if (this.Size > 0)
+                {
+                    response = await HttpClient.PostAsync(TargetToPostFile, content);                    
+                }
+                else
+                {
+                    if (OnUploadError is not null)
+                    {
+                        OnUploadError(this, new ArgumentException($"No files to upload", "UploadFilesAsync"));
+                    }
+                    response = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (OnAPIError is not null)
+                {
+                    OnAPIError(this, new ArgumentException($"{TargetToPostFile}: Exception: {ex.Message}", "UploadFilesAsync", ex));
+                }
+                response = null;
+            }
+            return response;
+        }
+
+        #endregion
+
+        #region TModel
         /// <summary>
         /// Upload image using the object with the data for the form content
         /// </summary>
@@ -778,39 +943,15 @@ namespace BlazorInputFileExtended
         /// <param name="content"></param>
         /// <param name="ignoreFiles">Indicate if need to ignore the dictionary files or not. False upload the last image selected.</param>
         /// <returns></returns>
-        private async Task<TModel> UploadFilesAsync<TModel>(string TargetToPostFile, MultipartFormDataContent content,
-            bool ignoreFiles)
-        {
-            if (HttpClient is null) throw new ArgumentException("At least HttpClient Must be provided.", "UploadFilesAsync");
-            if (!ignoreFiles)
-            {                
-                long size = 0;
-                int c = 0;
-                foreach (FileUploadContent item in this)
-                {
-                    content.Add(
-                        content: item.FileStreamContent,
-                        name: FormField,
-                        fileName: item.Name
-                    );
-                    size += item.Size;
-                    c++;
-                }               
-                if (OnUploaded is not null)
-                {
-                    OnUploaded(this, new FilesUploadEventArgs { Count = c, Files = UploadedFiles, Size = size , Action = "Upload"});
-                }
-            }
+        private async Task<TModel> UploadFilesAsync<TModel>(string TargetToPostFile, MultipartFormDataContent content, bool ignoreFiles)
+        {           
+            TModel response;
             try
             {
                 if (this.Size > 0)
                 {
-                    using HttpResponseMessage result = await HttpClient.PostAsync(TargetToPostFile, content);
-                    if (result.IsSuccessStatusCode)
-                    {
-                        TModel response = await result.Content.ReadFromJsonAsync<TModel>();
-                        return response;
-                    }
+                    using HttpResponseMessage result = await UploadFilesAsync(TargetToPostFile, content, ignoreFiles);
+                    if (result.IsSuccessStatusCode) response = await result.Content.ReadFromJsonAsync<TModel>();
                     else
                     {
                         if (OnAPIError is not null)
@@ -819,7 +960,7 @@ namespace BlazorInputFileExtended
                             string jsonElement = await result.Content.ReadAsStringAsync();
                             OnAPIError(this, new ArgumentException($"{TargetToPostFile}: {result.ReasonPhrase} [{(int)result.StatusCode} {result.StatusCode}]: {jsonElement}", "UploadFilesAsync"));
                         }
-                        return default(TModel);
+                        response = default(TModel);
                     }
                 }
                 else
@@ -828,7 +969,7 @@ namespace BlazorInputFileExtended
                     {
                         OnUploadError(this, new ArgumentException($"No files to upload", "UploadFilesAsync"));
                     }
-                    return default(TModel);
+                    response = default(TModel);
                 }
             }
             catch (Exception ex)
@@ -837,8 +978,9 @@ namespace BlazorInputFileExtended
                 {
                     OnAPIError(this, new ArgumentException($"{TargetToPostFile}: Exception: {ex.Message}", "UploadFilesAsync", ex));
                 }
-                return default(TModel);
+                response = default(TModel);
             }
+            return response;
         }
 
         /// <summary>
@@ -867,6 +1009,8 @@ namespace BlazorInputFileExtended
             using HttpResponseMessage response = await HttpClient.PostAsync(TargetToPostFile, content);
             return await response.Content.ReadFromJsonAsync<bool>();
         }
+        #endregion
+
         #endregion
 
         #region dispose

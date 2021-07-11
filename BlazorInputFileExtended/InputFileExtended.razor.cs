@@ -216,7 +216,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// When upload is completed
         /// </summary>
-        [Parameter] public EventCallback<object> OnSave { get; set; }
+        [Parameter] public EventCallback<HttpResponseMessage> OnSave { get; set; }
         #endregion
 
         #region handlers
@@ -248,9 +248,11 @@ namespace BlazorInputFileExtended
             }            
             else
             {
-                if (TargetFormDataContent is not null) await OnSave.InvokeAsync(await Files.UploadAsync<object>(TargetToPostFile, TargetFormDataContent, !MultiFile));
-                else if (TargetDataObject is not null) await OnSave.InvokeAsync(await Files.UploadAsync<object, object>(TargetToPostFile, TargetDataObject, !MultiFile));
-                else await OnSave.InvokeAsync(await Files.UploadAsync<object>(TargetToPostFile, new MultipartFormDataContent(), !MultiFile));
+                HttpResponseMessage response;
+                if (TargetFormDataContent is not null) response = await Files.UploadAsync(TargetToPostFile, TargetFormDataContent, !MultiFile);
+                else if (TargetDataObject is not null) response = await Files.UploadAsync<object>(TargetToPostFile, TargetDataObject, !MultiFile);
+                else response = await Files.UploadAsync(TargetToPostFile, new MultipartFormDataContent(), !MultiFile);
+                await OnSave.InvokeAsync(response);
                 if (CleanOnSuccessUpload) Clean();
             }
             StateHasChanged();
