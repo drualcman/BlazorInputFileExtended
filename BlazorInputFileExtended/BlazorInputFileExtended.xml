@@ -319,7 +319,7 @@
         </member>
         <member name="M:BlazorInputFileExtended.InputFileHandler.GetEnumerator">
             <summary>
-            Foreach enumerator to get all the files
+            Enumerator to get all the files
             </summary>
             <returns></returns>
         </member>
@@ -650,7 +650,8 @@
         </member>
         <member name="M:BlazorInputFileExtended.FileUploadContent.SetFileBytes">
             <summary>
-            Set the bytes from the stream
+            Set the bytes from the stream.
+            Must be executed in the event OnUploadFile if you work direclt with image tag.
             </summary>
             <returns></returns>
         </member>

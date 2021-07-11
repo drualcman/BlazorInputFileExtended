@@ -1,8 +1,127 @@
 ﻿@page "/demos/multiple"
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-6750814218988007"
-         data-ad-slot="2643405184"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <h3>Multiple files</h3>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6750814218988007"
+     data-ad-slot="2643405184"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<h1>Multiple files</h1>
+<p>In this page we will simulate how create a gallery preview and then send to the server with the upload button.</p>
+<p><i>Reminder:</i> We are not saving the images in the server, is only a simulation.</p>
+
+<div class="row">
+    <div class="col">
+
+<div class="row">
+    <div class="col-6">
+        <InputFileExtended @ref="Files"
+                           TargetToPostFile="files"
+                           IsImage="true"
+                           ShowPreview="false"
+                           MaxFileSize="512000"
+                           MultiFile="true"
+                           OnError="Error"
+                           OnUploadedFile="UploadFile"
+                           OnUploadComleted="Completed"
+                           OnSave="Save"
+                           ButtonShow="true"
+                           ButtonCss="btn btn-warning">
+            <InputContent>
+                <i class="oi oi-file"></i>
+                <span>Choose File</span>
+            </InputContent>
+            <ButtonContent>
+                <i class="oi oi-cloud-upload"></i>
+            </ButtonContent>
+        </InputFileExtended>
+        <pre class="pre-scrollable">
+<code>&lt;InputFileExtended
+            TargetToPostFile="simulate"
+            IsImage="true"
+            ShowPreview="false"
+            MaxFileSize=51200
+            MultiFile="true"
+            ButtonShow="true"
+            ButtonCss="btn btn-warning"
+            OnSave="Save"
+            OnError="Error"
+            OnUploadedFile="UploadFile"
+            OnUploadComleted="Completed" &gt;
+    &lt;InputContent &gt;
+        &lt;i class="oi oi-file">&lt;/i&gt;
+        &lt;span>Choose File&lt;/span&gt;
+    &lt;/InputContent&gt;
+    &lt;ButtonContent&gt;
+        &lt;i class="oi oi-cloud-upload"&gt;&lt;/i&gt;
+    &lt;/ButtonContent&gt;
+&lt;/InputFileExtended&gt;
+
+@@code{
+    string ErrorsMessage;
+    string UploadMessage;
+    string CompletedMessage;
+    string SaveMessage;
+
+    async Task Save()
+    {
+        SaveMessage = "Uploading image ... (Simulate 3 seconds)";
+        await Task.Delay(3000);
+        SaveMessage = "Image Uploaded!";
+    }
+
+    void Error(ArgumentException e) =>
+        ErrorsMessage = e.Message;
+
+    void UploadFile(FileUploadEventArgs e) =>
+        UploadMessage = $"File name: {e.File.Name} File type: {e.File.ContentType} Size: {e.File.Size} Action: {e.Action}";
+
+    void Completed(FilesUploadEventArgs e) =>
+        CompletedMessage = $". Files loaded: {e.Count} with total size: {e.Size} Action: {e.Action}";
+}
+</code>
+        </pre>
+
+    </div>
+    <div class="col">
+        <p>Messages</p>
+        <ol>
+            <li><strong>Upload File:</strong> @UploadMessage</li>
+            <li><strong>Complete:</strong> @CompletedMessage</li>
+            <li><strong>Save:</strong> @SaveMessage</li>
+            <li><strong>Error:</strong> @ErrorsMessage</li>
+        </ol>
+        <h2>How is work</h2>
+        <ol>
+            <li>Declared UploadImage to do a reference with the component. <i>This is nor required, it's only for the demo can clean the file preview after upload.</i></li>
+            <li>In the event Save clear the <strong>Field</strong> UploadImage.FileBytes to remove the preview after upload.</li>
+            <li>In the event Error shows all the errors can happen. If you select 2 files or file is more than 512Kb you can see the example.</li>
+            <li>In the event UploadFile show the data from the image selected after load the image.</li>
+            <li>In the event Completed show how many files are load and the total size about all the files.</li>
+        </ol>
+    </div>
+</div>
+</div>
+    <div class="col">
+        <h3>Gallery</h3>
+        <ul>            
+            @if (Files?.Files.Count > 0)
+            {
+                foreach (var file in Files.Files)
+                {
+            <li>
+                <figure class="img">
+                    <img src="@file.ToImageHTML" class="img-thumbnail" />
+                </figure>
+                <strong><span>@file.FileId</span></strong> 
+                <span>@file.Name</span>
+                <span class="btn btn-outline-danger" @onclick="() => Files.Files.Remove(file)">X</span>
+            </li>
+                }
+            }
+            else
+            {
+                <li>Gallery is empty.</li>
+            }
+        </ul>
+    </div>
+</div>

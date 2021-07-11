@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace Website.Client.Pages.howto
@@ -32,11 +34,12 @@ namespace Website.Client.Pages.howto
             }
         }
 
-        async Task Save()
+        async Task Save(HttpResponseMessage respose)
         {
             Messages = "Uploading image ... (Simulate 3 seconds)";
             await Task.Delay(3000);
-            Messages = "Image Uploaded!";
+            if (respose.IsSuccessStatusCode) Messages = $"Image Upload with result {await respose.Content.ReadFromJsonAsync<bool>()}";
+            else Messages = $"Can't upload images.";
         }
     }
 }

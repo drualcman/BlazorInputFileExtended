@@ -238,7 +238,7 @@ namespace BlazorInputFileExtended
 
         #region methods to manage files
         /// <summary>
-        /// Foreach enumerator to get all the files
+        /// Enumerator to get all the files
         /// </summary>
         /// <returns></returns>
         public IEnumerator<FileUploadContent> GetEnumerator()
@@ -624,10 +624,7 @@ namespace BlazorInputFileExtended
         public void Clean()
         {
             int c = this.Count;
-            for (int i = 0; i < c; i++)
-            {
-                Remove(i);
-            }
+            UploadedFiles.Clear();
             UploadedImage = null;
             FileName = string.Empty;
             if (OnUploaded is not null)

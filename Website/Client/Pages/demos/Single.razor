@@ -9,21 +9,6 @@
     <p>In this page we will simulate how to upload a image file. This page don't upload really any file so you can see the functionality.</p>
     <p>Is setup like multiple files but limited to only 1, you can see the error event response if you try to select more than 1 file</p>
 
-    <div class="form-row">
-        <p>
-            Personalize your texts
-        </p>
-        <div class="form-group col">
-            <label>Choose file text</label>
-            <input type="text" class="form-control" placeholder="Select File button text" @bind="SelectText">
-        </div>
-        <div class="form-group col">
-            <label>Upload button text</label>
-            <input type="text" class="form-control" placeholder="Upload Button text" @bind="UploadText">
-        </div>
-
-    </div>
-
     <div class="row">
         <div class="col-6">
             <InputFileExtended TargetToPostFile="files"
@@ -58,7 +43,10 @@
             OnSave="Save"
             OnError="Error"
             OnUploadedFile="UploadFile"
-            OnUploadComleted="Completed" /&gt;
+            OnUploadComleted="Completed" &gt;                
+                &lt;InputContent&gt;@@SelectText&lt;/InputContent&gt;
+                &lt;ButtonContent&gt;@@UploadText&lt;/ButtonContent&gt;
+            &lt;/InputFileExtended&gt;
 
 @@code{
     string ErrorsMessage;
@@ -87,6 +75,18 @@
 
         </div>
         <div class="col">
+            <p>Personalize your texts</p>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Choose file text</label>
+                    <input type="text" class="form-control" placeholder="Select File button text" @bind="SelectText">
+                </div>
+                <div class="form-group col">
+                    <label>Upload button text</label>
+                    <input type="text" class="form-control" placeholder="Upload Button text" @bind="UploadText">
+                </div>
+
+            </div>
             <p>Messages</p>
             <ol>
                 <li><strong>Upload File:</strong> @UploadMessage</li>
@@ -98,7 +98,7 @@
             <ol>
                 <li>Declared UploadImage to do a reference with the component. <i>This is nor required, it's only for the demo can clean the file preview after upload.</i></li>
                 <li>In the event Save clear the <strong>Field</strong> UploadImage.FileBytes to remove the preview after upload.</li>
-                <li>In the event Error shows all the errors can happen. If you select 2 files or file is more than 512Kb you can see the example.</li>
+                <li>In the event Error shows all the errors can happen. If you select 2 files or file is more than 51Kb you can see the example.</li>
                 <li>In the event UploadFile show the data from the image selected after load the image.</li>
                 <li>In the event Completed show how many files are load and the total size about all the files.</li>
             </ol>

@@ -1,22 +1,22 @@
 ﻿using BlazorInputFileExtended;
-using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Website.Shared;
 
 namespace Website.Client.Pages.demos
 {
-    public partial class Single
+    public partial class Multiple
     {
         string ErrorsMessage;
         string UploadMessage;
         string CompletedMessage;
         string SaveMessage;
-        string SelectText = "Choose File";
-        string UploadText = "Upload";
+
+        InputFileExtended Files;
 
         async Task Save(HttpResponseMessage respose)
         {
@@ -24,6 +24,7 @@ namespace Website.Client.Pages.demos
             await Task.Delay(3000);
             if (respose.IsSuccessStatusCode) SaveMessage = $"Image Upload with result {await respose.Content.ReadFromJsonAsync<bool>()}";
             else SaveMessage = $"Can't upload images.";
+            Files.Clean();
         }
 
         void Error(ArgumentException e) => ErrorsMessage = e.Message;
@@ -32,6 +33,6 @@ namespace Website.Client.Pages.demos
             UploadMessage = $"File name: {e.File.Name} File type: {e.File.ContentType} Size: {e.File.Size} Action: {e.Action}";
 
         void Completed(FilesUploadEventArgs e) =>
-            CompletedMessage = $". Files loadted: {e.Count} with total size: {e.Size} Action: {e.Action}";
+            CompletedMessage = $". Files loaded: {e.Count} with total size: {e.Size} Action: {e.Action}";
     }
 }
