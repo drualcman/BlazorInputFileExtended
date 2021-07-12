@@ -624,12 +624,13 @@ namespace BlazorInputFileExtended
         public void Clean()
         {
             int c = this.Count;
+            long t = this.Size;
             UploadedFiles.Clear();
             UploadedImage = null;
             FileName = string.Empty;
             if (OnUploaded is not null)
             {
-                OnUploaded(this, new FilesUploadEventArgs { Files = null, Count = 0, Size = 0, Action = "Clean" });
+                OnUploaded(this, new FilesUploadEventArgs { Files = null, Count = c, Size = t, Action = "Clean" });
             }
         }
         #endregion
