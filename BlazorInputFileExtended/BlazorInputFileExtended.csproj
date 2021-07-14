@@ -14,7 +14,8 @@
     <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
     <PackageTags>Components, Blazor, WebAssembly, InputFile, FileUpload, BlazorFileUpload</PackageTags>
     <PackageReleaseNotes>Set public the helper class FormData for can be used from a derivate class.
-Fixed InputFileType. If is not string empty always setup like *. Only need setup if it's string empty and IsImage to setup like image/* to get all the images</PackageReleaseNotes>
+Fixed InputFileType. If is not string empty always setup like *. Only need setup if it's string empty and IsImage to setup like image/* to get all the images
+Fixed always send to the TarjetToPost the when have some data to send if have or not files</PackageReleaseNotes>
     <RepositoryType>Component Library</RepositoryType>
     <PackageIcon>icon-512.png</PackageIcon>
     <PackageIconUrl />
