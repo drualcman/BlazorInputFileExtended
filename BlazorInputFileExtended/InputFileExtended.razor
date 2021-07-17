@@ -1,4 +1,7 @@
-﻿<label class="@InputCss" for="@InputFileId">
+﻿<label id="Contaniner_@InputFileId" class="@InputCss @DropZoneCss @Dropping" for="@InputFileId" 
+       @ondragenter="DragEnter" 
+       @ondrop="DragLeave"
+       @ondragleave="DragLeave" >
     <InputFile multiple="@MultiFile" 
                title="@InputTitle"
                accept="@InputFileTypes"

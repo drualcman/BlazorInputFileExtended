@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.JSInterop;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -17,6 +17,10 @@ namespace BlazorInputFileExtended
         /// That's why is automatic injected
         /// </summary>
         [Inject] public HttpClient Client { get; set; }
+        /// <summary>
+        /// Inject JavaScript interoperability
+        /// </summary>
+        [Inject] public IJSRuntime JavaScript { get; set; }
         #endregion
 
         #region setup parameters
@@ -145,7 +149,10 @@ namespace BlazorInputFileExtended
         string APIErrorMessages;
         byte[] FileBytes = null;
         string SelectionInfo;
-        string InputFileId = Guid.NewGuid().ToString();
+        /// <summary>
+        /// Know the Id assigned to the input file to use from some external CSS or JAVASCRIPT when has reference name
+        /// </summary>
+        public readonly string InputFileId = Guid.NewGuid().ToString();
         #endregion
 
         #region methods
@@ -172,6 +179,11 @@ namespace BlazorInputFileExtended
             Files.OnUploadError += Files_OnUploadError;
             Files.OnAPIError += Files_OnAPIError;
             SelectionInfo = string.Empty;
+            if (!CanDropFiles)
+            {
+                DropZoneCss = string.Empty;
+                Dropping = string.Empty;
+            }
         }
         /// <summary>
         /// Format the component with the properties
@@ -261,7 +273,88 @@ namespace BlazorInputFileExtended
         #endregion
         #endregion
 
-         /// <summary>
+        #region Drag&Drop
+        #region Configuration
+        /// <summary>
+        /// Enable is can drop files
+        /// </summary>
+        [Parameter] public bool CanDropFiles { get; set; }
+
+        /// <summary>
+        /// Css when drop a file
+        /// </summary>
+        [Parameter] public string DropZoneCss { get; set; } = "dropzone";
+
+        /// <summary>
+        /// Css when drop a file
+        /// </summary>
+        [Parameter] public string DroppingCss { get; set; } = "dropzone-drag";
+        #endregion
+
+        #region Setup
+
+        /// <summary>
+        /// Setup the drag and drop support
+        /// </summary>
+        /// <param name="firstRender"></param>
+        /// <returns></returns>
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                if (CanDropFiles)
+                {
+                    await LoadDropScriptsAsync();
+                }
+                
+            }
+        }
+        #endregion
+
+        #region Management
+        /// <summary>
+        /// Add the scripts fro can drop files
+        /// </summary>
+        /// <returns></returns>
+        public async Task LoadDropScriptsAsync()
+        {
+            // if can drop need to load some JavaScript
+            IJSObjectReference DragAdnDoop = await JavaScript.InvokeAsync<IJSObjectReference>("import", "/_content/BlazorInputFileExtended/DragAndDrop.js");
+            await DragAdnDoop.InvokeVoidAsync("DragAndDrop.Load", InputFileId);
+            await DragAdnDoop.DisposeAsync();
+            CanDropFiles = true;
+        }
+
+        /// <summary>
+        /// Remove drag and drop options
+        /// </summary>
+        /// <returns></returns>
+        public async Task UnLoadDropScriptsAsync()
+        {
+            // unload the JavaScript for drag and drop
+            IJSObjectReference DragAdnDoop = await JavaScript.InvokeAsync<IJSObjectReference>("import", "/_content/BlazorInputFileExtended/DragAndDrop.js");
+            await DragAdnDoop.InvokeVoidAsync("DragAndDrop.UnLoad");
+            await DragAdnDoop.DisposeAsync();
+            CanDropFiles = false;
+        }
+
+        string Dropping;
+        /// <summary>
+        /// Change class to know we are in the drag area
+        /// </summary>
+        void DragEnter() 
+        {
+            if (CanDropFiles) Dropping = DroppingCss;
+            else Dropping = string.Empty;
+        }
+        /// <summary>
+        /// Remove the class because we are not in the drag area
+        /// </summary>
+        void DragLeave() => Dropping = string.Empty;
+        #endregion
+        #endregion
+
+        /// <summary>
         /// Dispose action
         /// </summary>
         public void Dispose()

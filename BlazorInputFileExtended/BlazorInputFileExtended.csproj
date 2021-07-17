@@ -12,13 +12,21 @@
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/drualcman/BlazorInputFileExtended</RepositoryUrl>
     <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
-    <PackageTags>Components, Blazor, WebAssembly, InputFile, FileUpload, BlazorFileUpload</PackageTags>
-    <PackageReleaseNotes>Set public the helper class FormData for can be used from a derivate class.</PackageReleaseNotes>
-    <RepositoryType>Component Library</RepositoryType>
+    <PackageTags>Components, Blazor, WebAssembly, InputFile, FileUpload, BlazorFileUpload, drag and drop, drop files</PackageTags>
+    <PackageReleaseNotes>Set public the helper class FormData for can be used from a derivate class.
+When clean change message from the evento to set total files and total size cleaned.
+Enable Drag And Drop Files
+Add property bool CanDropFiles
+Add property string DropZoneCss
+Add property string DroppingCss
+Add JAVASCIPT file DragAdnDrop.js load dynacally when CanDropFiles is true. No need be referenced only add the component.
+Add method LoadDropScriptsAsync for can enable dinamically drag and drop
+Add method UnLoadDropScriptsAsync for dissabled dinamically drag and drop</PackageReleaseNotes>
+    <RepositoryType>Git</RepositoryType>
     <PackageIcon>icon-512.png</PackageIcon>
     <PackageIconUrl />
-    <AssemblyVersion>1.1.5.0</AssemblyVersion>
-    <FileVersion>1.1.5.0</FileVersion>
+    <AssemblyVersion>1.2.5.0</AssemblyVersion>
+    <FileVersion>1.2.5.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

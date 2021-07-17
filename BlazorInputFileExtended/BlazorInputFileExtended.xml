@@ -28,6 +28,11 @@
             That's why is automatic injected
             </summary>
         </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.JavaScript">
+            <summary>
+            Inject JavaScript interoperability
+            </summary>
+        </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended.MultiFile">
             <summary>
             Set if we will accept multiple files uploaded or not
@@ -143,6 +148,11 @@
             Expose InputFileHandler to manage the files when the component have reference. Example to show all the images.
             </summary>
         </member>
+        <member name="F:BlazorInputFileExtended.InputFileExtended.InputFileId">
+            <summary>
+            Know the Id assigned to the input file to use from some external CSS or JAVASCRIPT when has reference name
+            </summary>
+        </member>
         <member name="M:BlazorInputFileExtended.InputFileExtended.Clean">
             <summary>
             Clean all the files
@@ -176,6 +186,50 @@
         <member name="P:BlazorInputFileExtended.InputFileExtended.OnSave">
             <summary>
             When upload is completed
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.CanDropFiles">
+            <summary>
+            Enable is can drop files
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.DropZoneCss">
+            <summary>
+            Css when drop a file
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.DroppingCss">
+            <summary>
+            Css when drop a file
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.OnAfterRenderAsync(System.Boolean)">
+            <summary>
+            Setup the drag and drop support
+            </summary>
+            <param name="firstRender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.LoadDropScriptsAsync">
+            <summary>
+            Add the scripts fro can drop files
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.UnLoadDropScriptsAsync">
+            <summary>
+            Remove drag and drop options
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.DragEnter">
+            <summary>
+            Change class to know we are in the drag area
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.DragLeave">
+            <summary>
+            Remove the class because we are not in the drag area
             </summary>
         </member>
         <member name="M:BlazorInputFileExtended.InputFileExtended.Dispose">
