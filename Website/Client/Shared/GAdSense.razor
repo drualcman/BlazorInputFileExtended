@@ -1,0 +1,32 @@
+﻿<div>
+    @Ads
+</div>
+
+@code{
+    private RenderFragment Ads
+    {
+        get
+        {
+            RenderFragment form = b =>
+            {
+                b.OpenElement(0, "script");
+                b.AddAttribute(0, "async", true);
+                b.AddAttribute(0, "src", "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js");
+                b.CloseElement();
+                b.OpenElement(0, "ins");
+                b.AddAttribute(0, "class", "adsbygoogle");
+                b.AddAttribute(1, "style", "display:block");
+                b.AddAttribute(2, "data-ad-client", "ca-pub-6750814218988007");
+                b.AddAttribute(3, "data-ad-slot", "2643405184");
+                b.AddAttribute(4, "data-ad-format", "auto");
+                b.AddAttribute(5, "data-full-width-responsive", "true");
+                b.CloseElement();
+                b.OpenElement(0, "script");
+                b.AddContent(0, "(adsbygoogle = window.adsbygoogle || []).push({});");
+                b.CloseElement();
+
+            };
+            return form;
+        }
+    }
+}

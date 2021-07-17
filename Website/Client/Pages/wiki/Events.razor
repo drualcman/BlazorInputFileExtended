@@ -1,20 +1,14 @@
 ﻿@page "/wiki/events"
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-6750814218988007"
-         data-ad-slot="2643405184"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <h1>Events</h1>
-    <ul>
-        <li><strong>OnUploadedFile:</strong> When each file is uploaded. Returns <var>FileUploadEventArgs</var>.</li>
-        <li><strong>OnUploadComleted:</strong> When all files is uploaded. Returns <var>FilesUploadEventArgs</var>.</li>
-        <li><strong>OnError:</strong> When some exception. Returns <var>ArgumentException</var>.</li>
-        <li><strong>OnSave:</strong> When click on <i><strong>UPLOAD</strong> button</i>. Returns <var>HttpResponseMessage</var> with the response.</li>
-    </ul>
+<h1>Events</h1>
+<ul>
+    <li><strong>OnUploadedFile:</strong> When each file is uploaded. Returns <var>FileUploadEventArgs</var>.</li>
+    <li><strong>OnUploadComleted:</strong> When all files is uploaded. Returns <var>FilesUploadEventArgs</var>.</li>
+    <li><strong>OnError:</strong> When some exception. Returns <var>ArgumentException</var>.</li>
+    <li><strong>OnSave:</strong> When click on <i><strong>UPLOAD</strong> button</i>. Returns <var>HttpResponseMessage</var> with the response.</li>
+</ul>
 
-    <h2>Arguments return objects</h2>
-    <h3>OnUploadedFile</h3>
+<h2>Arguments return objects</h2>
+<h3>OnUploadedFile</h3>
 <pre>
 <code>    /// Return file name and file stream per each file uploaded
     public class FileUploadEventArgs : EventArgs
@@ -30,7 +24,7 @@
     }
 </code>
 </pre>
-    <h3>OnUploadComleted</h3>
+<h3>OnUploadComleted</h3>
 <pre>
 <code>    /// Return all files uploaded
     public class FilesUploadEventArgs : EventArgs
@@ -49,7 +43,7 @@
     }
 </code>
 </pre>
-    <h4>Auxiliary object content the file</h4>
+<h4>Auxiliary object content the file</h4>
 <pre>
 <code>    /// Manage the file upload
     public class FileUploadContent
@@ -88,3 +82,5 @@
     }
 </code>
 </pre>
+
+<GAdSense />

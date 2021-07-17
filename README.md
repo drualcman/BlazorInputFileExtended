@@ -1,4 +1,4 @@
-Last Stable Version 1.2.5
+Last Stable Version 1.2.6
 # Description
 Extend the traditional component InputFile with more options like drag and drop and upload methods directly. Less codding for all.
 # Properties

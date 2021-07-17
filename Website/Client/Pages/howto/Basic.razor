@@ -1,45 +1,39 @@
 ﻿@page "/how-to-use/basic"
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-6750814218988007"
-         data-ad-slot="2643405184"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <h1>How to use</h1>
-    <h2>Basic use</h2>
-    <p>This is the most basic use.</p>
+<h1>How to use</h1>
+<h2>Basic use</h2>
+<p>This is the most basic use.</p>
 
-    <div class="row">
-        <div class="col-4">
-            <InputFileExtended TargetToPostFile="files" @ref="Files"
-                               CleanOnSuccessUpload="true"
-                               ButtonShow="ShowUpload"
-                               CanDropFiles="CanDrop"
-                               FileCss="img-fluid"
-                               OnSave="Save">
-                <InputContent>
-                    @InputMessage
-                </InputContent>
-            </InputFileExtended>
+<div class="row">
+    <div class="col-4">
+        <InputFileExtended TargetToPostFile="files" @ref="Files"
+                           CleanOnSuccessUpload="true"
+                           ButtonShow="ShowUpload"
+                           CanDropFiles="CanDrop"
+                           FileCss="img-fluid"
+                           OnSave="Save">
+            <InputContent>
+                @InputMessage
+            </InputContent>
+        </InputFileExtended>
 
-        </div>
-        <div class="col">
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link @Basic1" @onclick="()=> ChangeTab(0)" type="button" role="tab"  aria-selected="true">Basic</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link @Basic2" @onclick="()=> ChangeTab(1)" type="button" role="tab"  aria-selected="false">With Upload Button</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link @Basic3" @onclick="()=> ChangeTab(2)" type="button" role="tab"  aria-selected="false">Drag and drop files</button>
-                </li>
-            </ul>
+    </div>
+    <div class="col">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link @Basic1" @onclick="()=> ChangeTab(0)" type="button" role="tab" aria-selected="true">Basic</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link @Basic2" @onclick="()=> ChangeTab(1)" type="button" role="tab" aria-selected="false">With Upload Button</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link @Basic3" @onclick="()=> ChangeTab(2)" type="button" role="tab" aria-selected="false">Drag and drop files</button>
+            </li>
+        </ul>
 
-            <div class="tab-content">
-                <div class="tab-pane @Basic1" role="tabpanel" >
-                    <p>This example is the most basic use. Only can select image and show a preview.</p>
-                    <pre>
+        <div class="tab-content">
+            <div class="tab-pane @Basic1" role="tabpanel">
+                <p>This example is the most basic use. Only can select image and show a preview.</p>
+                <pre>
 <code>&lt;InputFileExtended /&gt;
 
 @@code{
@@ -47,15 +41,15 @@
 }
 </code>
         </pre>
-                </div>
-                <div class="tab-pane @Basic2" role="tabpanel" >
-                    <p>This is the most basic example with upload button and send to the server.</p>
-                    <h2>Properties</h2>
-                    <ul>
-                        <li><strong>TargetToPostFile</strong> Url relative or absolute to send the file with a <var>POST</var> action</li>
-                    </ul>
-                    <p>Messages log: @Messages</p>
-                    <pre>
+            </div>
+            <div class="tab-pane @Basic2" role="tabpanel">
+                <p>This is the most basic example with upload button and send to the server.</p>
+                <h2>Properties</h2>
+                <ul>
+                    <li><strong>TargetToPostFile</strong> Url relative or absolute to send the file with a <var>POST</var> action</li>
+                </ul>
+                <p>Messages log: @Messages</p>
+                <pre>
 <code>&lt;InputFileExtended 
     TargetToPostFile="http://myserver.com/upload"            
     ButtonShow="true"
@@ -66,14 +60,14 @@
 }
 </code>
         </pre>
-                </div>
-                <div class="tab-pane @Basic3" role="tabpanel" >
-                    <p>This is the most basic example drag and drop files.</p>
-                    <h2>Properties</h2>
-                    <ul>
-                        <li><strong>CanDropFiles</strong> set to true to enabled can drop files</li>
-                    </ul>
-                    <pre>
+            </div>
+            <div class="tab-pane @Basic3" role="tabpanel">
+                <p>This is the most basic example drag and drop files.</p>
+                <h2>Properties</h2>
+                <ul>
+                    <li><strong>CanDropFiles</strong> set to true to enabled can drop files</li>
+                </ul>
+                <pre>
 <code>&lt;InputFileExtended           
     CanDropFiles="true"
     /&gt;
@@ -83,7 +77,9 @@
 }
 </code>
         </pre>
-                </div>
             </div>
         </div>
     </div>
+</div>
+
+<GAdSense />

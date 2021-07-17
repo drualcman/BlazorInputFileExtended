@@ -1,22 +1,16 @@
 ﻿@page "/how-to-use/handler"
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-6750814218988007"
-         data-ad-slot="2643405184"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <h1>How to use</h1>
-    <h2>InputFileHandler</h2>
-    <h3>namespace BlazorInputFileExtended</h3>
-    <p>Also you can use directly the InputFileHandler with the component InputFile or to personalize how to manage the upload with InputFileExtended.</p>
-    <p>You can use when you need validate first the form before send. Then you can use the <i>Events</i> and manage how to upload the file directly with the handler. Here we show all the process. </p>
-    <h5>Messages log:</h5>
-    <p>@Messages</p>
-    <div class="row">
-        <div class="col-6">
-            <h4>Using InputFile</h4>
-            <InputFile OnChange="FileHandler.UploadFile" />
-            <button class="btn btn-primary" @onclick="Upload">Upload</button>
+<h1>How to use</h1>
+<h2>InputFileHandler</h2>
+<h3>namespace BlazorInputFileExtended</h3>
+<p>Also you can use directly the InputFileHandler with the component InputFile or to personalize how to manage the upload with InputFileExtended.</p>
+<p>You can use when you need validate first the form before send. Then you can use the <i>Events</i> and manage how to upload the file directly with the handler. Here we show all the process. </p>
+<h5>Messages log:</h5>
+<p>@Messages</p>
+<div class="row">
+    <div class="col-6">
+        <h4>Using InputFile</h4>
+        <InputFile OnChange="FileHandler.UploadFile" />
+        <button class="btn btn-primary" @onclick="Upload">Upload</button>
 <pre>
 <code>&lt;InputFile OnChange="FileHandler.UploadFile" &lt;/InputFile&gt;  
 &lt;button class="btn btn-primary" @@onclick="Upload"&gt;Upload &lt;/button&gt;
@@ -53,14 +47,14 @@
 }
 </code>
 </pre>
-        </div>
-        <div class="col-6">
-            <h4>Using InputFileExtended</h4>
-            <InputFileExtended OnUploadedFile="OnSelect"
-                               OnError="OnError"
-                               ButtonShow="false" />
-            <button class="btn btn-primary" @onclick="Upload">Upload</button>
-            <pre>
+    </div>
+    <div class="col-6">
+        <h4>Using InputFileExtended</h4>
+        <InputFileExtended OnUploadedFile="OnSelect"
+                           OnError="OnError"
+                           ButtonShow="false" />
+        <button class="btn btn-primary" @onclick="Upload">Upload</button>
+        <pre>
 <code>&lt;InputFileExtended TResponse="bool" OnUploadedFile="OnSelect" 
             OnError="OnError" ButtonShow="false" &lt;/InputFileExtended&gt;
 &lt;button class="btn btn-primary" @@onclick="Upload"&gt;Upload &lt;/button&gt;
@@ -95,5 +89,8 @@
 }
 </code>
             </pre>
-        </div>
     </div>
+</div>
+
+
+<GAdSense />
