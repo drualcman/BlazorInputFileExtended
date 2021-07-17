@@ -7,7 +7,7 @@
          data-full-width-responsive="true"></ins>
     <h1>Changes Log</h1>
     <h2>Version</h2>
-    <h3>1.2.5 [2021-07-17] Drag and Drop requested from users</h3>
+    <h3>1.2.6 [2021-07-17] Drag and Drop requested from users</h3>
 <ul>
     <li><strong>InputFileExtendend:</strong></li>
     <li>Change to public field read only <i>InputFieldId</i> if you need to know the Id assigned to the input when has reference name</li>
@@ -107,6 +107,13 @@ function removeDragData(ev) {
     </li>
     <li>Add method <i>LoadDropScriptsAsync</i> for can enable the drag and drop when the user want.</li>
     <li>Add method <i>UnLoadDropScriptsAsync</i> to disabled drag and drop options and remove the JavaScript from the <var>HEAD</var> in the page.</li>
+</ul>
+<h3>1.1.5 [2021-07-13]</h3>
+<ul>
+    <li>Set public the helper class FormData for can be used from a derivate class.</li>
+    <li>Fixed InputFileType. If is not string empty always setup like *. Only need setup if it's string empty and IsImage to setup like image/* to get all the images.</li>
+    <li>When clean change message from the event set total files and total size cleaned.</li>
+    <li>Fixed always send to the TarjetToPost when have some data to send if have or nor files</li>
 </ul>
     <h3>1.1.4 [2021-07-10] First big changes after use</h3>
 <ul>

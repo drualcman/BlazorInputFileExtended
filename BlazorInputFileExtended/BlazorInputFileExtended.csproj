@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.2.5</Version>
+    <Version>1.2.6</Version>
     <Authors>Sergi Ortiz Gomez</Authors>
     <Company>DrUalcman</Company>
     <Description>Component Blazor extend the normal InputFile with all the necessary to upload files. Also have a InputFileHandler can be inherit and add more functions</Description>
@@ -13,8 +13,12 @@
     <RepositoryUrl>https://github.com/drualcman/BlazorInputFileExtended</RepositoryUrl>
     <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
     <PackageTags>Components, Blazor, WebAssembly, InputFile, FileUpload, BlazorFileUpload, drag and drop, drop files</PackageTags>
-    <PackageReleaseNotes>Set public the helper class FormData for can be used from a derivate class.
-When clean change message from the evento to set total files and total size cleaned.
+    <PackageReleaseNotes>Version 1.1.5
+Set public the helper class FormData for can be used from a derivate class.
+Fixed InputFileType. If is not string empty always setup like *. Only need setup if it's string empty and IsImage to setup like image/* to get all the images.
+When clean change message from the event set total files and total size cleaned.
+Fixed always send to the TarjetToPost when have some data to send if have or nor files
+Version 1.2.6
 Enable Drag And Drop Files
 Add property bool CanDropFiles
 Add property string DropZoneCss
@@ -25,8 +29,8 @@ Add method UnLoadDropScriptsAsync for dissabled dinamically drag and drop</Packa
     <RepositoryType>Git</RepositoryType>
     <PackageIcon>icon-512.png</PackageIcon>
     <PackageIconUrl />
-    <AssemblyVersion>1.2.5.0</AssemblyVersion>
-    <FileVersion>1.2.5.0</FileVersion>
+    <AssemblyVersion>1.2.6.0</AssemblyVersion>
+    <FileVersion>1.2.6.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
