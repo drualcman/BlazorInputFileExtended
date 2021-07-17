@@ -141,18 +141,21 @@ namespace BlazorInputFileExtended
         #endregion
         #endregion
 
-        #region variables
+        #region Fields
         /// <summary>
         /// Expose InputFileHandler to manage the files when the component have reference. Example to show all the images.
         /// </summary>
         public InputFileHandler Files { get; private set; }
-        string APIErrorMessages;
-        byte[] FileBytes = null;
-        string SelectionInfo;
         /// <summary>
         /// Know the Id assigned to the input file to use from some external CSS or JAVASCRIPT when has reference name
         /// </summary>
         public readonly string InputFileId = Guid.NewGuid().ToString();
+        #endregion
+
+        #region variables
+        string APIErrorMessages;
+        byte[] FileBytes = null;
+        string SelectionInfo;
         #endregion
 
         #region methods

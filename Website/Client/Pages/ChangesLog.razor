@@ -7,6 +7,107 @@
          data-full-width-responsive="true"></ins>
     <h1>Changes Log</h1>
     <h2>Version</h2>
+    <h3>1.2.5 [2021-07-17] Drag and Drop requested from users</h3>
+<ul>
+    <li><strong>InputFileExtendend:</strong></li>
+    <li>Change to public field read only <i>InputFieldId</i> if you need to know the Id assigned to the input when has reference name</li>
+    <li>Add property <var>bool</var> <i>CanDropFiles</i> to enabled drag and drop files</li>
+    <li>Add property <var>string</var> <i>DropZoneCss</i> CSS to style the drop zone. Default <i>dropzone</i></li>
+    <li>
+        <pre>
+<code>.dropzone {
+    cursor: pointer;
+    width: 100%;
+    border: 2px dashed rgba(0,0,0,.25);
+    border-radius: 20px;
+    text-align: center;
+    line-height: 180px;
+    font-size: 1.5rem;
+    color: rgba(0,0,0,.25);
+}
+
+</code>
+</pre>
+    </li>
+    <li>Add property <var>string</var> <i>DroppingCss</i> CSS for active the drop zone when user drag in. Default <i>dropzone-drag</i></li>
+    <li>
+        <pre>
+<code>.dropzone-drag {
+    border: 2px dashed rgba(0,0,0,.65);
+    color: rgba(0,0,0,.65);
+}
+
+</code>
+</pre>
+    </li>
+    <li>Add JAVASCRIPT file to manage the drag and drop actions.</li>
+    <li>
+        <pre>
+<code>var InputFileId;            //id for the inputfile into the page to setup the events for drag and drop
+/** Export DragAndDrop to load the file dynamically */
+export const DragAndDrop = {
+    // Load PayPal Javascripts
+    Load: (dropId) => {
+        let tag = document.getElementById('draganddrop-script');
+        if (!tag) {
+            tag = document.createElement('script');
+            tag.id = 'draganddrop-script'
+            tag.src = "/_content/BlazorInputFileExtended/DragAndDrop.js";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+        InputFileId = dropId;
+        setEvents();
+    }
+}
+/*** Setup the events */
+function setEvents() {
+    let d = document.getElementById(`Contaniner_${InputFileId}`);
+    if (d) {
+        d.addEventListener('dragover', dragOverHandler, false);
+        d.addEventListener('drop', dropHandler, false);
+    }
+}
+
+function dropHandler(ev) {
+    // Prevent default behavior (Prevent file from being opened)
+    ev.preventDefault();
+    ev.stopPropagation();
+    // send the files to the input file
+    let inputfile = document.getElementById(InputFileId);
+    inputfile.files = ev.dataTransfer.files;
+    // Generate the change event to notify to Blazor have some change.
+    try {
+        let event = new Event('change');   // Create the event.
+        inputfile.dispatchEvent(event);    // Dispatch the event.
+    } catch (e) {
+        console.warn(e);
+    }
+    // clean the drag and drop data
+    removeDragData(ev)
+}
+
+function dragOverHandler(ev) {
+    // Prevent default behavior (Prevent file from being opened)
+    ev.preventDefault();
+    ev.stopPropagation();
+}
+
+function removeDragData(ev) {
+    if (ev.dataTransfer.items) {
+        // Use DataTransferItemList interface to remove the drag data
+        ev.dataTransfer.items.clear();
+    } else {
+        // Use DataTransfer interface to remove the drag data
+        ev.dataTransfer.clearData();
+    }
+}
+</code>
+</pre>
+    </li>
+    <li>Add method <i>LoadDropScriptsAsync</i> for can enable the drag and drop when the user want.</li>
+    <li>Add method <i>UnLoadDropScriptsAsync</i> to disabled drag and drop options and remove the JavaScript from the <var>HEAD</var> in the page.</li>
+</ul>
     <h3>1.1.4 [2021-07-10] First big changes after use</h3>
 <ul>
     <li><strong>InputFileExtendend:</strong></li>

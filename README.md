@@ -1,3 +1,6 @@
+Last Stable Version 1.2.5
+# Description
+Extend the traditional component InputFile with more options like drag and drop and upload methods directly. Less codding for all.
 # Properties
 ## Upload management
 * MultiFile: Indicates can accept multiple files on the selection box.
@@ -22,6 +25,13 @@
 * PreviewWrapperCss: Set the CSS to format the wrapper for the figure tag content the image. Default image
 * FileCss: Set the CSS to format the image tag.
 * FileBytes: Store the byte[] about the last image selected.
+## Drag and Drop
+* CanDropFiles: Enable drag and drop.
+* DropZoneCss: CSS to use for format the drop zone.
+* DroppingCss: CSS to use when user are dropping the file.
+### Methods Drag and Drop
+* LoadDropScriptsAsync: If the component load with CanDropfiles = false, with this method can change and enable dropping files.
+* UnLoadDropScriptsAsync: If the component is already setup for dropping files with this method can disabled.
 ## Post actions
 If you want to upload files with some other data, send the model data.
 * TargetFormDataContent: MultipartFormDataContent with the form data to send with the files.
