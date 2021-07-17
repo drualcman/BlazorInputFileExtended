@@ -198,7 +198,6 @@ namespace BlazorInputFileExtended
             Files.SetFormField(TargetFormFieldName);
 
             if (IsImage && string.IsNullOrEmpty(InputFileTypes)) InputFileTypes = "image/*";
-            else InputFileTypes = "*";
 
             if (string.IsNullOrEmpty(SelectionText)) SelectionText = "chosen";
             if (string.IsNullOrEmpty(SelectionCss)) SelectionCss = "info";

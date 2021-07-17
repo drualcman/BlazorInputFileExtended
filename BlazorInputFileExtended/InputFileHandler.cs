@@ -797,18 +797,14 @@ namespace BlazorInputFileExtended
             HttpResponseMessage response;
             try
             {
-                if (this.Size > 0)
-                {
-                    response = await HttpClient.PostAsync(TargetToPostFile, content);                    
-                }
-                else
+                if (this.Count < 1)
                 {
                     if (OnUploadError is not null)
                     {
                         OnUploadError(this, new ArgumentException($"No files to upload", "UploadFilesAsync"));
                     }
-                    response = null;
                 }
+                response = await HttpClient.PostAsync(TargetToPostFile, content);
             }
             catch (Exception ex)
             {
@@ -946,26 +942,22 @@ namespace BlazorInputFileExtended
             TModel response;
             try
             {
-                if (this.Count > 0)
-                {
-                    using HttpResponseMessage result = await UploadFilesAsync(TargetToPostFile, content, ignoreFiles);
-                    if (result.IsSuccessStatusCode) response = await result.Content.ReadFromJsonAsync<TModel>();
-                    else
-                    {
-                        if (OnAPIError is not null)
-                        {
-                            //decode the error from the call of the end point                        
-                            string jsonElement = await result.Content.ReadAsStringAsync();
-                            OnAPIError(this, new ArgumentException($"{TargetToPostFile}: {result.ReasonPhrase} [{(int)result.StatusCode} {result.StatusCode}]: {jsonElement}", "UploadFilesAsync"));
-                        }
-                        response = default(TModel);
-                    }
-                }
-                else
+                if (this.Count < 1)
                 {
                     if (OnUploadError is not null)
                     {
                         OnUploadError(this, new ArgumentException($"No files to upload", "UploadFilesAsync"));
+                    }
+                }
+                using HttpResponseMessage result = await UploadFilesAsync(TargetToPostFile, content, ignoreFiles);
+                if (result.IsSuccessStatusCode) response = await result.Content.ReadFromJsonAsync<TModel>();
+                else
+                {
+                    if (OnAPIError is not null)
+                    {
+                        //decode the error from the call of the end point                        
+                        string jsonElement = await result.Content.ReadAsStringAsync();
+                        OnAPIError(this, new ArgumentException($"{TargetToPostFile}: {result.ReasonPhrase} [{(int)result.StatusCode} {result.StatusCode}]: {jsonElement}", "UploadFilesAsync"));
                     }
                     response = default(TModel);
                 }
