@@ -6,7 +6,7 @@
                title="@InputTitle"
                accept="@InputFileTypes"
                id="@InputFileId"
-               OnChange="Files.UploadFile" />
+               OnChange="Change" />
     @if (string.IsNullOrEmpty(SelectionInfo))
     {
         @if (InputContent is null)

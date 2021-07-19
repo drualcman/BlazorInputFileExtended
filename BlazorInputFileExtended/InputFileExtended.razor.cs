@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 using System;
 using System.Net.Http;
@@ -21,6 +22,11 @@ namespace BlazorInputFileExtended
         /// Inject JavaScript interoperability
         /// </summary>
         [Inject] public IJSRuntime JavaScript { get; set; }
+
+        /// <summary>
+        /// To setup correctly the urls to get the javascripts
+        /// </summary>
+        [Inject] public NavigationManager Navigation { get; set; }
         #endregion
 
         #region setup parameters
@@ -168,6 +174,12 @@ namespace BlazorInputFileExtended
             FileBytes = null;
             SelectionInfo = string.Empty;
         }
+
+        void Change(InputFileChangeEventArgs e)
+        {
+            Files.UploadFile(e);
+            OnChange.InvokeAsync(e);
+        }
         #endregion
 
         #region setup
@@ -232,6 +244,11 @@ namespace BlazorInputFileExtended
         /// When upload is completed
         /// </summary>
         [Parameter] public EventCallback<HttpResponseMessage> OnSave { get; set; }
+
+        /// <summary>
+        /// To setup correctly the urls to get the javascripts
+        /// </summary>
+        [Parameter] public EventCallback<InputFileChangeEventArgs> OnChange { get; set; }
         #endregion
 
         #region handlers
@@ -320,9 +337,10 @@ namespace BlazorInputFileExtended
         /// <returns></returns>
         public async Task LoadDropScriptsAsync()
         {
+            string url = Navigation.BaseUri;
             // if can drop need to load some JavaScript
-            IJSObjectReference DragAdnDoop = await JavaScript.InvokeAsync<IJSObjectReference>("import", "/_content/BlazorInputFileExtended/DragAndDrop.js");
-            await DragAdnDoop.InvokeVoidAsync("DragAndDrop.Load", InputFileId);
+            IJSObjectReference DragAdnDoop = await JavaScript.InvokeAsync<IJSObjectReference>("import", $"{url}_content/BlazorInputFileExtended/DragAndDrop.js");
+            await DragAdnDoop.InvokeVoidAsync("DragAndDrop.Load", InputFileId, url);
             await DragAdnDoop.DisposeAsync();
             CanDropFiles = true;
         }
@@ -334,8 +352,9 @@ namespace BlazorInputFileExtended
         public async Task UnLoadDropScriptsAsync()
         {
             // unload the JavaScript for drag and drop
-            IJSObjectReference DragAdnDoop = await JavaScript.InvokeAsync<IJSObjectReference>("import", "/_content/BlazorInputFileExtended/DragAndDrop.js");
-            await DragAdnDoop.InvokeVoidAsync("DragAndDrop.UnLoad");
+            string url = Navigation.BaseUri;
+            IJSObjectReference DragAdnDoop = await JavaScript.InvokeAsync<IJSObjectReference>("import", $"{url}_content/BlazorInputFileExtended/DragAndDrop.js");
+            await DragAdnDoop.InvokeVoidAsync("DragAndDrop.UnLoad", url);
             await DragAdnDoop.DisposeAsync();
             CanDropFiles = false;
         }

@@ -1,7 +1,7 @@
 ﻿/**** 
  * DrUalcman 17 Jun 2021
  * Author: Sergi Ortiz Gomez
- * Version 1.2.5 BlazorInputFileExtended
+ * Version 1.2.7 BlazorInputFileExtended
  * License: Apache License, Version 2.0 
  *          SPDX short identifier: Apache-2.0
  ****/
@@ -9,12 +9,12 @@ var InputFileId;            //id for the inputfile into the page to setup the ev
 /** Export DragAndDrop to load the file dynamically */
 export const DragAndDrop = {
     // Load draganddrop Javascripts
-    Load: (dropId) => {
+    Load: (dropId, url) => {
         let tag = document.getElementById('draganddrop-script');
         if (!tag) {
             tag = document.createElement('script');
             tag.id = 'draganddrop-script'
-            tag.src = "/_content/BlazorInputFileExtended/DragAndDrop.js";
+            tag.src = url + "_content/BlazorInputFileExtended/DragAndDrop.js";
             var firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         }

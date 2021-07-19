@@ -1,6 +1,27 @@
 ﻿@page  "/changes-log"
 <h1>Changes Log</h1>
 <h2>Version</h2>
+<h3>1.2.10 [2021-07-20]</h3>
+<ul>
+    <li><strong>InputFileExtendend:</strong></li>
+    <li>Solved issue about base url when is published in a folder not in a root</li>
+    <li>Exponse OnChange Event to use as a <i>normal</i> InputFile</li>
+</ul>
+<h3>1.2.9 [2021-07-19]</h3>
+<ul>
+    <li><strong>InputFileExtendend:</strong></li>
+    <li>Still fixing the issue when is publish in a folder not in a root. In this version looks all good</li>
+</ul>
+<h3>1.2.8 [2021-07-19]</h3>
+<ul>
+    <li><strong>InputFileExtendend:</strong></li>
+    <li>Fixed a bug to load the draganddrop.js when publish in a folder not in a root</li>
+</ul>
+<h3>1.2.7 [2021-07-19]</h3>
+<ul>
+    <li><strong>Content:</strong></li>
+    <li>Fixed a bug to load the draganddrop.js when publish in a folder not in a root</li>
+</ul>
 <h3>1.2.6 [2021-07-17] Drag and Drop requested from users</h3>
 <ul>
     <li><strong>InputFileExtendend:</strong></li>
@@ -34,6 +55,9 @@
 </code>
 </pre>
     </li>
+    <li>Add method <i>LoadDropScriptsAsync</i> for can enable the drag and drop when the user want.</li>
+    <li>Add method <i>UnLoadDropScriptsAsync</i> to disabled drag and drop options and remove the JavaScript from the <var>HEAD</var> in the page.</li>
+    <li><strong>Content:</strong></li>
     <li>Add JAVASCRIPT file to manage the drag and drop actions.</li>
     <li>
         <pre>
@@ -99,8 +123,6 @@ function removeDragData(ev) {
 </code>
 </pre>
     </li>
-    <li>Add method <i>LoadDropScriptsAsync</i> for can enable the drag and drop when the user want.</li>
-    <li>Add method <i>UnLoadDropScriptsAsync</i> to disabled drag and drop options and remove the JavaScript from the <var>HEAD</var> in the page.</li>
 </ul>
 <h3>1.1.5 [2021-07-13]</h3>
 <ul>

@@ -33,6 +33,11 @@
             Inject JavaScript interoperability
             </summary>
         </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.Navigation">
+            <summary>
+            To setup correctly the urls to get the javascripts
+            </summary>
+        </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended.MultiFile">
             <summary>
             Set if we will accept multiple files uploaded or not
@@ -186,6 +191,11 @@
         <member name="P:BlazorInputFileExtended.InputFileExtended.OnSave">
             <summary>
             When upload is completed
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.OnChange">
+            <summary>
+            To setup correctly the urls to get the javascripts
             </summary>
         </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended.CanDropFiles">
