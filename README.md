@@ -1,5 +1,5 @@
-[![Nuget version]](https://www.nuget.org/packages/BlazorInputFileExtended)
-[![Nuget downloads]](https://www.nuget.org/packages/BlazorInputFileExtended)
+[![Nuget version](1.2.10)](https://www.nuget.org/packages/BlazorInputFileExtended)
+[![Nuget downloads](545)](https://www.nuget.org/packages/BlazorInputFileExtended)
 
 Last Stable Version 1.2.10
 # Description
