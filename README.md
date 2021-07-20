@@ -1,5 +1,5 @@
-[![Nuget version](https://img.shields.io/nuget/v/blazored.localstorage.svg?logo=nuget)](https://www.nuget.org/packages/BlazorInputFileExtended)
-[![Nuget downloads](https://img.shields.io/nuget/dt/Blazored.LocalStorage?logo=nuget)](https://www.nuget.org/packages/BlazorInputFileExtended)
+[![Nuget version]](https://www.nuget.org/packages/BlazorInputFileExtended)
+[![Nuget downloads]](https://www.nuget.org/packages/BlazorInputFileExtended)
 
 Last Stable Version 1.2.10
 # Description
