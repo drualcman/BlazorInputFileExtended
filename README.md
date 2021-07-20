@@ -1,5 +1,5 @@
-[![Nuget version](1.2.10)](https://www.nuget.org/packages/BlazorInputFileExtended)
-[![Nuget downloads](545)](https://www.nuget.org/packages/BlazorInputFileExtended)
+[![Nuget](https://img.shields.io/nuget/v/BlazorInputFileExtended?style=for-the-badge)](https://www.nuget.org/packages/BlazorInputFileExtended)
+[![Nuget](https://img.shields.io/nuget/dt/BlazorInputFileExtended?style=for-the-badge)](https://www.nuget.org/packages/BlazorInputFileExtended)
 
 Last Stable Version 1.2.10
 # Description
@@ -46,6 +46,6 @@ If you want to upload files with some other data, send the model data.
 * OnUploadComleted: When all files is uploaded. Returns FilesUploadEventArgs.
 * OnError: When some exception. Returns ArgumentException.
 * OnSave: When click on SAVE button. Returns HttpMessageResponse.
-* OnChange: Normal InputFile OnChange. Returns InputFileChangeEventArgs.
+* OnChange: Notmal InputFile OnChange. Returns InputFileChangeEventArgs.
 # Handler
 You can use the class BlazorInputFileExtenden.InputFileHandler to implement your own logic or the logic for the Authorization send files.
