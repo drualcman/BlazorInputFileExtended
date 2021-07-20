@@ -33,7 +33,7 @@ namespace Website.Client.Pages.howto
             switch (tab)
             {
                 case 1:
-                    ShowUpload = false;
+                    ShowUpload = true;
                     Basic1 = string.Empty;
                     Basic2 = "active";
                     Basic3 = string.Empty;

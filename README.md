@@ -1,3 +1,6 @@
+[![Nuget version](https://img.shields.io/nuget/v/blazored.localstorage.svg?logo=nuget)](https://www.nuget.org/packages/BlazorInputFileExtended)
+[![Nuget downloads](https://img.shields.io/nuget/dt/Blazored.LocalStorage?logo=nuget)](https://www.nuget.org/packages/BlazorInputFileExtended)
+
 Last Stable Version 1.2.10
 # Description
 Extend the traditional component InputFile with more options like drag and drop and upload methods directly. Less codding for all.
@@ -43,6 +46,6 @@ If you want to upload files with some other data, send the model data.
 * OnUploadComleted: When all files is uploaded. Returns FilesUploadEventArgs.
 * OnError: When some exception. Returns ArgumentException.
 * OnSave: When click on SAVE button. Returns HttpMessageResponse.
-* OnChange: Notmal InputFile OnChange. Returns InputFileChangeEventArgs.
+* OnChange: Normal InputFile OnChange. Returns InputFileChangeEventArgs.
 # Handler
 You can use the class BlazorInputFileExtenden.InputFileHandler to implement your own logic or the logic for the Authorization send files.

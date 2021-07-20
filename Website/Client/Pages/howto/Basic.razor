@@ -58,6 +58,32 @@
 @@code{
     //No need nothing else
 }
+
+//The controller who will receive the files
+[HttpPost]
+public async Task&lt;bool&gt; Upload([FromForm] IEnumerable&lt;IFormFile&gt; files)
+{
+    //example logic to save files
+    bool result = false;
+    FileStream ms = null;
+    foreach (IFormFile file in files)
+    {
+        try
+        {
+            string path = "full path and file name";
+            ms = System.IO.File.Create(path);
+            await file.CopyToAsync(ms);
+            await ms.DisposeAsync();
+            result = true;
+        }
+        catch
+        {
+            result = false;
+        }
+    }
+    await ms.DisposeAsync();
+    return result;
+}
 </code>
         </pre>
             </div>
