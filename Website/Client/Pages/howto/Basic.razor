@@ -81,7 +81,6 @@ public async Task&lt;bool&gt; Upload([FromForm] IEnumerable&lt;IFormFile&gt; fil
             result = false;
         }
     }
-    await ms.DisposeAsync();
     return result;
 }
 </code>

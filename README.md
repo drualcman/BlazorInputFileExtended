@@ -1,7 +1,6 @@
 [![Nuget](https://img.shields.io/nuget/v/BlazorInputFileExtended?style=for-the-badge)](https://www.nuget.org/packages/BlazorInputFileExtended)
 [![Nuget](https://img.shields.io/nuget/dt/BlazorInputFileExtended?style=for-the-badge)](https://www.nuget.org/packages/BlazorInputFileExtended)
 
-Last Stable Version 1.2.10
 # Description
 Extend the traditional component InputFile with more options like drag and drop and upload methods directly. Less codding for all.
 # Properties
