@@ -29,6 +29,9 @@ namespace BlazorInputFileExtended
         /// </summary>
         [Inject] public NavigationManager Navigation { get; set; }
 
+        /// <summary>
+        /// Get the context from the form
+        /// </summary>
         [CascadingParameter] public EditContext Context { get; set; }
         #endregion
 
@@ -227,7 +230,8 @@ namespace BlazorInputFileExtended
             {
                 HttpResponseMessage response;
                 if (TargetFormDataContent is not null) response = await Files.UploadAsync(TargetToPostFile, TargetFormDataContent, !MultiFile);
-                else if (TargetDataObject is not null) response = await Files.UploadAsync<object>(TargetToPostFile, TargetDataObject, !MultiFile);
+                else if (TargetDataObject is not null) response = await Files.UploadAsync(TargetToPostFile, TargetDataObject, !MultiFile);
+                else if (Context is not null) response = await Files.UploadAsync(TargetToPostFile, Context, !MultiFile);
                 else response = await Files.UploadAsync(TargetToPostFile, new MultipartFormDataContent(), !MultiFile);
                 await OnSave.InvokeAsync(response);
                 if (CleanOnSuccessUpload) Clean();

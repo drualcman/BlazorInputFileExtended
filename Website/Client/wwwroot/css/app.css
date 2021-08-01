@@ -31,8 +31,8 @@ a, .btn-link {
 }
 
 body pre {
-    background: black;
-    color: white;
+    background: #fbfbfb;
+    color: black;
     font-family: sans-serif;
     border-radius: 1rem;
     box-shadow: inset whitesmoke 0px 0px 1rem 0.15rem;
@@ -40,14 +40,18 @@ body pre {
 }
 
 body pre code {
-    color: white;
+    color: black;
 }
 body var {
     background-color: black;
     color: white;
     padding: 0.2rem 0.4rem;
     border-radius: 3px;
-    font-size: x-small;
+    font-size: small;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 0.01rem;
+    font-family: sans-serif, Arial
 }
 
 /* Error */

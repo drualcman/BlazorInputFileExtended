@@ -38,6 +38,11 @@
             To setup correctly the urls to get the javascripts
             </summary>
         </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.Context">
+            <summary>
+            Get the context from the form
+            </summary>
+        </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended.MultiFile">
             <summary>
             Set if we will accept multiple files uploaded or not
@@ -163,6 +168,11 @@
             Clean all the files
             </summary>
         </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.FormSave">
+            <summary>
+            Expose method for execute Save when is inside of the form need to be validated.
+            </summary>
+        </member>
         <member name="M:BlazorInputFileExtended.InputFileExtended.OnInitialized">
             <summary>
             Initialize the component
@@ -196,11 +206,6 @@
         <member name="P:BlazorInputFileExtended.InputFileExtended.OnChange">
             <summary>
             To setup correctly the urls to get the javascripts
-            </summary>
-        </member>
-        <member name="M:BlazorInputFileExtended.InputFileExtended.FormSave">
-            <summary>
-            Expose to our the method for execute Save when is inside of the form need to be validated.
             </summary>
         </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended.CanDropFiles">

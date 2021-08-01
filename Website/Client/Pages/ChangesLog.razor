@@ -1,11 +1,18 @@
 ﻿@page  "/changes-log"
 <h1>Changes Log</h1>
 <h2>Version</h2>
+<h3>1.2.11 [2021-07-31]</h3>
+<ul>
+    <li><strong>InputFileExtendend:</strong></li>
+    <li>Add cascading parameter EditContext to manage form validation when click on upload button.</li>
+    <li>Expose method <strong>FormSave</strong> for can be call from the event <i>OnValidSubmit</i>, this required a component reference.</li>
+    <li>If <var>EditContext</var> is set and <var>TargetDataObject</var> is not set, then send the form using the data form Context.</li>
+</ul>
 <h3>1.2.10 [2021-07-20]</h3>
 <ul>
     <li><strong>InputFileExtendend:</strong></li>
-    <li>Solved issue about base url when is published in a folder not in a root</li>
-    <li>Exponse OnChange Event to use as a <i>normal</i> InputFile</li>
+    <li>Solved issue about base URL when is published in a folder not in a root</li>
+    <li>Expose OnChange Event to use as a <i>normal</i> InputFile</li>
     <li><strong>Content:</strong></li>
     <li>Fixed a bug to load the draganddrop.js when publish in a folder not in a root</li>
 </ul>

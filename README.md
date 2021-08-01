@@ -27,6 +27,10 @@ Extend the traditional component InputFile with more options like drag and drop 
 * PreviewWrapperCss: Set the CSS to format the wrapper for the figure tag content the image. Default image
 * FileCss: Set the CSS to format the image tag.
 * FileBytes: Store the byte[] about the last image selected.
+## Methods
+* FormSave: Required component reference, and can use with EditForm event OnValidSubmit. This action send the form. 
+* * If TargetDataObject is set, this have preference when send the form.
+* * If TargetDataObject is not set, then send the Context with the form data.
 ## Drag and Drop
 * CanDropFiles: Enable drag and drop.
 * DropZoneCss: CSS to use for format the drop zone.
