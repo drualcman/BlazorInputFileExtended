@@ -198,6 +198,11 @@
             To setup correctly the urls to get the javascripts
             </summary>
         </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.FormSave">
+            <summary>
+            Expose to our the method for execute Save when is inside of the form need to be validated.
+            </summary>
+        </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended.CanDropFiles">
             <summary>
             Enable is can drop files

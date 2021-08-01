@@ -1,8 +1,8 @@
-﻿<label id="Contaniner_@InputFileId" class="@InputCss @DropZoneCss @Dropping" for="@InputFileId" 
-       @ondragenter="DragEnter" 
+﻿<label id="Contaniner_@InputFileId" class="@InputCss @DropZoneCss @Dropping" for="@InputFileId"
+       @ondragenter="DragEnter"
        @ondrop="DragLeave"
-       @ondragleave="DragLeave" >
-    <InputFile multiple="@MultiFile" 
+       @ondragleave="DragLeave">
+    <InputFile multiple="@MultiFile"
                title="@InputTitle"
                accept="@InputFileTypes"
                id="@InputFileId"
@@ -27,7 +27,7 @@
 
 @if (ButtonShow)
 {
-    <button class="@ButtonCss" @onclick="Save" title="@ButtonTitle">
+    <button class="@ButtonCss" @onclick="FormSave" title="@ButtonTitle">
         @if (ButtonContent is null)
         {
             <span>Upload</span>
