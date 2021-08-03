@@ -4,22 +4,88 @@
         <name>BlazorInputFileExtended</name>
     </assembly>
     <members>
-        <member name="T:BlazorInputFileExtended.Helpers.FormData">
-            <summary>
-            Class with helpers about the form data
-            </summary>
-        </member>
-        <member name="M:BlazorInputFileExtended.Helpers.FormData.SetMultipartFormDataContent``1(``0)">
-            <summary>
-            Get a object and encaprulate into a MultipartFormDataContent
-            </summary>
-            <typeparam name="TModel"></typeparam>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
         <member name="T:BlazorInputFileExtended.InputFileExtended">
             <summary>
             InputFile Extension with all necessary to upload files.
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.CanDropFiles">
+            <summary>
+            Enable is can drop files
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.DropZoneCss">
+            <summary>
+            Css when drop a file
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.DroppingCss">
+            <summary>
+            Css when drop a file
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.OnAfterRenderAsync(System.Boolean)">
+            <summary>
+            Setup the drag and drop support
+            </summary>
+            <param name="firstRender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.LoadDropScriptsAsync">
+            <summary>
+            Add the scripts fro can drop files
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.UnLoadDropScriptsAsync">
+            <summary>
+            Remove drag and drop options
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.DragEnter">
+            <summary>
+            Change class to know we are in the drag area
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.DragLeave">
+            <summary>
+            Remove the class because we are not in the drag area
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.OnUploadedFile">
+            <summary>
+            When each file is uploaded
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.OnUploadComleted">
+            <summary>
+            When all files is uploaded
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.OnError">
+            <summary>
+            When some error occurs
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.OnSave">
+            <summary>
+            When upload is completed
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.OnChange">
+            <summary>
+            To setup correctly the urls to get the javascripts
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.Files">
+            <summary>
+            Expose InputFileHandler to manage the files when the component have reference. Example to show all the images.
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.InputFileExtended.InputFileId">
+            <summary>
+            Know the Id assigned to the input file to use from some external CSS or JAVASCRIPT when has reference name
             </summary>
         </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended.Client">
@@ -38,9 +104,14 @@
             To setup correctly the urls to get the javascripts
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended.Context">
+        <member name="M:BlazorInputFileExtended.InputFileExtended.Clean">
             <summary>
-            Get the context from the form
+            Clean all the files
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.FormSave">
+            <summary>
+            Expose method for execute Save when is inside of the form need to be validated.
             </summary>
         </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended.MultiFile">
@@ -133,6 +204,11 @@
             CSS class for the image file
             </summary>
         </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.Context">
+            <summary>
+            Get the context from the form
+            </summary>
+        </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended.TargetFormDataContent">
             <summary>
             Form data to send in a post action with the files
@@ -153,26 +229,6 @@
             End point to call in a post action
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended.Files">
-            <summary>
-            Expose InputFileHandler to manage the files when the component have reference. Example to show all the images.
-            </summary>
-        </member>
-        <member name="F:BlazorInputFileExtended.InputFileExtended.InputFileId">
-            <summary>
-            Know the Id assigned to the input file to use from some external CSS or JAVASCRIPT when has reference name
-            </summary>
-        </member>
-        <member name="M:BlazorInputFileExtended.InputFileExtended.Clean">
-            <summary>
-            Clean all the files
-            </summary>
-        </member>
-        <member name="M:BlazorInputFileExtended.InputFileExtended.FormSave">
-            <summary>
-            Expose method for execute Save when is inside of the form need to be validated.
-            </summary>
-        </member>
         <member name="M:BlazorInputFileExtended.InputFileExtended.OnInitialized">
             <summary>
             Initialize the component
@@ -183,79 +239,23 @@
             Format the component with the properties
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended.OnUploadedFile">
-            <summary>
-            When each file is uploaded
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended.OnUploadComleted">
-            <summary>
-            When all files is uploaded
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended.OnError">
-            <summary>
-            When some error occurs
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended.OnSave">
-            <summary>
-            When upload is completed
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended.OnChange">
-            <summary>
-            To setup correctly the urls to get the javascripts
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended.CanDropFiles">
-            <summary>
-            Enable is can drop files
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended.DropZoneCss">
-            <summary>
-            Css when drop a file
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended.DroppingCss">
-            <summary>
-            Css when drop a file
-            </summary>
-        </member>
-        <member name="M:BlazorInputFileExtended.InputFileExtended.OnAfterRenderAsync(System.Boolean)">
-            <summary>
-            Setup the drag and drop support
-            </summary>
-            <param name="firstRender"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BlazorInputFileExtended.InputFileExtended.LoadDropScriptsAsync">
-            <summary>
-            Add the scripts fro can drop files
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BlazorInputFileExtended.InputFileExtended.UnLoadDropScriptsAsync">
-            <summary>
-            Remove drag and drop options
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BlazorInputFileExtended.InputFileExtended.DragEnter">
-            <summary>
-            Change class to know we are in the drag area
-            </summary>
-        </member>
-        <member name="M:BlazorInputFileExtended.InputFileExtended.DragLeave">
-            <summary>
-            Remove the class because we are not in the drag area
-            </summary>
-        </member>
         <member name="M:BlazorInputFileExtended.InputFileExtended.Dispose">
             <summary>
             Dispose action
             </summary>
+        </member>
+        <member name="T:BlazorInputFileExtended.Helpers.FormData">
+            <summary>
+            Class with helpers about the form data
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.Helpers.FormData.SetMultipartFormDataContent``1(``0)">
+            <summary>
+            Get a object and encaprulate into a MultipartFormDataContent
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
         </member>
         <member name="T:BlazorInputFileExtended.InputFileHandler">
             <summary>
