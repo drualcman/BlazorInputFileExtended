@@ -48,12 +48,15 @@ namespace BlazorInputFileExtended
             FileBytes = e.File.FileBytes;
             if (Files.Count > 0) SelectionInfo = $"{Files.Count} {SelectionText}";
             else SelectionInfo = string.Empty;
-            await OnUploadedFile.InvokeAsync(e);
             StateHasChanged();
+            await OnUploadedFile.InvokeAsync(e);
         }
 
-        private void Files_OnUploadError(object sender, ArgumentException e) =>
-            OnError.InvokeAsync(e);
+        private void Files_OnUploadError(object sender, ArgumentException e)
+        {
+            if (OnError.HasDelegate) OnError.InvokeAsync(e);
+            else ErrorMessages = e.Message;
+        }
         #endregion
 
     }

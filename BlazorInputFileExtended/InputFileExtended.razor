@@ -46,4 +46,9 @@
     </figure>
 }
 
-<label>@APIErrorMessages</label>
+@if (!OnError.HasDelegate)
+{
+    <label class="error-label">@ErrorMessages</label>    
+}
+
+<label class="error-label">@APIErrorMessages</label>

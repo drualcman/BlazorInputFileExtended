@@ -4,9 +4,27 @@
         <name>BlazorInputFileExtended</name>
     </assembly>
     <members>
+        <member name="T:BlazorInputFileExtended.Helpers.FormData">
+            <summary>
+            Class with helpers about the form data
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.Helpers.FormData.SetMultipartFormDataContent``1(``0)">
+            <summary>
+            Get a object and encaprulate into a MultipartFormDataContent
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
         <member name="T:BlazorInputFileExtended.InputFileExtended">
             <summary>
             InputFile Extension with all necessary to upload files.
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileExtended.Dispose">
+            <summary>
+            Dispose action
             </summary>
         </member>
         <member name="P:BlazorInputFileExtended.InputFileExtended.CanDropFiles">
@@ -239,37 +257,9 @@
             Format the component with the properties
             </summary>
         </member>
-        <member name="M:BlazorInputFileExtended.InputFileExtended.Dispose">
-            <summary>
-            Dispose action
-            </summary>
-        </member>
-        <member name="T:BlazorInputFileExtended.Helpers.FormData">
-            <summary>
-            Class with helpers about the form data
-            </summary>
-        </member>
-        <member name="M:BlazorInputFileExtended.Helpers.FormData.SetMultipartFormDataContent``1(``0)">
-            <summary>
-            Get a object and encaprulate into a MultipartFormDataContent
-            </summary>
-            <typeparam name="TModel"></typeparam>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
         <member name="T:BlazorInputFileExtended.InputFileHandler">
             <summary>
             Manage upload files
-            </summary>
-        </member>
-        <member name="F:BlazorInputFileExtended.InputFileHandler.HttpClient">
-            <summary>
-            Need to use the post actions
-            </summary>
-        </member>
-        <member name="F:BlazorInputFileExtended.InputFileHandler.UploadedFiles">
-            <summary>
-            All files uploaded
             </summary>
         </member>
         <member name="M:BlazorInputFileExtended.InputFileHandler.#ctor(System.Net.Http.HttpClient,System.Int32,System.Int64,System.String)">
@@ -281,48 +271,15 @@
             <param name="maxSize">Maximum file size to upload</param>
             <param name="formField">Form content name to upload the file</param>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileHandler.Item(System.Int32)">
+        <member name="M:BlazorInputFileExtended.InputFileHandler.Dispose(System.Boolean)">
             <summary>
-            Define the indexer to allow client code to use [] notation to access directly to the file. 
+            Overwrite the dispose to clean the object
             </summary>
-            <param name="index"></param>
-            <returns></returns>
+            <param name="disposing"></param>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileHandler.Item(System.String)">
+        <member name="M:BlazorInputFileExtended.InputFileHandler.Dispose">
             <summary>
-            Define the indexer to allow client code to use [] notation to access directly to the file by file name. 
-            </summary>
-            <param name="fileName"></param>
-            <returns></returns>
-        </member>
-        <member name="P:BlazorInputFileExtended.InputFileHandler.First">
-            <summary>
-            Return first image from the dictionary
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.InputFileHandler.Last">
-            <summary>
-            Return last image from the dictionary
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.InputFileHandler.Count">
-            <summary>
-            Return how many images have stored
-            </summary>
-        </member>
-        <member name="P:BlazorInputFileExtended.InputFileHandler.Size">
-            <summary>
-            Return total file size uploaded
-            </summary>
-        </member>
-        <member name="F:BlazorInputFileExtended.InputFileHandler.UploadedImage">
-            <summary>
-            Last File stream uploaded
-            </summary>
-        </member>
-        <member name="F:BlazorInputFileExtended.InputFileHandler.FileName">
-            <summary>
-            Last File name uploaded
+            Dispose action
             </summary>
         </member>
         <member name="T:BlazorInputFileExtended.InputFileHandler.UploadEventHandler">
@@ -404,6 +361,16 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="F:BlazorInputFileExtended.InputFileHandler.UploadedImage">
+            <summary>
+            Last File stream uploaded
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.InputFileHandler.FileName">
+            <summary>
+            Last File name uploaded
+            </summary>
+        </member>
         <member name="M:BlazorInputFileExtended.InputFileHandler.GetEnumerator">
             <summary>
             Enumerator to get all the files
@@ -475,30 +442,6 @@
             <summary>
             Remove all the files into the object
             </summary>
-        </member>
-        <member name="M:BlazorInputFileExtended.InputFileHandler.SetHttpClient(System.Net.Http.HttpClient)">
-            <summary>
-            Set HttpClient if is not from the constructor
-            </summary>
-            <param name="httpClient"></param>
-        </member>
-        <member name="M:BlazorInputFileExtended.InputFileHandler.SetMaxFiles(System.Int32)">
-            <summary>
-            Set the max allowed files
-            </summary>
-            <param name="maxfile"></param>
-        </member>
-        <member name="M:BlazorInputFileExtended.InputFileHandler.SetMaxFileSize(System.Int64)">
-            <summary>
-            Set the max file size allowed
-            </summary>
-            <param name="maxSize"></param>
-        </member>
-        <member name="M:BlazorInputFileExtended.InputFileHandler.SetFormField(System.String)">
-            <summary>
-            Set the field name for the form when upload files
-            </summary>
-            <param name="field"></param>
         </member>
         <member name="M:BlazorInputFileExtended.InputFileHandler.UploadAsync``1(System.String,``0,System.Boolean)">
             <summary>
@@ -664,15 +607,72 @@
             <param name="filename"></param>
             <returns></returns>
         </member>
-        <member name="M:BlazorInputFileExtended.InputFileHandler.Dispose(System.Boolean)">
+        <member name="M:BlazorInputFileExtended.InputFileHandler.SetHttpClient(System.Net.Http.HttpClient)">
             <summary>
-            Overwrite the dispose to clean the object
+            Set HttpClient if is not from the constructor
             </summary>
-            <param name="disposing"></param>
+            <param name="httpClient"></param>
         </member>
-        <member name="M:BlazorInputFileExtended.InputFileHandler.Dispose">
+        <member name="M:BlazorInputFileExtended.InputFileHandler.SetMaxFiles(System.Int32)">
             <summary>
-            Dispose action
+            Set the max allowed files
+            </summary>
+            <param name="maxfile"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.SetMaxFileSize(System.Int64)">
+            <summary>
+            Set the max file size allowed
+            </summary>
+            <param name="maxSize"></param>
+        </member>
+        <member name="M:BlazorInputFileExtended.InputFileHandler.SetFormField(System.String)">
+            <summary>
+            Set the field name for the form when upload files
+            </summary>
+            <param name="field"></param>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileHandler.Item(System.Int32)">
+            <summary>
+            Define the indexer to allow client code to use [] notation to access directly to the file. 
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileHandler.Item(System.String)">
+            <summary>
+            Define the indexer to allow client code to use [] notation to access directly to the file by file name. 
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileHandler.First">
+            <summary>
+            Return first image from the dictionary
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileHandler.Last">
+            <summary>
+            Return last image from the dictionary
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileHandler.Count">
+            <summary>
+            Return how many images have stored
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.InputFileHandler.Size">
+            <summary>
+            Return total file size uploaded
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.InputFileHandler.HttpClient">
+            <summary>
+            Need to use the post actions
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.InputFileHandler.UploadedFiles">
+            <summary>
+            All files uploaded
             </summary>
         </member>
         <member name="T:BlazorInputFileExtended.FilesUploadEventArgs">
