@@ -4,10 +4,10 @@
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.2.11</Version>
+    <Version>1.2.12</Version>
     <Authors>Sergi Ortiz Gomez</Authors>
     <Company>DrUalcman</Company>
-    <Description>Component Blazor extend the normal InputFile with drag and drop and all the necessary to upload files.
+    <Description>Component Blazor extend InputFile with drag and drop and all the necessary to upload files.
 Also have a InputFileHandler can be inherit for extent and add more functions like authentication.</Description>
     <Copyright>Free</Copyright>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
@@ -23,8 +23,12 @@ Add OnChange Event is want to use as a normal InputFile</PackageReleaseNotes>
     <RepositoryType>Git</RepositoryType>
     <PackageIcon>icon-512.png</PackageIcon>
     <PackageIconUrl />
-    <AssemblyVersion>1.2.11.0</AssemblyVersion>
-    <FileVersion>1.2.11.0</FileVersion>
+    <AssemblyVersion>1.2.12.0</AssemblyVersion>
+    <FileVersion>1.2.12.0</FileVersion>
+    <AssemblyName>BlazorInputFileExtended</AssemblyName>
+    <RootNamespace>BlazorInputFileExtended</RootNamespace>
+    <PackageId>BlazorInputFileExtended</PackageId>
+    <Product>BlazorInputFileExtended</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
