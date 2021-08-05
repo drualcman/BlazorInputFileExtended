@@ -78,24 +78,24 @@
 </pre>
 <h3>HttpClient calls</h3>
 <pre>
-<code>    public async Task&lt;TModel&gt; UploadAsync&lt;TModel, TData&gt;(string TargetToPostFile, TData data, bool ignoreFiles = true)
-    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile)
-    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, InputFileChangeEventArgs files)
-    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content)
-    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, bool ignoreFiles)
-    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
-    public async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, StreamContent file, string fileName = "")
+<code>    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel, TData&gt;(string TargetToPostFile, TData data, bool ignoreFiles = true)
+    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile)
+    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, InputFileChangeEventArgs files)
+    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content)
+    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, bool ignoreFiles)
+    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
+    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, StreamContent file, string fileName = "")
 
-    public async Task&lt;bool&gt; DeleteAsync(string TargetToPostFile, int index)
-    public async Task&lt;bool&gt; DeleteAsync(string TargetToPostFile, string filename)
+    public virtual  async Task&lt;bool&gt; DeleteAsync(string TargetToPostFile, int index)
+    public virtual  async Task&lt;bool&gt; DeleteAsync(string TargetToPostFile, string filename)
 
-    public async Task&lt;HttpResponseMessage&gt; UploadAsync&lt;TData&gt; (string TargetToPostFile, TData data, bool ignoreFiles = true)
-    public async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile)
-    public async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, InputFileChangeEventArgs files)
-    public async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content)
-    public async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, bool ignoreFiles)
-    public async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
-    public async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, StreamContent file, string fileName = "")
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync&lt;TData&gt; (string TargetToPostFile, TData data, bool ignoreFiles = true)
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile)
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, InputFileChangeEventArgs files)
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content)
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, bool ignoreFiles)
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, StreamContent file, string fileName = "")
 </code>
 </pre>
 <h3>Helpers</h3>
