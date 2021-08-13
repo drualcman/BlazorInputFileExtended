@@ -14,17 +14,14 @@ Also have a InputFileHandler can be inherit for extent and add more functions li
     <RepositoryUrl>https://github.com/drualcman/BlazorInputFileExtended</RepositoryUrl>
     <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
     <PackageTags>Components, Blazor, WebAssembly, InputFile, FileUpload, BlazorFileUpload, drag and drop, drop files</PackageTags>
-    <PackageReleaseNotes>Version 1.2.11
-Add cascading parameter EditContext to manage form validation when click on upload button
-Expose method FormSave for can be call from the event OnValidSubmit, this required a component reference
-Version 1.2.10
-Solved issue about base url when is published in a folder not in a root
-Add OnChange Event is want to use as a normal InputFile</PackageReleaseNotes>
+    <PackageReleaseNotes>Version 1.2.13: Small change in a default css about drag and drop.
+Version 1.2.12: Change to virtual all HttpClient methods for can use your own implementation. 
+Add default error message label if the programmer don't set the event callback.</PackageReleaseNotes>
     <RepositoryType>Git</RepositoryType>
     <PackageIcon>icon-512.png</PackageIcon>
     <PackageIconUrl />
-    <AssemblyVersion>1.2.12.0</AssemblyVersion>
-    <FileVersion>1.2.12.0</FileVersion>
+    <AssemblyVersion>1.2.13.0</AssemblyVersion>
+    <FileVersion>1.2.13.0</FileVersion>
     <AssemblyName>BlazorInputFileExtended</AssemblyName>
     <RootNamespace>BlazorInputFileExtended</RootNamespace>
     <PackageId>BlazorInputFileExtended</PackageId>
