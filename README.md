@@ -3,6 +3,18 @@
 
 # Description
 Extend the traditional component InputFile with more options like drag and drop and upload methods directly. Less codding for all.
+# How to use
+Import the name space adding to _Imports.razor this line:
+```
+@using BlazorInputFileExtended
+```
+Add into your component:
+```
+<InputFileExtended TargetToPostFile="files" ButtonShow="true" CleanOnSuccessUpload="true" />
+```
+* Where TargetToPostFile is the endpoint where will upload the file.
+* ButtonShow display the upload button
+* CleanOnSuccessUpload remove the file form the view after upload the file.
 # Properties
 ## Upload management
 * MultiFile: Indicates can accept multiple files on the selection box.
