@@ -50,6 +50,8 @@ namespace BlazorInputFileExtended
             else SelectionInfo = string.Empty;
             StateHasChanged();
             await OnUploadedFile.InvokeAsync(e);
+            if (AutoUpload && !string.IsNullOrEmpty(TargetToPostFile)) await SendFile();        //send the file after upload
+
         }
 
         private void Files_OnUploadError(object sender, ArgumentException e)

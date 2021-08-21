@@ -38,11 +38,14 @@
     <li><strong>DroppingCss:</strong> CSS for active the drop zone when user drag in. Default <i>dropzone-drag</i></li>
 </ul>
 <h2>Post actions</h2>
-<p>If you want to upload files with some other data, send the model data.</p>
+<p>If you want to upload files with some other data, send the model data.<br />
+If the input file is between EditForm can use the upload button to submit the form.
+</p>
 <ul>
     <li><strong>TargetFormDataContent:</strong> Object <var>MultipartFormDataContent</var> with the form data to send with the files.</li>
     <li><strong>TargetFormFieldName:</strong> Indicates the field form name to send the files. Default <i>files</i></li>
     <li><strong>TargetToPostFile:</strong> Indicate the URL to use for the post action. If it's not setup return a event error if try to upload images.</li>
+    <li><strong>AutoUpload:</strong> Indicate upload the file after selection. Required <var>TargetToPostFile</var> with the url to upload the file.</li>
 </ul>
 <h2>Other</h2>
 <ul>

@@ -56,6 +56,7 @@ If you want to upload files with some other data, send the model data.
 * TargetDataObject: Object with the data model to send with the files. This will encapsulated into a MultipartFormDataContent before send to server.
 * TargetFormFieldName: Indicates the field form name to send the files. Default files
 * TargetToPostFile: Indicate the URL to use for the post action. If it's not setup return a event error if try to upload images.
+* AutoUpload: Indicate to upload the file when is selected. Required TargetToPostFile with the url to upload the file.
 # Events
 * OnUploadedFile: When each file is uploaded. Returns FileUploadEventArgs.
 * OnUploadComleted: When all files is uploaded. Returns FilesUploadEventArgs.

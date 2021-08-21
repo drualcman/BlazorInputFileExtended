@@ -26,6 +26,7 @@ namespace Website.Server.Controllers
         [HttpPost]
         public bool Disco([FromForm] IEnumerable<IFormFile> files)
         {
+            Console.WriteLine("File uploaded!");
             return true;
         }
     }

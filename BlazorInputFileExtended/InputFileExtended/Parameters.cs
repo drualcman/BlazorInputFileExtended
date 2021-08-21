@@ -41,7 +41,6 @@ namespace BlazorInputFileExtended
         /// CSS class to personalize the selection text info
         /// </summary>
         [Parameter] public string SelectionCss { get; set; }
-
         #endregion
 
         #region input formating
@@ -130,6 +129,11 @@ namespace BlazorInputFileExtended
         /// End point to call in a post action
         /// </summary>
         [Parameter] public string TargetToPostFile { get; set; }
+
+        /// <summary>
+        /// Determinate the file must be upload after selection
+        /// </summary>
+        [Parameter] public bool AutoUpload { get; set; }
         #endregion
     }
 }

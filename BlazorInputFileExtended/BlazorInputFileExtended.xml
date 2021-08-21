@@ -247,6 +247,11 @@
             End point to call in a post action
             </summary>
         </member>
+        <member name="P:BlazorInputFileExtended.InputFileExtended.AutoUpload">
+            <summary>
+            Determinate the file must be upload after selection
+            </summary>
+        </member>
         <member name="M:BlazorInputFileExtended.InputFileExtended.OnInitialized">
             <summary>
             Initialize the component

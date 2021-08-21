@@ -31,13 +31,14 @@
     <div class="row">
         <div class="col">
             <button @onclick="Upload" class="btn btn-success">Upload All</button>
+            <p>@Messages</p>
         </div>
     </div>
     <hr />
     
     <pre>
 <code>&lt;section class="content"&gt;
-    &lt;p&gt;@Messages&lt;/p&gt;
+    &lt;p&gt;@@Messages&lt;/p&gt;
     &lt;div class="row"&gt;
         &lt;div class="col"&gt;
             &lt;InputFileExtended ButtonShow="false" OnUploadedFile="GetFile" MaxUploatedFiles="1" FileCss="img-fluid" /&gt;
@@ -65,6 +66,7 @@
     &lt;div class="row"&gt;
         &lt;div class="col"&gt;
             &lt;button @@onclick="Upload" class="btn btn-success"&gt;Upload All&lt;/button&gt;
+            &lt;p&gt;@@Messages&lt;/p&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/section&gt;
