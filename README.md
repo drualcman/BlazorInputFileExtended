@@ -63,5 +63,7 @@ If you want to upload files with some other data, send the model data.
 * OnError: When some exception. Returns InputFileException.
 * OnSave: When click on SAVE button. Returns HttpMessageResponse.
 * OnChange: Normal InputFile OnChange. Returns InputFileChangeEventArgs.
+# Exception
+* InputFileException: encapsulate the exceptions when upload file.
 # Handler
 You can use the class BlazorInputFileExtenden.InputFileHandler to implement your own logic or the logic for the Authorization send files.
