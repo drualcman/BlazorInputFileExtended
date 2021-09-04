@@ -1,4 +1,5 @@
-﻿using BlazorInputFileExtended.Helpers;
+﻿using BlazorInputFileExtended.Exceptions;
+using BlazorInputFileExtended.Helpers;
 using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
@@ -109,7 +110,7 @@ namespace BlazorInputFileExtended
             {
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"No files to upload", "UploadAsync"));
+                    OnUploadError(this, new InputFileException($"No files to upload", "UploadAsync"));
                 }
             }
             return await UploadFilesAsync(TargetToPostFile, content, true);
@@ -125,7 +126,7 @@ namespace BlazorInputFileExtended
         private async Task<HttpResponseMessage> UploadFilesAsync(string TargetToPostFile, MultipartFormDataContent content,
             bool ignoreFiles)
         {
-            if (HttpClient is null) throw new ArgumentException("At least HttpClient Must be provided.", "UploadFilesAsync");
+            if (HttpClient is null) throw new InputFileException("At least HttpClient Must be provided.", "UploadFilesAsync");
             if (!ignoreFiles)
             {
                 long size = 0;
@@ -153,7 +154,7 @@ namespace BlazorInputFileExtended
                 {
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException($"No files to upload", "UploadFilesAsync"));
+                        OnUploadError(this, new InputFileException($"No files to upload", "UploadFilesAsync"));
                     }
                 }
                 response = await HttpClient.PostAsync(TargetToPostFile, content);
@@ -162,7 +163,7 @@ namespace BlazorInputFileExtended
             {
                 if (OnAPIError is not null)
                 {
-                    OnAPIError(this, new ArgumentException($"{TargetToPostFile}: Exception: {ex.Message}", "UploadFilesAsync", ex));
+                    OnAPIError(this, new InputFileException($"{TargetToPostFile}: Exception: {ex.Message}", "UploadFilesAsync", ex));
                 }
                 response = null;
             }
@@ -275,7 +276,7 @@ namespace BlazorInputFileExtended
             {
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"No files to upload", "UploadAsync"));
+                    OnUploadError(this, new InputFileException($"No files to upload", "UploadAsync"));
                 }
             }
             return await UploadFilesAsync<TModel>(TargetToPostFile, content, true);
@@ -298,7 +299,7 @@ namespace BlazorInputFileExtended
                 {
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException($"No files to upload", "UploadFilesAsync"));
+                        OnUploadError(this, new InputFileException($"No files to upload", "UploadFilesAsync"));
                     }
                 }
                 using HttpResponseMessage result = await UploadFilesAsync(TargetToPostFile, content, ignoreFiles);
@@ -309,7 +310,7 @@ namespace BlazorInputFileExtended
                     {
                         //decode the error from the call of the end point                        
                         string jsonElement = await result.Content.ReadAsStringAsync();
-                        OnAPIError(this, new ArgumentException($"{TargetToPostFile}: {result.ReasonPhrase} [{(int)result.StatusCode} {result.StatusCode}]: {jsonElement}", "UploadFilesAsync"));
+                        OnAPIError(this, new InputFileException($"{TargetToPostFile}: {result.ReasonPhrase} [{(int)result.StatusCode} {result.StatusCode}]: {jsonElement}", "UploadFilesAsync"));
                     }
                     response = default(TModel);
                 }
@@ -318,7 +319,7 @@ namespace BlazorInputFileExtended
             {
                 if (OnAPIError is not null)
                 {
-                    OnAPIError(this, new ArgumentException($"{TargetToPostFile}: Exception: {ex.Message}", "UploadFilesAsync", ex));
+                    OnAPIError(this, new InputFileException($"{TargetToPostFile}: Exception: {ex.Message}", "UploadFilesAsync", ex));
                 }
                 response = default(TModel);
             }
@@ -342,7 +343,7 @@ namespace BlazorInputFileExtended
         /// <returns></returns>
         public virtual  async Task<bool> DeleteAsync(string TargetToPostFile, string filename)
         {
-            if (HttpClient is null) throw new ArgumentException("At least HttpClient Must be provided. Use HttpClient or IDefaultServices.");
+            if (HttpClient is null) throw new InputFileException("At least HttpClient Must be provided. Use HttpClient or IDefaultServices.");
             if (string.IsNullOrEmpty(filename)) return false;
 
             MultipartFormDataContent content = new MultipartFormDataContent();

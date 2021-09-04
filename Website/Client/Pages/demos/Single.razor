@@ -55,7 +55,7 @@
         SaveMessage = "Image Uploaded!";
     }
 
-    void Error(ArgumentException e) =>
+    void Error(InputFileException e) =>
         ErrorsMessage = e.Message;
 
     void UploadFile(FileUploadEventArgs e) =>

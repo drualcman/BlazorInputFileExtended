@@ -1,0 +1,107 @@
+﻿@page "/wiki/exception"
+<h1>Exception</h1>
+<p>Encapsulate the exceptions when uploading or selecting files. Inherit from ArgumentException.</p>
+<h2>Constructors</h2>
+<pre>
+<code> 
+        /// &lt;summary&gt;
+        ///  Initializes a new instance of the InputFileException class.
+        /// &lt;/summary&gt;
+        public InputFileException()
+
+        /// &lt;summary&gt;
+        ///     Initializes a new instance of the InputFileException class with a specified error message.
+        /// &lt;/summary&gt;
+        /// &lt;param name="message"&gt;The error message that explains the reason for the exception.&lt;/param&gt;
+        public InputFileException(string message)
+
+        /// &lt;summary&gt;
+        ///     Initializes a new instance of the InputFileException class with a specified error message and a reference to the inner exception that is the cause of this exception.
+        /// &lt;/summary&gt;
+        /// &lt;param name="message"&gt;The error message that explains the reason for the exception.&lt;/param&gt;
+        /// &lt;param name="innerException"&gt;The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.
+        /// &lt;/param&gt;
+        public InputFileException(string message, Exception innerException)
+
+        /// &lt;summary&gt;
+        ///     Initializes a new instance of the InputFileException class with a specified error message and the name of the parameter that causes this exception.
+        /// &lt;/summary&gt;
+        /// &lt;param name="message"&gt;The error message that explains the reason for the exception.&lt;/param&gt;
+        /// &lt;param name="paramName"&gt;The name of the parameter that caused the current exception.&lt;/param&gt;
+        public InputFileException(string message, string paramName)
+
+        /// &lt;summary&gt;
+        ///     Initializes a new instance of the InputFileException class with a specified error message, the parameter name, and a reference to the inner exception that is the cause of this exception.
+        /// &lt;/summary&gt;
+        /// &lt;param name="message"&gt;The error message that explains the reason for the exception.&lt;/param&gt;
+        /// &lt;param name="paramName"&gt; The name of the parameter that caused the current exception.&lt;/param&gt;
+        /// &lt;param name="innerException"&gt;The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.&lt;/param&gt;
+        public InputFileException(string message, string paramName, Exception innerException)
+
+        /// &lt;summary&gt;
+        ///     Initialize a new instance of the InputFileException class with a InputFileChangeEventArgs
+        /// &lt;/summary&gt;
+        /// &lt;param name="inputFiles"&gt;Supplies information about an Microsoft.AspNetCore.Components.Forms.InputFile.OnChange event being raised.&lt;/param&gt;
+        /// &lt;param name="maxFileBytes"&gt;How much is the maximum allowed size.&lt;/param&gt;
+        /// &lt;param name="maxFileCount"&gt;How much is the max file count.&lt;/param&gt;
+        /// &lt;param name="message"&gt;The error message that explains the reason for the exception.&lt;/param&gt;
+        /// &lt;param name="paramName"&gt;The name of the parameter that caused the current exception.&lt;/param&gt;
+        public InputFileException(InputFileChangeEventArgs inputFiles, long maxFileBytes, int maxFileCount, string message, string paramName)
+
+        /// &lt;summary&gt;
+        ///     Initialize a new instance of the InputFileException class with a InputFileChangeEventArgs
+        /// &lt;/summary&gt;
+        /// &lt;param name="inputFiles"&gt;Supplies information about an Microsoft.AspNetCore.Components.Forms.InputFile.OnChange event being raised.&lt;/param&gt;
+        /// &lt;param name="maxFileBytes"&gt;How much is the maximum allowed size.&lt;/param&gt;
+        /// &lt;param name="maxFileCount"&gt;How much is the max file count.&lt;/param&gt;
+        /// &lt;param name="message"&gt;The error message that explains the reason for the exception.&lt;/param&gt;
+        /// &lt;param name="paramName"&gt;The name of the parameter that caused the current exception.&lt;/param&gt;
+        /// &lt;param name="innerException"&gt;The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.&lt;/param&gt;
+        public InputFileException(InputFileChangeEventArgs inputFiles, long maxFileBytes, int maxFileCount, string message, string paramName, Exception innerException)
+
+        /// &lt;summary&gt;
+        ///     Initialize a new instance of the InputFileException class with a InputFileChangeEventArgs
+        /// &lt;/summary&gt;
+        /// &lt;param name="inputFile"&gt;Supplies information about an Microsoft.AspNetCore.Components.Forms.InputFile.OnChange event being raised.&lt;/param&gt;
+        /// &lt;param name="maxFileBytes"&gt;How much is the maximum allowed size.&lt;/param&gt;
+        /// &lt;param name="maxFileCount"&gt;How much is the max file count.&lt;/param&gt;
+        /// &lt;param name="message"&gt;The error message that explains the reason for the exception.&lt;/param&gt;
+        /// &lt;param name="paramName"&gt;The name of the parameter that caused the current exception.&lt;/param&gt;
+        public InputFileException(FileUploadContent inputFile, long maxFileBytes, int maxFileCount, string message, string paramName)
+
+        /// &lt;summary&gt;
+        ///     Initialize a new instance of the InputFileException class with a InputFileChangeEventArgs
+        /// &lt;/summary&gt;
+        /// &lt;param name="inputFile"&gt;Supplies information about an Microsoft.AspNetCore.Components.Forms.InputFile.OnChange event being raised.&lt;/param&gt;
+        /// &lt;param name="maxFileBytes"&gt;How much is the maximum allowed size.&lt;/param&gt;
+        /// &lt;param name="maxFileCount"&gt;How much is the max file count.&lt;/param&gt;
+        /// &lt;param name="message"&gt;The error message that explains the reason for the exception.&lt;/param&gt;
+        /// &lt;param name="paramName"&gt;The name of the parameter that caused the current exception.&lt;/param&gt;
+        /// &lt;param name="innerException"&gt;The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.&lt;/param&gt;
+        public InputFileException(FileUploadContent inputFile, long maxFileBytes, int maxFileCount, string message, string paramName, Exception innerException)
+</code>
+</pre>
+<h3>Properties</h3>
+<ul>
+    <li><var>Files</var> return IEnumeral with all files affected in the exception</li>
+    <li><var>FilesCount</var> total files when exception</li>
+    <li><var>FileBytes</var> total file bytes</li>
+    <li><var>FileMbBytes</var> total file bytes in Mb</li>
+    <li><var>MaxFileBytes</var> max allowed file bytes</li>
+    <li><var>MaxFileMbBytes</var> max allowed file bytes in Mb</li>
+    <li><var>MaxFilesAllowed</var> max allowed files</li>
+</ul>
+<h3>Exceptions Type enumeral</h3>
+<pre>
+<code>
+    public enum ExceptionType
+    {
+        /// Generic exception
+        [Display(Name = "Generic")] Generic = 0,
+        /// Max file count exception
+        [Display(Name = "Maximum count")] MaxCount = 1,
+        /// Max allowed size exception
+        [Display(Name = "Maximum size allowed")] MaxSize     = 2
+    }
+</code>
+</pre>

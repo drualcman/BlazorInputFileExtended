@@ -1,4 +1,5 @@
 ﻿using BlazorInputFileExtended;
+using BlazorInputFileExtended.Exceptions;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace Website.Client.Pages.howto
             Messages = $"File {e.File.Name} chosen. Total size {e.File.Size}.";
         }
 
-        private void FileHandler_OnUploadError(object sender, ArgumentException e)
+        private void FileHandler_OnUploadError(object sender, InputFileException e)
         {
             Messages = $"Exception: {e.Message} on {e.ParamName}";
         }
@@ -38,7 +39,7 @@ namespace Website.Client.Pages.howto
         #endregion
 
         #region InputFileExtended
-        void OnError(ArgumentException e)
+        void OnError(InputFileException e)
         {
             Messages = $"Exception: {e.Message} on {e.ParamName}";
         }

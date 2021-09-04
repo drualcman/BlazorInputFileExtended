@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using BlazorInputFileExtended.Exceptions;
 
 namespace BlazorInputFileExtended
 {
@@ -25,7 +26,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// When some error occurs
         /// </summary>
-        [Parameter] public EventCallback<ArgumentException> OnError { get; set; }
+        [Parameter] public EventCallback<InputFileException> OnError { get; set; }
 
         /// <summary>
         /// When upload is completed
@@ -51,13 +52,15 @@ namespace BlazorInputFileExtended
             StateHasChanged();
             await OnUploadedFile.InvokeAsync(e);
             if (AutoUpload && !string.IsNullOrEmpty(TargetToPostFile)) await SendFile();        //send the file after upload
-
         }
 
-        private void Files_OnUploadError(object sender, ArgumentException e)
+        private void Files_OnUploadError(object sender, InputFileException e)
         {
             if (OnError.HasDelegate) OnError.InvokeAsync(e);
-            else ErrorMessages = e.Message;
+            else ErrorMessages =
+                    $"{e.Message}" +
+                    $"{(e.ExceptionType == ExceptionType.MaxSize ? $" File size {e.FileMbBytes.ToString("N2")}Mb ({e.FileBytes} bytes) overflow maximum size is {e.MaxFileMbBytes.ToString("N2")}Mb ({e.MaxFileBytes} bytes). " : "")}" +
+                    $"{(e.ExceptionType == ExceptionType.MaxCount ? $" Max files selected {e.MaxFilesAllowed}. " : "")}";
         }
         #endregion
 

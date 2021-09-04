@@ -60,7 +60,7 @@ If you want to upload files with some other data, send the model data.
 # Events
 * OnUploadedFile: When each file is uploaded. Returns FileUploadEventArgs.
 * OnUploadComleted: When all files is uploaded. Returns FilesUploadEventArgs.
-* OnError: When some exception. Returns ArgumentException.
+* OnError: When some exception. Returns InputFileException.
 * OnSave: When click on SAVE button. Returns HttpMessageResponse.
 * OnChange: Normal InputFile OnChange. Returns InputFileChangeEventArgs.
 # Handler

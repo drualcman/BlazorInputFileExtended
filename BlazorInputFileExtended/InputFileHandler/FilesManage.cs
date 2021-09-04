@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
+﻿using BlazorInputFileExtended.Exceptions;
+using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace BlazorInputFileExtended
                     FileName = null;
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException("No images found", "UploadFile"));
+                        OnUploadError(this, new InputFileException("No images found", "UploadFile"));
                     }
                 }
                 else
@@ -47,14 +48,14 @@ namespace BlazorInputFileExtended
                     {
                         if (OnUploadError is not null)
                         {
-                            OnUploadError(this, new ArgumentException($"Max files can be selected is {this.MaxAllowedFiles}", "UploadFile"));
+                            OnUploadError(this, new InputFileException(e, this.MaxAllowedSize, this.MaxAllowedFiles, "Max file count exception.", "UploadFile"));
                         }
                     }
                     else if (this.Count >= this.MaxAllowedFiles)
                     {
                         if (OnUploadError is not null)
                         {
-                            OnUploadError(this, new ArgumentException($"Max files [{this.MaxAllowedFiles}] already selected. For upload more files please remove some.", "UploadFile"));
+                            OnUploadError(this, new InputFileException(e, this.MaxAllowedSize, this.MaxAllowedFiles, "Max selected file count exception.", "UploadFile"));
                         }
                     }
                     else
@@ -82,11 +83,23 @@ namespace BlazorInputFileExtended
                     }
                 }
             }
+            catch (System.IO.EndOfStreamException stream)
+            {
+                OnUploadError(this, new InputFileException(e, this.MaxAllowedSize, this.MaxAllowedFiles, $"EndOfStreamException: {stream.Message}", "UploadFile", stream));
+            }
+            catch (System.IO.FileLoadException load)
+            {                
+                OnUploadError(this, new InputFileException(e, this.MaxAllowedSize, this.MaxAllowedFiles, $"FileLoadException: {load.Message}", "UploadFile", load));
+            }
+            catch (System.IO.IOException ioex)
+            {
+                OnUploadError(this, new InputFileException(e, this.MaxAllowedSize, this.MaxAllowedFiles, $"IOException: ", "UploadFile", ioex));                
+            }
             catch (Exception ex)
             {
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "UploadFile", ex));
+                    OnUploadError(this, new InputFileException(e, this.MaxAllowedSize, this.MaxAllowedFiles, $"Exception: {ex.Message}", "UploadFile", ex));
                 }
             }
         }
@@ -122,7 +135,7 @@ namespace BlazorInputFileExtended
                     {
                         if (OnUploadError is not null)
                         {
-                            OnUploadError(this, new ArgumentException($"Max files is {this.MaxAllowedFiles}", "Add"));
+                            OnUploadError(this, new InputFileException(image, this.MaxAllowedSize, this.MaxAllowedFiles, $"Max files exception", "Add"));
                         }
                     }
                 }
@@ -130,7 +143,7 @@ namespace BlazorInputFileExtended
                 {
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException($"File {image.Name} overload {this.MaxAllowedSize}", "Add"));
+                        OnUploadError(this, new InputFileException(image, this.MaxAllowedSize, this.MaxAllowedFiles, $"File {image.Name} overflow exception", "Add"));
                     }
                 }
             }
@@ -138,7 +151,7 @@ namespace BlazorInputFileExtended
             {
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Add", ex));
+                    OnUploadError(this, new InputFileException(image, this.MaxAllowedSize, this.MaxAllowedFiles, $"Exception: {ex.Message}", "Add", ex));
                 }
             }
 
@@ -166,7 +179,7 @@ namespace BlazorInputFileExtended
                 result = false;
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"File index {index} not found", "Update", ix));
+                    OnUploadError(this, new InputFileException(image, this.MaxAllowedSize, this.MaxAllowedFiles, $"File index {index} not found", "AddUpdate", ix));
                 }
             }
             catch (Exception ex)
@@ -174,7 +187,7 @@ namespace BlazorInputFileExtended
                 result = false;
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Remove", ex));
+                    OnUploadError(this, new InputFileException(image, this.MaxAllowedSize, this.MaxAllowedFiles, $"Exception: {ex.Message}", "Update", ex));
                 }
             }
             return result;
@@ -196,7 +209,7 @@ namespace BlazorInputFileExtended
                     result = false;
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException($"File {fileName} not found", "Update"));
+                        OnUploadError(this, new InputFileException(image, this.MaxAllowedSize, this.MaxAllowedFiles, $"File {fileName} not found", "AddUpdate"));
                     }
                 }
                 else
@@ -209,7 +222,7 @@ namespace BlazorInputFileExtended
                 result = false;
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Update", ex));
+                    OnUploadError(this, new InputFileException(image, this.MaxAllowedSize, this.MaxAllowedFiles, $"Exception: {ex.Message}", "Update", ex));
                 }
             }
             return result;
@@ -231,7 +244,7 @@ namespace BlazorInputFileExtended
                     result = false;
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException($"File {id} not found", "Update"));
+                        OnUploadError(this, new InputFileException(file, this.MaxAllowedSize, this.MaxAllowedFiles, $"File {id} not found", "Update"));
                     }
                 }
                 else
@@ -244,7 +257,7 @@ namespace BlazorInputFileExtended
                 result = false;
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Update", ex));
+                    OnUploadError(this, new InputFileException(image, this.MaxAllowedSize, this.MaxAllowedFiles, $"Exception: {ex.Message}", "Update", ex));
                 }
             }
             return result;
@@ -267,7 +280,7 @@ namespace BlazorInputFileExtended
                 result = false;
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"File index {index} not found", "Remove", ix));
+                    OnUploadError(this, new InputFileException($"File index {index} not found", "Remove", ix));
                 }
             }
             catch (Exception ex)
@@ -275,7 +288,7 @@ namespace BlazorInputFileExtended
                 result = false;
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Remove", ex));
+                    OnUploadError(this, new InputFileException($"Exception: {ex.Message}", "Remove", ex));
                 }
             }
             return result;
@@ -303,7 +316,11 @@ namespace BlazorInputFileExtended
                 {
                     if (OnUploadFile is not null)
                     {
-                        OnUploadFile(this, new FileUploadEventArgs { File = file, FileId = file.FileId, Action = "Remove failed" });
+                        OnUploadFile(this, new FileUploadEventArgs { File = file, FileId = file.FileId, Action = $"Remove file {file.Name} failed" });
+                    }
+                    if (OnUploadError is not null)
+                    {
+                        OnUploadError(this, new InputFileException(file, this.MaxAllowedSize, this.MaxAllowedFiles, $"Remove file {file.Name} failed", "Remove"));
                     }
                 }
             }
@@ -312,7 +329,7 @@ namespace BlazorInputFileExtended
                 result = false;
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Remove", ex));
+                    OnUploadError(this, new InputFileException(file, this.MaxAllowedSize, this.MaxAllowedFiles, $"Exception: {ex.Message}", "Remove", ex));
                 }
             }
 
@@ -335,7 +352,7 @@ namespace BlazorInputFileExtended
                     result = false;
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException($"File {id} not found", "Remove"));
+                        OnUploadError(this, new InputFileException($"File {id} not found", "Remove"));
                     }
                 }
                 else
@@ -348,7 +365,7 @@ namespace BlazorInputFileExtended
                 result = false;
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Remove", ex));
+                    OnUploadError(this, new InputFileException($"Exception: {ex.Message}", "Remove", ex));
                 }
             }
             return result;
@@ -371,7 +388,7 @@ namespace BlazorInputFileExtended
                     result = false;
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException($"File {fileName} not found", "Remove"));
+                        OnUploadError(this, new InputFileException($"File {fileName} not found", "Remove"));
                     }
                 }
                 else
@@ -384,7 +401,7 @@ namespace BlazorInputFileExtended
                 result = false;
                 if (OnUploadError is not null)
                 {
-                    OnUploadError(this, new ArgumentException($"Exception: {ex.Message}", "Remove", ex));
+                    OnUploadError(this, new InputFileException($"Exception: {ex.Message}", "Remove", ex));
                 }
             }
             return result;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
+﻿using BlazorInputFileExtended.Exceptions;
+using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace BlazorInputFileExtended
                     errors.Append(", ");
                 }
                 errors.Remove(errors.Length - 2, 2);
-                await OnError.InvokeAsync(new ArgumentException(errors.ToString(), "Save"));
+                await OnError.InvokeAsync(new InputFileException(errors.ToString(), "Save"));
             }
         }
         #endregion
@@ -59,11 +60,11 @@ namespace BlazorInputFileExtended
         {
             if (string.IsNullOrEmpty(TargetToPostFile))
             {
-                await OnError.InvokeAsync(new ArgumentException("Don't have endpoint to call."));
+                await OnError.InvokeAsync(new InputFileException("Don't have endpoint to call."));
             }
             else if (Files.Count < 1)
             {
-                await OnError.InvokeAsync(new ArgumentException("No files chosen"));
+                await OnError.InvokeAsync(new InputFileException("No files chosen"));
             }
             else
             {

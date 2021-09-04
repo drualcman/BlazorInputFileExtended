@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlazorInputFileExtended.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,13 +29,13 @@ namespace BlazorInputFileExtended
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        public delegate void UploadErrorEventHandler(object sender, ArgumentException e);
+        public delegate void UploadErrorEventHandler(object sender, InputFileException e);
         /// <summary>
         /// Delegate to manage OnAPIError
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public delegate void APIErrorEventHandler(object sender, ArgumentException e);
+        public delegate void APIErrorEventHandler(object sender, InputFileException e);
 
         /// <summary>
         /// Event to notify each file uploaded
@@ -84,11 +85,11 @@ namespace BlazorInputFileExtended
         }
 
         /// <summary>
-        /// Trigger the OnUploadError from a derivated class
+        /// Trigger the OnUploadError from a derivate class
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected virtual void OnUploadErrorEvent(object sender, ArgumentException e)
+        protected virtual void OnUploadErrorEvent(object sender, InputFileException e)
         {
             if (OnUploadError is not null)
             {
@@ -97,11 +98,11 @@ namespace BlazorInputFileExtended
         }
 
         /// <summary>
-        /// Trigger the OnAPIError from a derivated class
+        /// Trigger the OnAPIError from a derivate class
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected virtual void OnAPIErrorEvent(object sender, ArgumentException e)
+        protected virtual void OnAPIErrorEvent(object sender, InputFileException e)
         {
             if (OnAPIError is not null)
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlazorInputFileExtended.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,7 +41,7 @@ namespace BlazorInputFileExtended
             if (string.IsNullOrEmpty(SelectionCss)) SelectionCss = "info";
         }
 
-        private void Files_OnAPIError(object sender, ArgumentException e)
+        private void Files_OnAPIError(object sender, InputFileException e)
         {
             APIErrorMessages = e.Message;
             StateHasChanged();

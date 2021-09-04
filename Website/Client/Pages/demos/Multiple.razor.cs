@@ -1,4 +1,5 @@
 ﻿using BlazorInputFileExtended;
+using BlazorInputFileExtended.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Website.Client.Pages.demos
             Files.Clean();
         }
 
-        void Error(ArgumentException e) => ErrorsMessage = e.Message;
+        void Error(InputFileException e) => ErrorsMessage = e.Message;
 
         void UploadFile(FileUploadEventArgs e) =>
             UploadMessage = $"File name: {e.File.Name} File type: {e.File.ContentType} Size: {e.File.Size} Action: {e.Action}";

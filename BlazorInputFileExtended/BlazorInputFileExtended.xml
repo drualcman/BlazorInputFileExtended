@@ -4,6 +4,147 @@
         <name>BlazorInputFileExtended</name>
     </assembly>
     <members>
+        <member name="T:BlazorInputFileExtended.Exceptions.ExceptionType">
+            <summary>
+            Exeption types
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.Exceptions.ExceptionType.Generic">
+            <summary>
+            Generic exception
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.Exceptions.ExceptionType.MaxCount">
+            <summary>
+            Max file count exception
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.Exceptions.ExceptionType.MaxSize">
+            <summary>
+            Max allowed size exception
+            </summary>        
+        </member>
+        <member name="T:BlazorInputFileExtended.Exceptions.InputFileException">
+            <summary>
+            Return a personalize exception with all relative data
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.Exceptions.InputFileException.#ctor">
+            <summary>
+             Initializes a new instance of the InputFileException class.
+            </summary>
+        </member>
+        <member name="M:BlazorInputFileExtended.Exceptions.InputFileException.#ctor(System.String)">
+            <summary>
+                Initializes a new instance of the InputFileException class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+        </member>
+        <member name="M:BlazorInputFileExtended.Exceptions.InputFileException.#ctor(System.String,System.Exception)">
+            <summary>
+                Initializes a new instance of the InputFileException class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.
+            </param>
+        </member>
+        <member name="M:BlazorInputFileExtended.Exceptions.InputFileException.#ctor(System.String,System.String)">
+            <summary>
+                Initializes a new instance of the InputFileException class with a specified error message and the name of the parameter that causes this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="paramName">The name of the parameter that caused the current exception.</param>
+        </member>
+        <member name="M:BlazorInputFileExtended.Exceptions.InputFileException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+                Initializes a new instance of the InputFileException class with a specified error message, the parameter name, and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="paramName"> The name of the parameter that caused the current exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:BlazorInputFileExtended.Exceptions.InputFileException.#ctor(Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs,System.Int64,System.Int32,System.String,System.String)">
+            <summary>
+                Initialize a new instance of the InputFileException class with a InputFileChangeEventArgs
+            </summary>
+            <param name="inputFiles">Supplies information about an Microsoft.AspNetCore.Components.Forms.InputFile.OnChange event being raised.</param>
+            <param name="maxFileBytes">How much is the maximum allowed size.</param>
+            <param name="maxFileCount">How much is the max file count.</param>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="paramName">The name of the parameter that caused the current exception.</param>
+        </member>
+        <member name="M:BlazorInputFileExtended.Exceptions.InputFileException.#ctor(Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs,System.Int64,System.Int32,System.String,System.String,System.Exception)">
+            <summary>
+                Initialize a new instance of the InputFileException class with a InputFileChangeEventArgs
+            </summary>
+            <param name="inputFiles">Supplies information about an Microsoft.AspNetCore.Components.Forms.InputFile.OnChange event being raised.</param>
+            <param name="maxFileBytes">How much is the maximum allowed size.</param>
+            <param name="maxFileCount">How much is the max file count.</param>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="paramName">The name of the parameter that caused the current exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:BlazorInputFileExtended.Exceptions.InputFileException.#ctor(BlazorInputFileExtended.FileUploadContent,System.Int64,System.Int32,System.String,System.String)">
+            <summary>
+                Initialize a new instance of the InputFileException class with a InputFileChangeEventArgs
+            </summary>
+            <param name="inputFile">Supplies information about an Microsoft.AspNetCore.Components.Forms.InputFile.OnChange event being raised.</param>
+            <param name="maxFileBytes">How much is the maximum allowed size.</param>
+            <param name="maxFileCount">How much is the max file count.</param>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="paramName">The name of the parameter that caused the current exception.</param>
+        </member>
+        <member name="M:BlazorInputFileExtended.Exceptions.InputFileException.#ctor(BlazorInputFileExtended.FileUploadContent,System.Int64,System.Int32,System.String,System.String,System.Exception)">
+            <summary>
+                Initialize a new instance of the InputFileException class with a InputFileChangeEventArgs
+            </summary>
+            <param name="inputFile">Supplies information about an Microsoft.AspNetCore.Components.Forms.InputFile.OnChange event being raised.</param>
+            <param name="maxFileBytes">How much is the maximum allowed size.</param>
+            <param name="maxFileCount">How much is the max file count.</param>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="paramName">The name of the parameter that caused the current exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="P:BlazorInputFileExtended.Exceptions.InputFileException.Files">
+            <summary>
+            Files affected in the exception
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.Exceptions.InputFileException.FilesCount">
+            <summary>
+            Files count
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.Exceptions.InputFileException.FileBytes">
+            <summary>
+            File bytes uploaded
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.Exceptions.InputFileException.FileMbBytes">
+            <summary>
+            Calculate file bytes in Mb
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.Exceptions.InputFileException.MaxFileBytes">
+            <summary>
+            Maximum allowed file size
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.Exceptions.InputFileException.MaxFileMbBytes">
+            <summary>
+            Calculate maximum allowed file size in Mb
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.Exceptions.InputFileException.MaxFilesAllowed">
+            <summary>
+            Maximum files allowed
+            </summary>
+        </member>
+        <member name="P:BlazorInputFileExtended.Exceptions.InputFileException.ExceptionType">
+            <summary>
+            What kind of exception
+            </summary>
+        </member>
         <member name="T:BlazorInputFileExtended.Helpers.FormData">
             <summary>
             Class with helpers about the form data
@@ -352,16 +493,16 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:BlazorInputFileExtended.InputFileHandler.OnUploadErrorEvent(System.Object,System.ArgumentException)">
+        <member name="M:BlazorInputFileExtended.InputFileHandler.OnUploadErrorEvent(System.Object,BlazorInputFileExtended.Exceptions.InputFileException)">
             <summary>
-            Trigger the OnUploadError from a derivated class
+            Trigger the OnUploadError from a derivate class
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:BlazorInputFileExtended.InputFileHandler.OnAPIErrorEvent(System.Object,System.ArgumentException)">
+        <member name="M:BlazorInputFileExtended.InputFileHandler.OnAPIErrorEvent(System.Object,BlazorInputFileExtended.Exceptions.InputFileException)">
             <summary>
-            Trigger the OnAPIError from a derivated class
+            Trigger the OnAPIError from a derivate class
             </summary>
             <param name="sender"></param>
             <param name="e"></param>

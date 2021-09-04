@@ -35,7 +35,7 @@
         Messages = $"File {e.File.Name} chosen. Total size {e.File.Size}.";
     }
 
-    private void FileHandler_OnUploadError(object sender, ArgumentException e)
+    private void FileHandler_OnUploadError(object sender, InputFileException e)
         => Messages = $"Exception: {e.Message} on {e.ParamName}";
 
     async Task Upload()
@@ -71,7 +71,7 @@
         FileHandler = new InputFileHandler(Client);
     }
 
-    void OnError(ArgumentException e)
+    void OnError(InputFileException e)
         => Messages = $"Exception: {e.Message} on {e.ParamName}";
 
     void OnSelect(FileUploadEventArgs e)

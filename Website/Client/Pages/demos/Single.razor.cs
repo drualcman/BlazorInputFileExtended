@@ -1,4 +1,5 @@
 ﻿using BlazorInputFileExtended;
+using BlazorInputFileExtended.Exceptions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using System;
@@ -27,7 +28,7 @@ namespace Website.Client.Pages.demos
             else SaveMessage = $"Can't upload images.";
         }
 
-        void Error(ArgumentException e) => ErrorsMessage = e.Message;
+        void Error(InputFileException e) => ErrorsMessage = e.Message;
 
         void UploadFile(FileUploadEventArgs e) =>
             UploadMessage = $"File name: {e.File.Name} File type: {e.File.ContentType} Size: {e.File.Size} Action: {e.Action}";

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlazorInputFileExtended.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,7 @@ namespace BlazorInputFileExtended
                 {
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException("No images found", "First"));
+                        OnUploadError(this, new InputFileException("No images found", "First"));
                     }
                     return null;
                 }
@@ -61,7 +62,7 @@ namespace BlazorInputFileExtended
                 {
                     if (OnUploadError is not null)
                     {
-                        OnUploadError(this, new ArgumentException("No images found", "Last"));
+                        OnUploadError(this, new InputFileException("No images found", "Last"));
                     }
                     return null;
                 }
