@@ -63,7 +63,7 @@ namespace BlazorInputFileExtended
         {
             string url = Navigation.BaseUri;
             // if can drop need to load some JavaScript
-            DragAndDropScript = await JavaScript.InvokeAsync<IJSObjectReference>("import", $"{url}_content/BlazorInputFileExtended/DragAndDrop.js");
+            DragAndDropScript = await JavaScript.InvokeAsync<IJSObjectReference>("import", $"{url}_content/BlazorInputFileExtended/DragAndDrop1316.js");
             //for initialize the drop zone
             DragAndDropInstance = await DragAndDropScript.InvokeAsync<IJSObjectReference>("DragAndDrop", DropZone, InputContainer);
             CanDropFiles = true;
