@@ -2,7 +2,7 @@
 [![Nuget](https://img.shields.io/nuget/dt/BlazorInputFileExtended?style=for-the-badge)](https://www.nuget.org/packages/BlazorInputFileExtended)
 
 # Description
-Extend the traditional component InputFile with more options like drag and drop and upload methods directly. Less codding for all.
+Extend the traditional component InputFile with more options like drag and drop, copay and paste (if drag and drog is enabled) and upload methods directly. Less codding for all.
 # How to use
 Import the name space adding to _Imports.razor this line:
 ```
