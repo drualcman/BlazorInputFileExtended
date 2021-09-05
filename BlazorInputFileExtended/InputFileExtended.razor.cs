@@ -1,10 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.JSInterop;
+﻿using Microsoft.JSInterop;
 using System;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorInputFileExtended
 {
@@ -23,9 +18,10 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Dispose action
         /// </summary>
-        public void Dispose()
+        public async void Dispose()
         {
             Files.Dispose();
+            await UnLoadDropScriptsAsync();
         }
     }
 }

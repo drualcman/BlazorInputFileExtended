@@ -27,8 +27,15 @@ namespace BlazorInputFileExtended
         [Parameter] public string DroppingCss { get; set; } = "dropzone-drag";
         #endregion
 
-        #region Setup
+        #region variables
+        ElementReference DropZone;
+        ElementReference InputContainer;
 
+        IJSObjectReference DragAndDropScript;
+        IJSObjectReference DragAndDropInstance;
+        #endregion
+
+        #region Setup
         /// <summary>
         /// Setup the drag and drop support
         /// </summary>
@@ -56,9 +63,9 @@ namespace BlazorInputFileExtended
         {
             string url = Navigation.BaseUri;
             // if can drop need to load some JavaScript
-            IJSObjectReference DragAdnDoop = await JavaScript.InvokeAsync<IJSObjectReference>("import", $"{url}_content/BlazorInputFileExtended/DragAndDrop.js");
-            await DragAdnDoop.InvokeVoidAsync("DragAndDrop.Load", InputFileId, url);
-            await DragAdnDoop.DisposeAsync();
+            DragAndDropScript = await JavaScript.InvokeAsync<IJSObjectReference>("import", $"{url}_content/BlazorInputFileExtended/DragAndDrop.js");
+            //for initialize the drop zone
+            DragAndDropInstance = await DragAndDropScript.InvokeAsync<IJSObjectReference>("DragAndDrop", DropZone, InputContainer);
             CanDropFiles = true;
         }
 
@@ -69,10 +76,20 @@ namespace BlazorInputFileExtended
         public async Task UnLoadDropScriptsAsync()
         {
             // unload the JavaScript for drag and drop
-            string url = Navigation.BaseUri;
-            IJSObjectReference DragAdnDoop = await JavaScript.InvokeAsync<IJSObjectReference>("import", $"{url}_content/BlazorInputFileExtended/DragAndDrop.js");
-            await DragAdnDoop.InvokeVoidAsync("DragAndDrop.UnLoad", url);
-            await DragAdnDoop.DisposeAsync();
+            if (DragAndDropInstance is not null)
+            {
+                try
+                {
+                    await DragAndDropInstance.InvokeVoidAsync("Dispose");
+                    await DragAndDropInstance.DisposeAsync();
+                }
+                catch { }
+            }
+
+            if (DragAndDropScript is not null)
+            {
+                await DragAndDropScript.DisposeAsync();
+            }
             CanDropFiles = false;
         }
 

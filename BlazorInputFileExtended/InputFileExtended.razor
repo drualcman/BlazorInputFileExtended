@@ -1,28 +1,31 @@
-﻿<label id="Contaniner_@InputFileId" class="@InputCss @DropZoneCss @Dropping" for="@InputFileId"
+﻿<label @ref="DropZone" id="Contaniner_@InputFileId" class="@InputCss @DropZoneCss @Dropping" for="@InputFileId"
        @ondragenter="DragEnter"
        @ondrop="DragLeave"
        @ondragleave="DragLeave">
-    <InputFile multiple="@MultiFile"
-               title="@InputTitle"
-               accept="@InputFileTypes"
-               id="@InputFileId"
-               OnChange="Change" />
-    @if (string.IsNullOrEmpty(SelectionInfo))
-    {
-        @if (InputContent is null)
+
+    <span @ref="InputContainer"  id="InputFile_@InputFileId">
+        <InputFile multiple="@MultiFile"
+                   title="@InputTitle"
+                   accept="@InputFileTypes"
+                   id="@InputFileId"
+                   OnChange="Change" />
+        @if (string.IsNullOrEmpty(SelectionInfo))
         {
-            <span>Choose File</span>
+            @if (InputContent is null)
+            {
+                <span>Choose File</span>
+            }
+            else
+            {
+
+                @InputContent
+            }
         }
         else
         {
-
-            @InputContent
+            <span class="@SelectionCss">@SelectionInfo</span>
         }
-    }
-    else
-    {
-        <span class="@SelectionCss">@SelectionInfo</span>
-    }
+    </span>
 </label>
 
 @if (ButtonShow)

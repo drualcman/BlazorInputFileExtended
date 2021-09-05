@@ -31,6 +31,7 @@
     <meta name="twitter:description" content="Blazor component to extend the InputFile component with more options like drag and drop and upload files to reduce code in the web Blazor Server or Blazor WebAssembly">
     <meta name="twitter:image" content="/images/icon-512.png">
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <link href="manifest.json" rel="manifest" />
 </head>
 
 <body>
@@ -55,7 +56,10 @@
             </div>
         </div>
     </div>
-    <script src="_framework/blazor.webassembly.js"></script>    
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        navigator.serviceWorker.register('service-worker.js');
+    </script>
 </body>
 
 </html>
