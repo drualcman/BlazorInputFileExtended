@@ -1,6 +1,12 @@
 ﻿@page  "/changes-log"
 <h1>Changes Log</h1>
 <h2>Version</h2>
+<h3>1.3.17 [2021-09-09]</h3>
+<p>Fixed a possible bug when you update from previous version about DragAndDrop.js not found when try to publish the app. Only affects if you are using version lower than 1.3.16 and update the nuget.</p>
+<p><strong>Bug found:</strong><var>Microsoft.NET.Sdk.BlazorWebAssembly\targets\Microsoft.NET.Sdk.BlazorWebAssembly.Current.targets(564,5): error MSB6006: "C:\hostedtoolcache\windows\dotnet" exited with code 1.</var><br />
+When try to publish after update the nuget from version before 1.3.16. This is relative can't find a file <i>DragAndDrop.js</i> is renamed like <i>DragAndDrop1316.js</i> to avoid browser cache issue, but for some reason dotnet still looking for the other file when publish.<br />
+Is not enough with clean solution to avoid this issue. Please update to the version 1.3.17 if you update to the version 1.3.16.
+</p>
 <h3>1.3.16 [2021-09-05]</h3>
 <ul>
     <li><strong>InputFileExtendend:</strong></li>
