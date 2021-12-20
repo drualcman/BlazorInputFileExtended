@@ -16,8 +16,8 @@ namespace BlazorInputFileExtended.Helpers
         /// <summary>
         /// Get a object and encaprulate into a MultipartFormDataContent
         /// </summary>
-        /// <typeparam name="TModel"></typeparam>
-        /// <param name="data"></param>
+        /// <typeparam name="TModel">Class with properties is not other class or list</typeparam>
+        /// <param name="data">Object with all properties like a data not lists or class</param>
         /// <returns></returns>
         public static MultipartFormDataContent SetMultipartFormDataContent<TModel>(TModel data)
         {
@@ -36,5 +36,7 @@ namespace BlazorInputFileExtended.Helpers
             }
             return formData;
         }
+
+
     }
 }

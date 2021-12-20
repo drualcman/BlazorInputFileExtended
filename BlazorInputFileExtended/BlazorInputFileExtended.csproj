@@ -58,6 +58,7 @@ Add default error message label if the programmer don't set the event callback.<
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
