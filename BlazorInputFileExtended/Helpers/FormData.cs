@@ -29,8 +29,12 @@ namespace BlazorInputFileExtended.Helpers
             {
                 try
                 {
-                    if (properties[i].PropertyType.Name == nameof(DateTime)) formData.Add(new StringContent(Convert.ToDateTime(properties[i].GetValue(data)).ToString("yyyy/MM/dd HH:mm:ss")), properties[i].Name);
-                    else formData.Add(new StringContent(properties[i].GetValue(data).ToString()), properties[i].Name);
+                    object toSend = properties[i].GetValue(data);
+                    if(toSend != null)
+                    {
+                        if(properties[i].PropertyType.Name == nameof(DateTime)) formData.Add(new StringContent(Convert.ToDateTime(toSend).ToString("yyyy/MM/dd HH:mm:ss")), properties[i].Name);
+                        else formData.Add(new StringContent(toSend.ToString()), properties[i].Name);
+                    }
                 }
                 catch { }
             }
