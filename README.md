@@ -2,7 +2,7 @@
 [![Nuget](https://img.shields.io/nuget/dt/BlazorInputFileExtended?style=for-the-badge)](https://www.nuget.org/packages/BlazorInputFileExtended)
 
 # Description
-Extend the traditional component InputFile with more options like drag and drop, copay and paste (if drag and drop is enabled) and upload methods directly. Less codding for all.
+Extend the traditional component InputFile with more options like drag and drop, copay and paste (if drag and drop is enabled) and upload methods directly. Less codding for all. Oficial [web](https://blazorinputfileextended.community-mall.com/) documentation and examples.
 # How to use
 Import the name space adding to _Imports.razor this line:
 ```
@@ -10,7 +10,7 @@ Import the name space adding to _Imports.razor this line:
 ```
 Add into your component:
 ```
-<InputFileExtended TargetToPostFile="files" ButtonShow="true" CleanOnSuccessUpload="true" />
+<InputFileExtended TargetToPostFile="[full url endpoint where to post the file/files]" ButtonShow="true" CleanOnSuccessUpload="true" />
 ```
 * Where TargetToPostFile is the endpoint where will upload the file.
 * ButtonShow display the upload button
