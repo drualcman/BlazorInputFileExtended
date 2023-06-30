@@ -87,8 +87,12 @@ namespace BlazorInputFileExtended
             }
 
             if (DragAndDropScript is not null)
-            {
-                await DragAndDropScript.DisposeAsync();
+            {      
+                try
+                {
+                    await DragAndDropScript.DisposeAsync();
+                }
+                catch { }
             }
             CanDropFiles = false;
         }
