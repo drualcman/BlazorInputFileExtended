@@ -1,6 +1,30 @@
 ﻿@page  "/changes-log"
 <h1>Changes Log</h1>
 <h2>Version</h2>
+<h3>2.4.19 [2023-04-03]</h3>
+<p>
+    Version 2.4.19: Fixed control exception when dispose the script reference in Blazor Server when is used from MVC project.
+</p> 
+<pre>
+    <code>
+fail: Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost[111]
+      Unhandled exception in circuit 'MMyep9yxskcsXUtiD1pFvhgsYcVpJBOGGff1ttjNSi8'.
+      Microsoft.JSInterop.JSDisconnectedException: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed.
+         at Microsoft.AspNetCore.Components.Server.Circuits.RemoteJSRuntime.BeginInvokeJS(Int64 asyncHandle, String identifier, String argsJson, JSCallResultType resultType, Int64 targetInstanceId)
+         at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, CancellationToken cancellationToken, Object[] args)
+         at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+         at Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime jsRuntime, String identifier, Object[] args)
+         at Microsoft.JSInterop.Implementation.JSObjectReference.DisposeAsync()
+         at BlazorInputFileExtended.InputFileExtended.UnLoadDropScriptsAsync()
+         at BlazorInputFileExtended.InputFileExtended.Dispose()
+         at System.Threading.Tasks.Task.&lt;&gt;c.&lt;ThrowAsync&gt;b__128_0(Object state)
+         at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteSynchronously(TaskCompletionSource completion, SendOrPostCallback d, Object state)
+         at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+      --- End of stack trace from previous location ---
+         at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+         at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteBackground(WorkItem item)
+    </code>
+</pre>
 <h3>2.4.18 [2022-08-17]</h3>
 <p>
     Update to NET 6 and improve MultipartFormDataContent to avoid null references. Also improve the XML help from the object.
