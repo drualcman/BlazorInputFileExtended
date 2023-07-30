@@ -39,9 +39,8 @@ namespace BlazorInputFileExtended
         /// Must be executed in the event OnUploadFile if you work direclt with image tag.
         /// </summary>
         /// <returns></returns>
-        public async Task SetFileBytes()
+        internal void SetFileBytes(byte[] bytes)
         {
-            byte[] bytes = await FileStreamContent.ReadAsByteArrayAsync();
             ToImageHTML = $"data:image;base64,{Convert.ToBase64String(bytes)}";
             FileBytes = bytes;
         }
