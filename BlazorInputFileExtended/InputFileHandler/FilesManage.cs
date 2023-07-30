@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace BlazorInputFileExtended
 {
@@ -24,7 +25,7 @@ namespace BlazorInputFileExtended
         /// Use with InputFile OnChange
         /// </summary>
         /// <param name="e">InputFileChangeEventArgs</param>
-        public void UploadFile(InputFileChangeEventArgs e)
+        public async Task UploadFile(InputFileChangeEventArgs e)
         {
             try
             {
@@ -63,20 +64,24 @@ namespace BlazorInputFileExtended
                         foreach(IBrowserFile file in e.GetMultipleFiles(maximumFileCount: MaxAllowedFiles))
                         {
                             size += file.Size;
-                            Add(new FileUploadContent
+                            StreamContent content = new StreamContent(file.OpenReadStream(maxAllowedSize: MaxAllowedSize));
+                            FileUploadContent toAdd = new FileUploadContent
                             {
                                 Name = file.Name,
                                 LastModified = file.LastModified,
                                 Size = file.Size,
                                 ContentType = file.ContentType,
-                                FileStreamContent = new StreamContent(file.OpenReadStream(maxAllowedSize: MaxAllowedSize))
-                            });
+                                FileStreamContent = content
+                            };
+                            byte[] filebytes = await content.ReadAsByteArrayAsync();
+                            toAdd.SetFileBytes(filebytes);
+                            Add(toAdd);
                             files++;
                         }
 
                         if(OnUploaded is not null)
                         {
-                            OnUploaded(this, new FilesUploadEventArgs { Files = UploadedFiles, Count = files, Size = size, Action = "Added" });
+                            OnUploaded(this, new FilesUploadEventArgs { Files = UploadedFiles, Count = files, Size = size, Action = EventAction.Added });
                         }
                     }
                 }
@@ -126,7 +131,7 @@ namespace BlazorInputFileExtended
                         UploadedFiles.Add(image);
                         if(OnUploadFile is not null)
                         {
-                            OnUploadFile(this, new FileUploadEventArgs { File = image, FileId = image.FileId, Action = "Added" });
+                            OnUploadFile(this, new FileUploadEventArgs { File = image, FileId = image.FileId, Action = EventAction.Added });
                         }
                     }
                     else
@@ -169,7 +174,7 @@ namespace BlazorInputFileExtended
                 result = true;
                 if(OnUploadFile is not null)
                 {
-                    OnUploadFile(this, new FileUploadEventArgs { File = image, FileId = image.FileId, Action = "Updated" });
+                    OnUploadFile(this, new FileUploadEventArgs { File = image, FileId = image.FileId, Action = EventAction.Updated });
                 }
             }
             catch(IndexOutOfRangeException ix)
@@ -307,14 +312,14 @@ namespace BlazorInputFileExtended
                 {
                     if(OnUploadFile is not null)
                     {
-                        OnUploadFile(this, new FileUploadEventArgs { File = file, FileId = file.FileId, Action = "Removed" });
+                        OnUploadFile(this, new FileUploadEventArgs { File = file, FileId = file.FileId, Action = EventAction.Removed });
                     }
                 }
                 else
                 {
                     if(OnUploadFile is not null)
                     {
-                        OnUploadFile(this, new FileUploadEventArgs { File = file, FileId = file.FileId, Action = $"Removed" });
+                        OnUploadFile(this, new FileUploadEventArgs { File = file, FileId = file.FileId, Action = EventAction.Removed });
                     }
                     if(OnUploadError is not null)
                     {
@@ -419,7 +424,7 @@ namespace BlazorInputFileExtended
             FileName = string.Empty;
             if(OnUploaded is not null)
             {
-                OnUploaded(this, new FilesUploadEventArgs { Files = null, Count = c, Size = t, Action = "Clean" });
+                OnUploaded(this, new FilesUploadEventArgs { Files = null, Count = c, Size = t, Action = EventAction.Clean });
             }
         }
 

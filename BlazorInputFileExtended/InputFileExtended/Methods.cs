@@ -47,10 +47,10 @@ namespace BlazorInputFileExtended
         #endregion
 
         #region private
-        void Change(InputFileChangeEventArgs e)
+        async Task Change(InputFileChangeEventArgs e)
         {
-            Files.UploadFile(e);
-            OnChange.InvokeAsync(e);
+            await Files.UploadFile(e);
+            await OnChange.InvokeAsync(e);
         }
 
         async Task SendFile()

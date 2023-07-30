@@ -35,16 +35,6 @@ namespace BlazorInputFileExtended
         /// </summary>
         public Guid FileId { get; private set; } = Guid.NewGuid();
         /// <summary>
-        /// Set the bytes from the stream.
-        /// Must be executed in the event OnUploadFile if you work direclt with image tag.
-        /// </summary>
-        /// <returns></returns>
-        internal void SetFileBytes(byte[] bytes)
-        {
-            ToImageHTML = $"data:image;base64,{Convert.ToBase64String(bytes)}";
-            FileBytes = bytes;
-        }
-        /// <summary>
         /// Get the image to show in HTML pages directly
         /// </summary>
         /// <returns></returns>
@@ -53,5 +43,10 @@ namespace BlazorInputFileExtended
         /// Get the file bytes
         /// </summary>
         public byte[] FileBytes { get; private set; }
+        internal void SetFileBytes(byte[] bytes)
+        {
+            ToImageHTML = $"data:image;base64,{Convert.ToBase64String(bytes)}";
+            FileBytes = bytes;
+        }
     }
 }

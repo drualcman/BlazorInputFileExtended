@@ -18,6 +18,6 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Action used
         /// </summary>
-        public string Action { get; set; }
+        public EventAction Action { get; set; }
     }
 }

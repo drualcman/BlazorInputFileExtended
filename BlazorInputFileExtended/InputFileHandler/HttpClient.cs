@@ -81,7 +81,7 @@ namespace BlazorInputFileExtended
         /// <returns></returns>
         public virtual async Task<HttpResponseMessage> UploadAsync(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
         {
-            UploadFile(files);
+            await UploadFile(files);
             return await UploadFilesAsync(TargetToPostFile, content, false);
         }
 
@@ -140,7 +140,7 @@ namespace BlazorInputFileExtended
                 }
                 if(OnUploaded is not null)
                 {
-                    OnUploaded(this, new FilesUploadEventArgs { Count = c, Files = UploadedFiles, Size = size, Action = "Upload" });
+                    OnUploaded(this, new FilesUploadEventArgs { Count = c, Files = UploadedFiles, Size = size, Action = EventAction.Upload });
                 }
             }
 
@@ -246,7 +246,7 @@ namespace BlazorInputFileExtended
         /// <returns></returns>
         public virtual async Task<TModel> UploadAsync<TModel>(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
         {
-            UploadFile(files);
+            await UploadFile(files);
             return await UploadFilesAsync<TModel>(TargetToPostFile, content, false);
         }
 

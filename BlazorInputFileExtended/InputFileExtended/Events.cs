@@ -40,7 +40,6 @@ namespace BlazorInputFileExtended
 
         private async void Files_OnUploadFile(object sender, FileUploadEventArgs e)
         {
-            await e.File.SetFileBytes();
             FileBytes = e.File.FileBytes;
             if(Files.Count > 0) SelectionInfo = $"{Files.Count} {SelectionText}";
             else SelectionInfo = string.Empty;
