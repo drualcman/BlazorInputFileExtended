@@ -38,18 +38,18 @@ namespace BlazorInputFileExtended
         private void Files_OnUploaded(object sender, FilesUploadEventArgs e) =>
             OnUploadComleted.InvokeAsync(e);
 
-        private void Files_OnUploadFile(object sender, FileUploadEventArgs e)
+        private async void Files_OnUploadFile(object sender, FileUploadEventArgs e)
         {
-            e.File.SetFileBytes().Wait();
+            await e.File.SetFileBytes();
             FileBytes = e.File.FileBytes;
             if(Files.Count > 0) SelectionInfo = $"{Files.Count} {SelectionText}";
             else SelectionInfo = string.Empty;
-            InvokeAsync(StateHasChanged);
+            await InvokeAsync(StateHasChanged);
             if(OnUploadedFile.HasDelegate)
-                OnUploadedFile.InvokeAsync(e);
+                await OnUploadedFile.InvokeAsync(e);
             if(AutoUpload &&
                !string.IsNullOrEmpty(TargetToPostFile))
-                SendFile().Wait();        //send the file after upload
+                await SendFile();        //send the file after upload
         }
 
         private void Files_OnUploadError(object sender, InputFileException e)
