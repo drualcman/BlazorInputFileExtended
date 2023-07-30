@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace BlazorInputFileExtended
 {
     /// <summary>
     /// InputFile Extension with all necessary to upload files.
     /// </summary>
-    public partial class InputFileExtended : IDisposable
+    public partial class InputFileExtended : IDisposable, IAsyncDisposable
     {
         #region variables
         string APIErrorMessages;
@@ -17,9 +18,13 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Dispose action
         /// </summary>
-        public async void Dispose()
+        public void Dispose()
         {
             Files.Dispose();
+        }
+
+        public async ValueTask DisposeAsync() 
+        {
             await UnLoadDropScriptsAsync();
         }
     }
