@@ -56,6 +56,14 @@
         protected virtual void OnAPIErrorEvent(object sender, InputFileException e)
     </code>
 </pre>
+<h4>Event Actions</h4>
+<ul>
+    <li><strong>Added</strong>: File Added to the object container.</li>
+    <li><strong>Updated</strong>: File updated from the object container.</li>
+    <li><strong>Removed</strong>: File removed from the object container.</li>
+    <li><strong>Clean</strong>: Object container clean. No files.</li>
+    <li><strong>Upload</strong>: File upload from to the post endpoint.</li>
+</ul>
 <h3>Methods</h3>
 <pre>
 <code>    public IEnumerator&lt;FileUploadContent&gt; GetEnumerator()
