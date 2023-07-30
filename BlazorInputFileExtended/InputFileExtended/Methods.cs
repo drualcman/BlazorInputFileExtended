@@ -73,7 +73,7 @@ namespace BlazorInputFileExtended
                 await OnSave.InvokeAsync(response);
                 if(CleanOnSuccessUpload) Clean();
             }
-            StateHasChanged();
+            await InvokeAsync(StateHasChanged);
         }
         #endregion
 
