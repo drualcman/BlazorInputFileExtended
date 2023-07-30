@@ -49,6 +49,7 @@ namespace BlazorInputFileExtended
         #region private
         async Task Change(InputFileChangeEventArgs e)
         {
+            ErrorMessages = string.Empty;
             await Files.UploadFile(e);
             await OnChange.InvokeAsync(e);
         }
