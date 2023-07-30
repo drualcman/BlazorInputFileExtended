@@ -1,4 +1,4 @@
-﻿namespace BlazorInputFileExtended.InputFileHandler;
+﻿namespace BlazorInputFileExtended;
 /// <summary>
 /// What happen in the event about the file
 /// </summary>
