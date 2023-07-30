@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorInputFileExtended
 {
     public partial class InputFileHandler : IDisposable
     {
-        
+
         private bool disposedValue;
         /// <summary>
         /// Overwrite the dispose to clean the object
@@ -16,13 +12,13 @@ namespace BlazorInputFileExtended
         /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if(!disposedValue)
             {
-                if (disposing)
+                if(disposing)
                 {
                     UploadedImage?.Dispose();
                     int c = UploadedFiles.Count;
-                    for (int i = 0; i < c; i++)
+                    for(int i = 0; i < c; i++)
                     {
                         UploadedFiles[i]?.FileStreamContent?.Dispose();
                     }
@@ -41,6 +37,6 @@ namespace BlazorInputFileExtended
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
-        
+
     }
 }

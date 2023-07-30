@@ -1,9 +1,4 @@
 ﻿using BlazorInputFileExtended.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorInputFileExtended
 {
@@ -65,7 +60,7 @@ namespace BlazorInputFileExtended
         /// <param name="e"></param>
         protected virtual void OnUploadFileEvent(object sender, FileUploadEventArgs e)
         {
-            if (OnUploadFile is not null)
+            if(OnUploadFile is not null)
             {
                 OnUploadFile(sender, e);
             }
@@ -78,7 +73,7 @@ namespace BlazorInputFileExtended
         /// <param name="e"></param>
         protected virtual void OnUploadedEvent(object sender, FilesUploadEventArgs e)
         {
-            if (OnUploaded is not null)
+            if(OnUploaded is not null)
             {
                 OnUploaded(sender, e);
             }
@@ -91,7 +86,7 @@ namespace BlazorInputFileExtended
         /// <param name="e"></param>
         protected virtual void OnUploadErrorEvent(object sender, InputFileException e)
         {
-            if (OnUploadError is not null)
+            if(OnUploadError is not null)
             {
                 OnUploadError(sender, e);
             }
@@ -104,7 +99,7 @@ namespace BlazorInputFileExtended
         /// <param name="e"></param>
         protected virtual void OnAPIErrorEvent(object sender, InputFileException e)
         {
-            if (OnAPIError is not null)
+            if(OnAPIError is not null)
             {
                 OnAPIError(sender, e);
             }

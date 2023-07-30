@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
-using BlazorInputFileExtended.Helpers;
+﻿using System.Net.Http;
 
 namespace BlazorInputFileExtended
 {
@@ -23,7 +16,7 @@ namespace BlazorInputFileExtended
         /// <param name="formField">Form content name to upload the file</param>
         public InputFileHandler(HttpClient httpClient = null, int maxFiles = 5, long maxSize = 512000, string formField = "files")
         {
-            if (httpClient is not null) HttpClient = httpClient;
+            if(httpClient is not null) HttpClient = httpClient;
 
             MaxAllowedFiles = maxFiles;
             MaxAllowedSize = maxSize;

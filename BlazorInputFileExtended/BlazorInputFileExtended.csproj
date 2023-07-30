@@ -14,7 +14,7 @@ Also have a InputFileHandler can be inherit for extent and add more functions li
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/drualcman/BlazorInputFileExtended</RepositoryUrl>
     <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
-    <PackageTags>Components, Blazor, WebAssembly, InputFile, FileUpload, BlazorFileUpload, drag and drop, drop files</PackageTags>
+    <PackageTags>Components;Blazor;WebAssembly;InputFile;FileUpload;BlazorFileUpload;drag and drop;drop files</PackageTags>
     <PackageReleaseNotes>
 		Version 1.3.17: Checking possible issue when publish with DragAndDrop.js is missing
 		Version 1.3.16: Add paste function. Change javascript file and how to manage the file
@@ -29,8 +29,8 @@ Also have a InputFileHandler can be inherit for extent and add more functions li
     <RepositoryType>Git</RepositoryType>
     <PackageIcon>icon-512.png</PackageIcon>
     <PackageIconUrl />
-    <AssemblyVersion>1.3.17.0</AssemblyVersion>
-    <FileVersion>1.3.17.0</FileVersion>
+    <AssemblyVersion>2.4.19.0</AssemblyVersion>
+    <FileVersion>2.4.19.0</FileVersion>
     <AssemblyName>BlazorInputFileExtended</AssemblyName>
     <RootNamespace>BlazorInputFileExtended</RootNamespace>
     <PackageId>BlazorInputFileExtended</PackageId>

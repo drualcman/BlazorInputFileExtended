@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net.Http;
 
 namespace BlazorInputFileExtended
 {
@@ -17,7 +12,7 @@ namespace BlazorInputFileExtended
         /// <summary>
         /// Last File name uploaded
         /// </summary>
-        public string FileName;        
+        public string FileName;
 
     }
 }

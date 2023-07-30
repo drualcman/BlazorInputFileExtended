@@ -1,9 +1,5 @@
 ﻿using BlazorInputFileExtended.Exceptions;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorInputFileExtended
 {
@@ -31,13 +27,13 @@ namespace BlazorInputFileExtended
             get
             {
                 int c = UploadedFiles.Count;
-                if (c > 0)
+                if(c > 0)
                 {
                     return UploadedFiles[0];
                 }
                 else
                 {
-                    if (OnUploadError is not null)
+                    if(OnUploadError is not null)
                     {
                         OnUploadError(this, new InputFileException("No images found", "First"));
                     }
@@ -54,13 +50,13 @@ namespace BlazorInputFileExtended
             get
             {
                 int c = UploadedFiles.Count;
-                if (c > 0)
+                if(c > 0)
                 {
                     return UploadedFiles[c - 1];
                 }
                 else
                 {
-                    if (OnUploadError is not null)
+                    if(OnUploadError is not null)
                     {
                         OnUploadError(this, new InputFileException("No images found", "Last"));
                     }
@@ -78,6 +74,6 @@ namespace BlazorInputFileExtended
         /// Return total file size uploaded
         /// </summary>
         public long Size => UploadedFiles.Sum(s => s.Size);
-        
+
     }
 }

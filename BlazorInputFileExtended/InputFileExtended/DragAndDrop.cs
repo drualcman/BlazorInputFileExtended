@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BlazorInputFileExtended
@@ -43,9 +39,9 @@ namespace BlazorInputFileExtended
         /// <returns></returns>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (firstRender)
+            if(firstRender)
             {
-                if (CanDropFiles)
+                if(CanDropFiles)
                 {
                     await LoadDropScriptsAsync();
                 }
@@ -76,7 +72,7 @@ namespace BlazorInputFileExtended
         public async Task UnLoadDropScriptsAsync()
         {
             // unload the JavaScript for drag and drop
-            if (DragAndDropInstance is not null)
+            if(DragAndDropInstance is not null)
             {
                 try
                 {
@@ -86,8 +82,8 @@ namespace BlazorInputFileExtended
                 catch { }
             }
 
-            if (DragAndDropScript is not null)
-            {      
+            if(DragAndDropScript is not null)
+            {
                 try
                 {
                     await DragAndDropScript.DisposeAsync();
@@ -103,7 +99,7 @@ namespace BlazorInputFileExtended
         /// </summary>
         void DragEnter()
         {
-            if (CanDropFiles) Dropping = DroppingCss;
+            if(CanDropFiles) Dropping = DroppingCss;
             else Dropping = string.Empty;
         }
         /// <summary>

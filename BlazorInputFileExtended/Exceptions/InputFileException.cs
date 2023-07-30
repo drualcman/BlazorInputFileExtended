@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorInputFileExtended.Exceptions
 {
@@ -26,7 +24,7 @@ namespace BlazorInputFileExtended.Exceptions
         /// <summary>
         /// Max allowed size exception
         /// </summary>        
-        [Display(Name = "Maximum size allowed")] MaxSize     = 2
+        [Display(Name = "Maximum size allowed")] MaxSize = 2
     }
 
     /// <summary>
@@ -78,7 +76,8 @@ namespace BlazorInputFileExtended.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="paramName">The name of the parameter that caused the current exception.</param>
         public InputFileException(InputFileChangeEventArgs inputFiles, long maxFileBytes, int maxFileCount, string message, string paramName) :
-            this(inputFiles, maxFileBytes, maxFileCount, message, paramName, null) { }                
+            this(inputFiles, maxFileBytes, maxFileCount, message, paramName, null)
+        { }
 
         /// <summary>
         ///     Initialize a new instance of the InputFileException class with a InputFileChangeEventArgs
@@ -89,14 +88,14 @@ namespace BlazorInputFileExtended.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="paramName">The name of the parameter that caused the current exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
-        public InputFileException(InputFileChangeEventArgs inputFiles, long maxFileBytes, int maxFileCount, string message, string paramName, Exception innerException) : 
+        public InputFileException(InputFileChangeEventArgs inputFiles, long maxFileBytes, int maxFileCount, string message, string paramName, Exception innerException) :
             base(message, paramName, innerException)
         {
             MaxFilesAllowed = maxFileCount;
             MaxFileBytes = maxFileBytes;
             FileBytes = 0;
             List<FileUploadContent> files = new List<FileUploadContent>();
-            foreach (IBrowserFile file in inputFiles.GetMultipleFiles())
+            foreach(IBrowserFile file in inputFiles.GetMultipleFiles())
             {
                 FileBytes += file.Size;
                 files.Add(new FileUploadContent
@@ -109,9 +108,9 @@ namespace BlazorInputFileExtended.Exceptions
                 });
             }
             Files = files;
-            if (FilesCount > MaxFileBytes && FileBytes > MaxFileBytes) ExceptionType = ExceptionType.MaxCount | ExceptionType.MaxSize;
-            else if (FilesCount > MaxFileBytes) ExceptionType = ExceptionType.MaxCount;
-            else if (FileBytes > MaxFileBytes) ExceptionType = ExceptionType.MaxSize;
+            if(FilesCount > MaxFileBytes && FileBytes > MaxFileBytes) ExceptionType = ExceptionType.MaxCount | ExceptionType.MaxSize;
+            else if(FilesCount > MaxFileBytes) ExceptionType = ExceptionType.MaxCount;
+            else if(FileBytes > MaxFileBytes) ExceptionType = ExceptionType.MaxSize;
             else ExceptionType = ExceptionType.Generic;
         }
 
@@ -143,9 +142,9 @@ namespace BlazorInputFileExtended.Exceptions
             MaxFileBytes = maxFileBytes;
             FileBytes = inputFile.Size;
             Files = new List<FileUploadContent> { inputFile };
-            if (FilesCount > MaxFileBytes && FileBytes > MaxFileBytes) ExceptionType = ExceptionType.MaxCount | ExceptionType.MaxSize;
-            else if (FilesCount > MaxFileBytes) ExceptionType = ExceptionType.MaxCount;
-            else if (FileBytes > MaxFileBytes) ExceptionType = ExceptionType.MaxSize;
+            if(FilesCount > MaxFileBytes && FileBytes > MaxFileBytes) ExceptionType = ExceptionType.MaxCount | ExceptionType.MaxSize;
+            else if(FilesCount > MaxFileBytes) ExceptionType = ExceptionType.MaxCount;
+            else if(FileBytes > MaxFileBytes) ExceptionType = ExceptionType.MaxSize;
             else ExceptionType = ExceptionType.Generic;
         }
         #endregion
@@ -165,7 +164,7 @@ namespace BlazorInputFileExtended.Exceptions
         /// File bytes uploaded
         /// </summary>
         public long FileBytes { get; }
-        
+
         /// <summary>
         /// Calculate file bytes in Mb
         /// </summary>
@@ -175,12 +174,12 @@ namespace BlazorInputFileExtended.Exceptions
         /// Maximum allowed file size
         /// </summary>
         public long MaxFileBytes { get; }
-        
+
         /// <summary>
         /// Calculate maximum allowed file size in Mb
         /// </summary>
         public decimal MaxFileMbBytes => (decimal)MaxFileBytes / 1048576.0M;
-                
+
         /// <summary>
         /// Maximum files allowed
         /// </summary>

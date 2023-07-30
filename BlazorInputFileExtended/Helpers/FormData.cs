@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorInputFileExtended.Helpers
 {
@@ -25,7 +21,7 @@ namespace BlazorInputFileExtended.Helpers
             Type t = data.GetType();
             PropertyInfo[] properties = t.GetProperties(BindingFlags.Public | BindingFlags.Instance);      //get properties only
             int c = properties.Length;
-            for (int i = 0; i < c; i++)
+            for(int i = 0; i < c; i++)
             {
                 try
                 {

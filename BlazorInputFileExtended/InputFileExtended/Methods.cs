@@ -1,8 +1,5 @@
 ﻿using BlazorInputFileExtended.Exceptions;
 using Microsoft.AspNetCore.Components.Forms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,18 +24,18 @@ namespace BlazorInputFileExtended
         /// </summary>
         public async Task FormSave()
         {
-            if (Context is null)
+            if(Context is null)
             {
                 await SendFile();
             }
-            else if (Context.Validate())
+            else if(Context.Validate())
             {
                 await SendFile();
             }
             else
             {
                 StringBuilder errors = new StringBuilder();
-                foreach (string err in Context.GetValidationMessages())
+                foreach(string err in Context.GetValidationMessages())
                 {
                     errors.Append(err);
                     errors.Append(", ");
@@ -58,23 +55,23 @@ namespace BlazorInputFileExtended
 
         async Task SendFile()
         {
-            if (string.IsNullOrEmpty(TargetToPostFile))
+            if(string.IsNullOrEmpty(TargetToPostFile))
             {
                 await OnError.InvokeAsync(new InputFileException("Don't have endpoint to call."));
             }
-            else if (Files.Count < 1)
+            else if(Files.Count < 1)
             {
                 await OnError.InvokeAsync(new InputFileException("No files chosen"));
             }
             else
             {
                 HttpResponseMessage response;
-                if (TargetFormDataContent is not null) response = await Files.UploadAsync(TargetToPostFile, TargetFormDataContent, !MultiFile);
-                else if (TargetDataObject is not null) response = await Files.UploadAsync(TargetToPostFile, TargetDataObject, !MultiFile);
-                else if (Context is not null) response = await Files.UploadAsync(TargetToPostFile, Context, !MultiFile);
+                if(TargetFormDataContent is not null) response = await Files.UploadAsync(TargetToPostFile, TargetFormDataContent, !MultiFile);
+                else if(TargetDataObject is not null) response = await Files.UploadAsync(TargetToPostFile, TargetDataObject, !MultiFile);
+                else if(Context is not null) response = await Files.UploadAsync(TargetToPostFile, Context, !MultiFile);
                 else response = await Files.UploadAsync(TargetToPostFile, new MultipartFormDataContent(), !MultiFile);
                 await OnSave.InvokeAsync(response);
-                if (CleanOnSuccessUpload) Clean();
+                if(CleanOnSuccessUpload) Clean();
             }
             StateHasChanged();
         }
