@@ -22,6 +22,7 @@ namespace BlazorInputFileExtended
                     {
                         UploadedFiles[i]?.FileStreamContent?.Dispose();
                     }
+                    HttpClient?.Dispose();
                 }
 
                 disposedValue = true;
