@@ -1,0 +1,120 @@
+﻿@page "/version2/wiki/handler"
+@layout Website.Client.Pages.version2.Shared.MainLayoutOld
+<h2>Namespace BlazorInputFileExtended</h2>
+<h1>InputFileHandler</h1>
+<p>You can create you own handler inherit from this to add, for example, post actions with authentication. Implement the interface IDisposable.</p>
+<h3>Protected variables</h3>
+<pre>
+<code>
+    protected HttpClient HttpClient;
+    protected SortedDictionary&lt;int, FileUploadContent&gt; UploadedFiles;
+</code>
+</pre>
+<h3>Constructor</h3>
+<pre>
+<code>public InputFileHandler(HttpClient httpClient = null, int maxFiles = 5, long maxSize = 512000, string formField = "files")</code>
+</pre>
+<ul>
+    <li><strong>httpClient:</strong> Inject the service</li>
+    <li><strong>maxFiles:</strong> Maximum files allowed to upload</li>
+    <li><strong>maxSize:</strong> Maximum file size to upload</li>
+    <li><strong>formField:</strong> Form content name to upload the file</li>
+</ul>
+<h3>Properties</h3>
+<pre>
+<code>    public FileUploadContent this[int index]
+    public FileUploadContent this[string fileName]
+    public FileUploadContent First
+    public FileUploadContent Last
+    public int Count
+    public long Size
+</code>
+</pre>
+<h3>Fields</h3>
+<pre>
+<code>
+    public StreamContent UploadedImage;
+    public string FileName;
+</code>
+</pre>
+<h3>Events</h3>
+<pre>
+    <code>
+        public delegate void UploadEventHandler(object sender, FileUploadEventArgs e);
+        public delegate void UploadsEventHandler(object sender, FilesUploadEventArgs e);
+        public delegate void UploadErrorEventHandler(object sender, InputFileException e);
+        public delegate void APIErrorEventHandler(object sender, InputFileException e);
+
+        public virtual event UploadEventHandler OnUploadFile;
+        public virtual event UploadsEventHandler OnUploaded;
+        public virtual event UploadErrorEventHandler OnUploadError;
+        public virtual event APIErrorEventHandler OnAPIError;
+
+        //To use from a derivate class
+        protected virtual void OnUploadFileEvent(object sender, FileUploadEventArgs e)
+        protected virtual void OnUploadedEvent(object sender, FilesUploadEventArgs e)
+        protected virtual void OnUploadErrorEvent(object sender, InputFileException e)
+        protected virtual void OnAPIErrorEvent(object sender, InputFileException e)
+    </code>
+</pre>
+<h4>Event Actions</h4>
+<ul>
+    <li><strong>Added</strong>: File Added to the object container.</li>
+    <li><strong>Updated</strong>: File updated from the object container.</li>
+    <li><strong>Removed</strong>: File removed from the object container.</li>
+    <li><strong>Clean</strong>: Object container clean. No files.</li>
+    <li><strong>Upload</strong>: File upload from to the post endpoint.</li>
+</ul>
+<h3>Methods</h3>
+<pre>
+<code>    public IEnumerator&lt;FileUploadContent&gt; GetEnumerator()
+    public void UploadFile(InputFileChangeEventArgs e)
+    public void Clean()
+
+    public void Add(FileUploadContent image)
+    public void Update(int index, FileUploadContent image)
+    public bool Update(string fileName, FileUploadContent image)
+    public bool Update(Guid id, FileUploadContent image)
+    public bool Remove(int index)
+    public bool Remove(string fileName)
+    public bool Remove(FileUploadContent file)
+    public bool Remove(Guid id)
+
+    public void SetHttpClient(HttpClient httpClient)
+    public void SetMaxFiles(int maxfile)
+    public void SetMaxFileSize(long maxSize)
+    public void SetFormField(string field)
+</code>
+</pre>
+<h3>HttpClient calls</h3>
+<pre>
+<code>    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel, TData&gt;(string TargetToPostFile, TData data, bool ignoreFiles = true)
+    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile)
+    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, InputFileChangeEventArgs files)
+    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content)
+    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, bool ignoreFiles)
+    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
+    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, StreamContent file, string fileName = "")
+
+    public virtual  async Task&lt;bool&gt; DeleteAsync(string TargetToPostFile, int index)
+    public virtual  async Task&lt;bool&gt; DeleteAsync(string TargetToPostFile, string filename)
+
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync&lt;TData&gt; (string TargetToPostFile, TData data, bool ignoreFiles = true)
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile)
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, InputFileChangeEventArgs files)
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content)
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, bool ignoreFiles)
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
+    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, StreamContent file, string fileName = "")
+</code>
+</pre>
+<h3>Helpers</h3>
+<h4>namespace BlazorInputFileExtended.Helpers</h4>
+<h5>Class FormData</h5>
+<pre>
+<code>public static MultipartFormDataContent SetMultipartFormDataContent&lt;TModel&gt;(TModel data)</code>
+</pre>
+
+
+
+<GAdSense />

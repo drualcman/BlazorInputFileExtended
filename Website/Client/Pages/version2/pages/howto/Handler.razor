@@ -1,0 +1,97 @@
+﻿@page "/version2/how-to-use/handler"
+@layout Website.Client.Pages.version2.Shared.MainLayoutOld
+<h1>How to use</h1>
+<h2>InputFileHandler</h2>
+<h3>namespace BlazorInputFileExtended</h3>
+<p>Also you can use directly the InputFileHandler with the component InputFile or to personalize how to manage the upload with InputFileExtended.</p>
+<p>You can use when you need validate first the form before send. Then you can use the <i>Events</i> and manage how to upload the file directly with the handler. Here we show all the process. </p>
+<h5>Messages log:</h5>
+<p>@Messages</p>
+<div class="row">
+    <div class="col-6">
+        <h4>Using InputFile</h4>
+        <InputFile OnChange="FileHandler.UploadFile" />
+        <button class="btn btn-primary" @onclick="Upload">Upload</button>
+<pre>
+<code>&lt;InputFile OnChange="FileHandler.UploadFile" &lt;/InputFile&gt;  
+&lt;button class="btn btn-primary" @@onclick="Upload"&gt;Upload &lt;/button&gt;
+
+@@code{
+    [Inject]
+    public HttpClient Client { get; set; }
+
+    InputFileHandler FileHandler;
+    string Messages;
+
+    protected override void OnInitialized()
+    {
+        FileHandler = new InputFileHandler(Client);
+        FileHandler.OnUploadError += FileHandler_OnUploadError;
+        FileHandler.OnUploadFile += FileHandler_OnUploadFile;
+    }
+
+    private void FileHandler_OnUploadFile(object sender, FileUploadEventArgs e)
+    {
+        FileHandler.Add(e.File);
+        Messages = $"File {e.File.Name} chosen. Total size {e.File.Size}.";
+    }
+
+    private void FileHandler_OnUploadError(object sender, InputFileException e)
+        => Messages = $"Exception: {e.Message} on {e.ParamName}";
+
+    async Task Upload()
+    {
+        Messages = $"Start upload ...";
+        bool result = FileHandler.UploadAsync&lt;bool&gt;("files");
+        Messages = $"Files Upload with result {result}";
+    }
+}
+</code>
+</pre>
+    </div>
+    <div class="col-6">
+        <h4>Using InputFileExtended</h4>
+        <InputFileExtended OnUploadedFile="OnSelect"
+                           OnError="OnError"
+                           ButtonShow="false" />
+        <button class="btn btn-primary" @onclick="Upload">Upload</button>
+        <pre>
+<code>&lt;InputFileExtended OnUploadedFile="OnSelect" 
+            OnError="OnError" ButtonShow="false" &lt;/InputFileExtended&gt;
+&lt;button class="btn btn-primary" @@onclick="Upload"&gt;Upload &lt;/button&gt;
+
+@@code{
+    [Inject]
+    public HttpClient Client { get; set; }
+
+    InputFileHandler FileHandler;
+    string Messages;
+
+    protected override void OnInitialized()
+    {
+        FileHandler = new InputFileHandler(Client);
+    }
+
+    void OnError(InputFileException e)
+        => Messages = $"Exception: {e.Message} on {e.ParamName}";
+
+    void OnSelect(FileUploadEventArgs e)
+    {
+        FileHandler.Add(e.File);
+        Messages = $"File {e.File.Name} chosen. Total size {e.File.Size}.";
+    }
+
+    async void Upload()
+    {
+        Messages = $"Start upload ...";
+        bool result = FileHandler.UploadAsync&lt;bool&gt;("files");
+        Messages = $"Files Upload with result {result}";
+    }
+}
+</code>
+            </pre>
+    </div>
+</div>
+
+
+<GAdSense />

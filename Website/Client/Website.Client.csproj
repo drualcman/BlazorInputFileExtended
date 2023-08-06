@@ -12,7 +12,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Pages\version2\Shared\MainLayoutOld.razor" />
+    <None Include="Pages\version2\Shared\NavMenuOld.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BlazorBasics.InputFileExtended" Version="3.5.22" />
+    <PackageReference Include="BlazorInputFileExtended" Version="2.4.22" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.20" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.20" PrivateAssets="all" />
     <PackageReference Include="System.Net.Http.Json" Version="6.0.1" />

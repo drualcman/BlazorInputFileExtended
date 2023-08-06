@@ -1,0 +1,111 @@
+﻿@page "/version2/how-to-use/basic"
+@layout Website.Client.Pages.version2.Shared.MainLayoutOld
+<h1>How to use</h1>
+<h2>Basic use</h2>
+<p>This is the most basic use.</p>
+
+<div class="row">
+    <div class="col-4">
+        <InputFileExtended TargetToPostFile="files" @ref="Files"
+                           CleanOnSuccessUpload="true"
+                           ButtonShow="ShowUpload"
+                           CanDropFiles="CanDrop"
+                           FileCss="img-fluid"
+                           OnSave="Save">
+            <InputContent>
+                @InputMessage
+            </InputContent>
+        </InputFileExtended>
+
+    </div>
+    <div class="col">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link @Basic1" @onclick="()=> ChangeTab(0)" type="button" role="tab" aria-selected="true">Basic</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link @Basic2" @onclick="()=> ChangeTab(1)" type="button" role="tab" aria-selected="false">With Upload Button</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link @Basic3" @onclick="()=> ChangeTab(2)" type="button" role="tab" aria-selected="false">Drag and drop files</button>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane @Basic1" role="tabpanel">
+                <p>This example is the most basic use. Only can select image and show a preview.</p>
+                <pre>
+<code>&lt;InputFileExtended /&gt;
+
+@@code{
+    //No need nothing else
+}
+</code>
+        </pre>
+            </div>
+            <div class="tab-pane @Basic2" role="tabpanel">
+                <p>This is the most basic example with upload button and send to the server.</p>
+                <h2>Properties</h2>
+                <ul>
+                    <li><strong>TargetToPostFile</strong> Url relative or absolute to send the file with a <var>POST</var> action</li>
+                </ul>
+                <p>Messages log: @Messages</p>
+                <pre>
+<code>&lt;InputFileExtended 
+    TargetToPostFile="http://myserver.com/upload"            
+    ButtonShow="true"
+    /&gt;
+
+@@code{
+    //No need nothing else
+}
+
+//The controller who will receive the files
+[HttpPost]
+public async Task&lt;bool&gt; Upload([FromForm] IEnumerable&lt;IFormFile&gt; files)
+{
+    //example logic to save files
+    bool result = false;
+    FileStream ms = null;
+    foreach (IFormFile file in files)
+    {
+        try
+        {
+            string path = "full path and file name";
+            ms = System.IO.File.Create(path);
+            await file.CopyToAsync(ms);
+            await ms.DisposeAsync();
+            result = true;
+        }
+        catch
+        {
+            result = false;
+        }
+    }
+    return result;
+}
+</code>
+        </pre>
+            </div>
+            <div class="tab-pane @Basic3" role="tabpanel">
+                <p>This is the most basic example drag and drop files.</p>
+                <h2>Properties</h2>
+                <ul>
+                    <li><strong>CanDropFiles</strong> set to true to enabled can drop files</li>
+                </ul>
+                <pre>
+<code>&lt;InputFileExtended           
+    CanDropFiles="true"
+    /&gt;
+
+@@code{
+    //No need nothing else
+}
+</code>
+        </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<GAdSense />

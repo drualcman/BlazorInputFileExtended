@@ -1,0 +1,88 @@
+﻿@page "/version2/wiki/events"
+@layout Website.Client.Pages.version2.Shared.MainLayoutOld
+<h1>Events</h1>
+<ul>
+    <li><strong>OnUploadedFile:</strong> When each file is uploaded. Returns <var>FileUploadEventArgs</var>.</li>
+    <li><strong>OnUploadComleted:</strong> When all files is uploaded. Returns <var>FilesUploadEventArgs</var>.</li>
+    <li><strong>OnError:</strong> When some exception. Returns <var>InputFileException</var>.</li>
+    <li><strong>OnSave:</strong> When click on <i><strong>UPLOAD</strong> button</i>. Returns <var>HttpResponseMessage</var> with the response.</li>
+    <li><strong>OnChange</strong> Same about InputFile you can use as a usual. Returns <var>InputFileChangeEventArgs</var></li>
+</ul>
+
+<h2>Arguments return objects</h2>
+<h3>OnUploadedFile</h3>
+<pre>
+<code>    /// Return file name and file stream per each file uploaded
+    public class FileUploadEventArgs : EventArgs
+    {
+        /// File uploaded with all the data
+        public FileUploadContent File { get; set; }
+
+        /// Index in the object
+        public Guid FileId { get; set; }
+
+        /// Action used
+        public string Action { get; set; }
+    }
+</code>
+</pre>
+<h3>OnUploadComleted</h3>
+<pre>
+<code>    /// Return all files uploaded
+    public class FilesUploadEventArgs : EventArgs
+    {
+        /// Files uploaded
+        public List&lt;FileUploadContent&gt; Files { get; set; }
+
+        /// Total size of all the files uploaded
+        public long Size { get; set; }
+
+        /// Number of the files uploaded
+        public int Count { get; set; }
+
+        /// Action used
+        public string Action { get; set; }
+    }
+</code>
+</pre>
+<h4>Object FileUploadContent</h4>
+<pre>
+<code>    /// Manage the file upload
+    public class FileUploadContent
+    {
+        /// The name of the file as specified by the browser.
+        public string Name { get; set; }
+
+        /// The last modified date as specified by the browser.
+        public DateTimeOffset LastModified { get; set; }
+
+        /// The size of the file in bytes as specified by the browser.
+        public long Size { get; set; }
+
+        /// The MIME type of the file as specified by the browser.
+        public string ContentType { get; set; }
+
+        /// File bites
+        public StreamContent FileStreamContent { get; set; }
+
+        // File index in the object
+        public Guid FileId { get; set; }
+
+        /// Get the bytes from the stream
+        public async Task&lt;byte[]&gt; GetFileBytes() =>
+            await FileStreamContent.ReadAsByteArrayAsync();
+
+        // Prepare the objet to return FileBytes and ToImageHTML
+        // Must be executed in the event the OnUploadFile if you work directly with image tag.
+        public async Task SetFileBytes()
+
+        // Return a Base64String to use in the tag image directly like a source
+         public string ToImageHTML { get; }
+
+        // Byte from the stream
+        public byte[] FileBytes { get; }
+    }
+</code>
+</pre>
+
+<GAdSense />

@@ -1,0 +1,66 @@
+﻿@page "/version2"
+@layout Website.Client.Pages.version2.Shared.MainLayoutOld
+
+<h1>Blazor InputFileExtended Component</h1>
+<h2>Version 2.4.19</h2>
+<div class="row">
+    <div class="col">
+        <p>
+            This component extend the functionality about traditional <string>InputFile</string>.<br />
+            Has many properties to customize and also events to manage.<br />
+            <a class="btn btn-success" href="get-started">Get Started</a>
+        </p>
+    </div>
+    <div class="col">
+        <h3>Examples</h3>
+        <div class="row">
+            <div class="col"><InputFileExtended /></div>
+            <div class="col" style="text-align: center;"><InputFileExtended TargetToPostFile="files" ButtonShow="true" CleanOnSuccessUpload="true" /></div>
+            <div class="col" style="text-align: center;">
+                <InputFileExtended CanDropFiles="true" TargetToPostFile="files" ButtonShow="true" CleanOnSuccessUpload="true">
+                    <InputContent>Drop or choose file here</InputContent>
+                </InputFileExtended>
+            </div>
+        </div>
+    </div>
+</div>
+<p>From version 1.2.6 supports <strong>drag and drop</strong> files into the component.</p>
+<p>From version 1.3.16 supports <strong>copy and paste</strong> files into page when <i>drag and drop</i> is enabled.</p>
+<hr />
+<h3>Nugget download</h3>
+<p>You can download the nugget <a href="https://www.nuget.org/packages/BlazorInputFileExtended" target="_blank">here</a></p>
+<hr />
+<p>
+    This is a open source component, you can check and customize the code if you want. Here is the
+    <a href="https://github.com/drualcman/BlazorInputFileExtended" target="_blank">repository</a>
+</p>
+<hr />
+<h4 class="h4 mb-3">Sponsor this project</h4>
+<p>If you want can support this project by clicking in some of our donations pages.</p>
+<ul class="list-style-none">
+    <li class="mb-2 d-flex">
+        <span class="mr-2 d-flex flex-items-center flex-justify-center" style="min-width:32px;height:32px;">
+            <img width="32" height="32" class="rounded-1 d-block" alt="ko_fi" src="images/ko_fi.svg">
+        </span>
+        <span class="flex-self-center flex-auto min-width-0 css-truncate css-truncate-target width-fit">
+            <a target="_blank" href="https://ko-fi.com/drualcman"><span>ko-fi.com/<strong>drualcman</strong></span></a>
+        </span>
+    </li>
+    <li class="mb-2 d-flex">
+        <span class="mr-2 d-flex flex-items-center flex-justify-center" style="min-width:32px;height:32px;">
+            <img width="32" height="32" class="rounded-1 d-block" alt="liberapay" src="images/liberapay.svg">
+        </span>
+        <span class="flex-self-center flex-auto min-width-0 css-truncate css-truncate-target width-fit">
+            <a target="_blank" href="https://liberapay.com/drualcman"><span>liberapay.com/<strong>drualcman</strong></span></a>
+        </span>
+    </li>
+    <li class="mb-2 d-flex">
+        <span class="mr-2 d-flex flex-items-center flex-justify-center" style="min-width:32px;height:32px;">
+            <img width="32" height="32" class="rounded-1 d-block" alt="issuehunt" src="images/issuehunt.svg">
+        </span>
+        <span class="flex-self-center flex-auto min-width-0 css-truncate css-truncate-target width-fit">
+            <a target="_blank" href="https://issuehunt.io/r/drualcman"><span>issuehunt.io/r/<strong>drualcman</strong></span></a>
+        </span>
+    </li>
+</ul>
+<GAdSense />

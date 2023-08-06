@@ -76,12 +76,12 @@
     InputFileParameters ButtonParams;
     InputFileParameters DragAndDropParams;
 
-    void LoadFiles(FilesUploadEventArgs e)
+    void LoadFiles(BlazorBasics.InputFileExtended.Models.FilesUploadEventArgs e)
     {
         Console.WriteLine($"{e.Count} files to manage");
     }
 
-    bool UploadFles(IReadOnlyList<FileUploadContent> files)
+    bool UploadFles(IReadOnlyList<BlazorBasics.InputFileExtended.Models.FileUploadContent> files)
     {
         // process your upload
         // ...
