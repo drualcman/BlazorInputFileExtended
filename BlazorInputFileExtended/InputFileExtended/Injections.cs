@@ -15,10 +15,5 @@ namespace BlazorInputFileExtended
         /// Inject JavaScript interoperability
         /// </summary>
         [Inject] public IJSRuntime JavaScript { get; set; }
-
-        /// <summary>
-        /// To setup correctly the urls to get the javascripts
-        /// </summary>
-        [Inject] public NavigationManager Navigation { get; set; }
     }
 }

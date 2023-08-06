@@ -258,11 +258,6 @@
             Inject JavaScript interoperability
             </summary>
         </member>
-        <member name="P:BlazorInputFileExtended.InputFileExtended.Navigation">
-            <summary>
-            To setup correctly the urls to get the javascripts
-            </summary>
-        </member>
         <member name="M:BlazorInputFileExtended.InputFileExtended.Clean">
             <summary>
             Clean all the files
@@ -821,6 +816,36 @@
             All files uploaded
             </summary>
         </member>
+        <member name="T:BlazorInputFileExtended.EventAction">
+            <summary>
+            What happen in the event about the file
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.EventAction.Added">
+            <summary>
+            File Added to the object container
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.EventAction.Updated">
+            <summary>
+            File updated from the object container
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.EventAction.Removed">
+            <summary>
+            File removed from the object container
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.EventAction.Clean">
+            <summary>
+            Object container clean. No files.
+            </summary>
+        </member>
+        <member name="F:BlazorInputFileExtended.EventAction.Upload">
+            <summary>
+            File upload from to the post endpoint
+            </summary>
+        </member>
         <member name="T:BlazorInputFileExtended.FilesUploadEventArgs">
             <summary>
             Return all files uploaded
@@ -880,13 +905,6 @@
             <summary>
             Set a identifier for the file in the object
             </summary>
-        </member>
-        <member name="M:BlazorInputFileExtended.FileUploadContent.SetFileBytes">
-            <summary>
-            Set the bytes from the stream.
-            Must be executed in the event OnUploadFile if you work direclt with image tag.
-            </summary>
-            <returns></returns>
         </member>
         <member name="P:BlazorInputFileExtended.FileUploadContent.ToImageHTML">
             <summary>
