@@ -1,0 +1,53 @@
+﻿@page "/how-to-use/drag-and-drop"
+<h1>How to use</h1>
+<p>This is the most basic use with changing the button texts and message when select files. Also need to set the action form and the response model from the action form to upload files.</p>
+<div class="row">
+    <div class="col">
+        <h2>Change buttons text</h2>
+        <InputFileComponent Parameters=ButtonParams />
+        <p>@Messages</p>             <h2>Properties</h2>
+        <ul>
+            <li><strong>Pamaeters</strong>: It's a object <var>InputFileParameters</var> where you can prepare the upload Func when user will click on the button.</li>
+            <li><strong>OnChange</strong>: It's not in the example, but you can also use this event to manage the files.</li>
+        </ul>
+    </div>
+    <div class="col">
+        <pre>
+<code>&lt;InputFileComponent Parameters=ButtonParams /&gt;
+
+@@code{
+    InputFileParameters ButtonParams;
+
+    protected override void OnInitialized()
+    {
+        ButtonParams = new InputFileParameters()
+        {                           
+            DragAndDropOptions = new DragAndDropOptions
+            {
+                CanDropFiles = true,
+            },
+            ButtonOptions = new ButtonOptions
+            {
+                ButtonShow = true,
+                CleanOnSuccessUpload = true
+            }
+        };
+        ButtonParams.ButtonOptions.OnSubmit = UploadFles;
+    }
+
+    bool UploadFles(IReadOnlyList&lt;FileUploadContent&gt files)
+    {           
+        Messages = "Uploading image ... (Simulate 3 seconds)";
+        Task.Delay(3000).Wait();  
+        Messages = $"Image/s Uploaded {files.Count}";
+        return true;
+    }
+}
+</code>
+            </pre>
+
+    </div>
+</div>
+
+
+<GAdSense />

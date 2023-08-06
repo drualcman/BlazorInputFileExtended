@@ -15,51 +15,10 @@
             </ButtonContent>
         </InputFileComponent>
         <p>@Messages</p>
-        <pre>
-<code>&lt;InputFileComponent Parameters=ButtonParams &gt;
-        &lt;InputContent&gt
-            &lt;i class="oi oi-file"&gt;&lt;/i&gt;
-            &lt;span&gt;Choose File&lt;/span&gt;
-        &lt;/InputContent&gt;
-        &lt;ButtonContent&gt;
-            &lt;i class="oi oi-cloud-upload"&gt;&lt;/i&gt;
-            &lt;span&gt;Upload&lt;/span&gt;
-        &lt;/ButtonContent&gt;
-    &lt;/InputFileExtended&gt;
-                    
-@@code{
-    InputFileParameters ButtonParams;
-
-    protected override void OnInitialized()
-    {
-        ButtonParams = new InputFileParameters()
-        {
-            AllowPasteFiles = true,
-            ButtonOptions = new ButtonOptions
-            {
-                ButtonShow = true,
-                CleanOnSuccessUpload = true
-            }
-        };
-        ButtonParams.ButtonOptions.OnSubmit = UploadFles;
-    }
-           
-    bool UploadFles(IReadOnlyList&lt;FileUploadContent&gt files)
-    {           
-        Messages = "Uploading image ... (Simulate 3 seconds)";
-        Task.Delay(3000).Wait();  
-        Messages = $"Image/s Uploaded {files.Count}";
-        return true;
-    }
-}
-</code>
-            </pre>
-    </div>
-    <div class="col">
         <h2>Properties</h2>
         <ul>
-            <li><strong>Pamaeters</strong>It's a object of <var>InputFileParameters</var> where you can prepare the upload Func when user will click on the button.</li>
-            <li><strong>OnChange</strong>It's not in the example, but you can also use this event to manage the files.</li>
+            <li><strong>Pamaeters</strong>: It's a object <var>InputFileParameters</var> where you can prepare the upload Func when user will click on the button.</li>
+            <li><strong>OnChange</strong>: It's not in the example, but you can also use this event to manage the files.</li>
         </ul>
         <p>
             Personalize your texts
@@ -78,6 +37,49 @@
                 <input type="text" class="form-control" placeholder="Upload Button text" @bind="UploadText">
             </div>
         </div>
+    </div>
+    <div class="col">
+
+        <pre>
+<code>&lt;InputFileComponent Parameters=ButtonParams &gt;
+        &lt;InputContent&gt
+            &lt;i class="oi oi-file"&gt;&lt;/i&gt;
+            &lt;span&gt;Choose File&lt;/span&gt;
+        &lt;/InputContent&gt;
+        &lt;ButtonContent&gt;
+            &lt;i class="oi oi-cloud-upload"&gt;&lt;/i&gt;
+            &lt;span&gt;Upload&lt;/span&gt;
+        &lt;/ButtonContent&gt;
+    &lt;/InputFileExtended&gt;
+
+@@code{
+    InputFileParameters ButtonParams;
+
+    protected override void OnInitialized()
+    {
+        ButtonParams = new InputFileParameters()
+        {
+            AllowPasteFiles = true,
+            ButtonOptions = new ButtonOptions
+            {
+                ButtonShow = true,
+                CleanOnSuccessUpload = true
+            }
+        };
+        ButtonParams.ButtonOptions.OnSubmit = UploadFles;
+    }
+
+    bool UploadFles(IReadOnlyList&lt;FileUploadContent&gt files)
+    {           
+        Messages = "Uploading image ... (Simulate 3 seconds)";
+        Task.Delay(3000).Wait();  
+        Messages = $"Image/s Uploaded {files.Count}";
+        return true;
+    }
+}
+</code>
+            </pre>
+       
     </div>
 </div>
 
