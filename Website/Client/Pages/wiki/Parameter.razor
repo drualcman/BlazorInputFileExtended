@@ -77,7 +77,7 @@ public class ButtonOptions
     /// &lt;summary&gt;
     /// Delegate to execute when need to submit the button
     /// &lt;/summary&gt;
-    public Func&lt;IReadOnlyList&lt;FileUploadContent&gt;, bool&gt; OnSubmit;
+    public Func&lt;IReadOnlyList&lt;FileUploadContent&gt;, Task&lt;bool&gt;&gt; OnSubmit;
     /// &lt;summary&gt;
     /// Show the save button
     /// &lt;/summary&gt;
