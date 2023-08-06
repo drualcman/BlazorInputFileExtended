@@ -1,0 +1,141 @@
+﻿@page "/new-version"
+
+
+
+<div id="content-wrapper">
+    <h1 class="page-title">NewVersion</h1>
+    <div class="region region-content">
+        <div id="block-system-main" class="block block-system clearfix">
+            <div class="content">
+                <h3>Examples</h3>
+                <div class="row">
+                    <div class="col">
+                        <BlazorBasics.InputFileExtended.InputFileComponent />
+                    </div>
+                    <div class="col" style="text-align: center;">
+                        <BlazorBasics.InputFileExtended.InputFileComponent Parameters=parameters1 />
+                    </div>
+                    <div class="col" style="text-align: center;">
+                        <BlazorBasics.InputFileExtended.InputFileComponent Parameters=parameters2>
+                            <InputContent>Drop or choose file here</InputContent>
+                            <SelectContent>
+                                <div>
+                                    <h1>Total Archivos</h1>
+                                    <p>Cuenta @context</p>
+                                </div>
+                            </SelectContent>
+                        </BlazorBasics.InputFileExtended.InputFileComponent>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+    BlazorBasics.InputFileExtended.ValueObjects.InputFileParameters parameters1 = new BlazorBasics.InputFileExtended.ValueObjects.InputFileParameters()
+        {
+            AllowPasteFiles = true,
+            ButtonOptions = new BlazorBasics.InputFileExtended.ValueObjects.ButtonOptions
+            {
+                ButtonShow = true,
+                CleanOnSuccessUpload = true
+            }
+        };
+
+    BlazorBasics.InputFileExtended.ValueObjects.InputFileParameters parameters2 = new BlazorBasics.InputFileExtended.ValueObjects.InputFileParameters()
+        {
+            AllowPasteFiles = false,
+            PreviewOptions = new BlazorBasics.InputFileExtended.ValueObjects.PreviewOptions
+            {
+                ShowPreview = true
+            },
+            DragAndDropOptions = new BlazorBasics.InputFileExtended.ValueObjects.DragAndDropOptions
+            {
+                CanDropFiles = true,
+            },
+            ButtonOptions = new BlazorBasics.InputFileExtended.ValueObjects.ButtonOptions
+            {
+                ButtonShow = true,
+                CleanOnSuccessUpload = true
+            }
+        };
+}
+
+
+
+<EditForm Mod ></EditForm>
+
+
+
+<InputFileComponent OnChange=LoadFiles Parameters="Parameters" @ref=Input >
+    <ChildContent>
+
+    </ChildContent>
+    
+</InputFileComponent>
+
+@code {
+    InputFileComponent Input;
+
+    InputFileParameters Parameters;
+
+    void LoadFiles(FilesUploadEventArgs e)
+    {
+        Console.WriteLine($"{e.Count} files to manage");
+    }
+
+    bool UploadFles(IReadOnlyList<FileUploadContent> files)
+    {
+        // process your upload
+        // ...
+        Console.WriteLine($"{files.Count} files to upload");
+        return true;
+    }
+
+    protected override void OnInitialized()
+    {
+
+        parameters1.ButtonOptions.OnSubmit = UploadFles;
+        parameters2.ButtonOptions.OnSubmit = UploadFles;
+        Parameters = new InputFileParameters()
+            {
+                AllowPasteFiles = true,
+                DragAndDropOptions = new DragAndDropOptions
+                {
+                    CanDropFiles = true,
+                },
+                ButtonOptions = new ButtonOptions
+                {
+                    ButtonShow = true,
+                    CleanOnSuccessUpload = true
+                }
+            };
+        Parameters.ButtonOptions.OnSubmit = UploadFles;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

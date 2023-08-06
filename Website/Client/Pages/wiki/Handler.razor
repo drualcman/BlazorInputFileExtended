@@ -5,19 +5,16 @@
 <h3>Protected variables</h3>
 <pre>
 <code>
-    protected HttpClient HttpClient;
     protected SortedDictionary&lt;int, FileUploadContent&gt; UploadedFiles;
 </code>
 </pre>
 <h3>Constructor</h3>
 <pre>
-<code>public InputFileHandler(HttpClient httpClient = null, int maxFiles = 5, long maxSize = 512000, string formField = "files")</code>
+<code>public InputFileHandler(int maxFiles = 5, long maxSize = 512000)</code>
 </pre>
 <ul>
-    <li><strong>httpClient:</strong> Inject the service</li>
     <li><strong>maxFiles:</strong> Maximum files allowed to upload</li>
     <li><strong>maxSize:</strong> Maximum file size to upload</li>
-    <li><strong>formField:</strong> Form content name to upload the file</li>
 </ul>
 <h3>Properties</h3>
 <pre>
@@ -79,32 +76,8 @@
     public bool Remove(FileUploadContent file)
     public bool Remove(Guid id)
 
-    public void SetHttpClient(HttpClient httpClient)
     public void SetMaxFiles(int maxfile)
     public void SetMaxFileSize(long maxSize)
-    public void SetFormField(string field)
-</code>
-</pre>
-<h3>HttpClient calls</h3>
-<pre>
-<code>    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel, TData&gt;(string TargetToPostFile, TData data, bool ignoreFiles = true)
-    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile)
-    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, InputFileChangeEventArgs files)
-    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content)
-    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, bool ignoreFiles)
-    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
-    public virtual  async Task&lt;TModel&gt; UploadAsync&lt;TModel&gt;(string TargetToPostFile, MultipartFormDataContent content, StreamContent file, string fileName = "")
-
-    public virtual  async Task&lt;bool&gt; DeleteAsync(string TargetToPostFile, int index)
-    public virtual  async Task&lt;bool&gt; DeleteAsync(string TargetToPostFile, string filename)
-
-    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync&lt;TData&gt; (string TargetToPostFile, TData data, bool ignoreFiles = true)
-    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile)
-    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, InputFileChangeEventArgs files)
-    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content)
-    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, bool ignoreFiles)
-    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, InputFileChangeEventArgs files)
-    public virtual  async Task&lt;HttpResponseMessage&gt; UploadAsync(string TargetToPostFile, MultipartFormDataContent content, StreamContent file, string fileName = "")
 </code>
 </pre>
 <h3>Helpers</h3>

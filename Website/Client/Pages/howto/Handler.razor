@@ -7,7 +7,7 @@
 <h5>Messages log:</h5>
 <p>@Messages</p>
 <div class="row">
-    <div class="col-6">
+    <div class="col">
         <h4>Using InputFile</h4>
         <InputFile OnChange="FileHandler.UploadFile" />
         <button class="btn btn-primary" @onclick="Upload">Upload</button>
@@ -16,81 +16,35 @@
 &lt;button class="btn btn-primary" @@onclick="Upload"&gt;Upload &lt;/button&gt;
 
 @@code{
-    [Inject]
-    public HttpClient Client { get; set; }
+        InputFileHandler FileHandler;
+        string Messages;
 
-    InputFileHandler FileHandler;
-    string Messages;
+        protected override void OnInitialized()
+        {
+            FileHandler = new InputFileHandler();
+            FileHandler.OnUploadFile += FileHandler_OnUploadFile;
+        }
 
-    protected override void OnInitialized()
-    {
-        FileHandler = new InputFileHandler(Client);
-        FileHandler.OnUploadError += FileHandler_OnUploadError;
-        FileHandler.OnUploadFile += FileHandler_OnUploadFile;
-    }
+        private void FileHandler_OnUploadFile(object sender, FileUploadEventArgs e)
+        {
+            FileHandler.Add(e.File);
+            Messages = $"File {e.File.Name} chosen. Total size {e.File.Size}.";
+        }
 
-    private void FileHandler_OnUploadFile(object sender, FileUploadEventArgs e)
-    {
-        FileHandler.Add(e.File);
-        Messages = $"File {e.File.Name} chosen. Total size {e.File.Size}.";
-    }
-
-    private void FileHandler_OnUploadError(object sender, InputFileException e)
-        => Messages = $"Exception: {e.Message} on {e.ParamName}";
-
-    async Task Upload()
-    {
-        Messages = $"Start upload ...";
-        bool result = FileHandler.UploadAsync&lt;bool&gt;("files");
-        Messages = $"Files Upload with result {result}";
-    }
+        async Task Upload()
+        {
+            Messages = $"Start upload simulating ...";
+            foreach(FileUploadContent file in FileHandler)
+            {
+                //upload each image
+                Messages = $"Uploading image {file.Name}";
+                await Task.Delay(1000);
+            }
+            Messages = $"Files Upload";
+        }
 }
 </code>
 </pre>
     </div>
-    <div class="col-6">
-        <h4>Using InputFileExtended</h4>
-        <InputFileExtended OnUploadedFile="OnSelect"
-                           OnError="OnError"
-                           ButtonShow="false" />
-        <button class="btn btn-primary" @onclick="Upload">Upload</button>
-        <pre>
-<code>&lt;InputFileExtended OnUploadedFile="OnSelect" 
-            OnError="OnError" ButtonShow="false" &lt;/InputFileExtended&gt;
-&lt;button class="btn btn-primary" @@onclick="Upload"&gt;Upload &lt;/button&gt;
-
-@@code{
-    [Inject]
-    public HttpClient Client { get; set; }
-
-    InputFileHandler FileHandler;
-    string Messages;
-
-    protected override void OnInitialized()
-    {
-        FileHandler = new InputFileHandler(Client);
-    }
-
-    void OnError(InputFileException e)
-        => Messages = $"Exception: {e.Message} on {e.ParamName}";
-
-    void OnSelect(FileUploadEventArgs e)
-    {
-        FileHandler.Add(e.File);
-        Messages = $"File {e.File.Name} chosen. Total size {e.File.Size}.";
-    }
-
-    async void Upload()
-    {
-        Messages = $"Start upload ...";
-        bool result = FileHandler.UploadAsync&lt;bool&gt;("files");
-        Messages = $"Files Upload with result {result}";
-    }
-}
-</code>
-            </pre>
-    </div>
 </div>
-
-
 <GAdSense />

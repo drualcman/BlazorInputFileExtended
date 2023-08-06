@@ -1,12 +1,35 @@
-﻿@page  "/changes-log"
+﻿@page "/changes-log"
 <h1>Changes Log</h1>
-<h2>Version</h2>
+<h2>Version 3</h2>
+<h3>3.5.22 [2023-08-06]</h3>
+<ul>
+    <li>Change name to BlazorBasics.InputFileExtended becasue now is supported by <a href="https://digitaldoor.com.au/">Digital Door Aus</a> and his BalzorBasics tools.</li>
+    <li>Separate scripts to drag and drop and copy and paset. Now can enable also past when you are on a simple input text.</li>
+    <li>Show a list with all files are uploading for can removed if user want to change the mind</li>
+</ul>
+<h2>Version 2</h2>
+<h3>2.4.22 [2023-08-06]</h3>
+<p>
+    Removed injection of navigation manager and use a helpr to get the correct path.
+</p>
+<h3>2.4.21 [2023-08-06]</h3>
+<ul>
+    <li>Controle APIErrorMessage internal message to show the label only if have errors, because right now it's always in the dom</li>
+    <li>Change how to use SetFilebytes and now it's only internal from the component can use</li>
+    <li>Add enumeral for the event actions. Using the enumeral in the event callbacks</li>
+    <li>Fixed clean error message when select new file.</li>
+    <li>Dispose correctly the HttpClient when the objext are disposed</li>
+</ul>
+<h3>2.4.20 [2023-07-31]</h3>
+<p>
+    Version 2.4.20: Update Microsoft.AspNetCore.Components.Web to version 6.0.20 and removed dependency from Microsoft.AspNetCore.JsonPatch to version.
+</p>
 <h3>2.4.19 [2023-04-03]</h3>
 <p>
-    Version 2.4.19: Fixed control exception when dispose the script reference in Blazor Server when is used from MVC project.
-</p> 
+    Fixed control exception when dispose the script reference in Blazor Server when is used from MVC project.
+</p>
 <pre>
-    <code>
+<code>
 fail: Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost[111]
       Unhandled exception in circuit 'MMyep9yxskcsXUtiD1pFvhgsYcVpJBOGGff1ttjNSi8'.
       Microsoft.JSInterop.JSDisconnectedException: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed.
@@ -31,9 +54,10 @@ fail: Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost[111]
 </p>
 <h3>1.3.17 [2021-09-09]</h3>
 <p>Fixed a possible bug when you update from previous version about DragAndDrop.js not found when try to publish the app. Only affects if you are using version lower than 1.3.16 and update the nuget.</p>
-<p><strong>Bug found:</strong><var>Microsoft.NET.Sdk.BlazorWebAssembly\targets\Microsoft.NET.Sdk.BlazorWebAssembly.Current.targets(564,5): error MSB6006: "C:\hostedtoolcache\windows\dotnet" exited with code 1.</var><br />
-When try to publish after update the nuget from version before 1.3.16. This is relative can't find a file <i>DragAndDrop.js</i> is renamed like <i>DragAndDrop1316.js</i> to avoid browser cache issue, but for some reason dotnet still looking for the other file when publish.<br />
-Is not enough with clean solution to avoid this issue. Please update to the version 1.3.17 if you update to the version 1.3.16.
+<p>
+    <strong>Bug found:</strong><var>Microsoft.NET.Sdk.BlazorWebAssembly\targets\Microsoft.NET.Sdk.BlazorWebAssembly.Current.targets(564,5): error MSB6006: "C:\hostedtoolcache\windows\dotnet" exited with code 1.</var><br />
+    When try to publish after update the nuget from version before 1.3.16. This is relative can't find a file <i>DragAndDrop.js</i> is renamed like <i>DragAndDrop1316.js</i> to avoid browser cache issue, but for some reason dotnet still looking for the other file when publish.<br />
+    Is not enough with clean solution to avoid this issue. Please update to the version 1.3.17 if you update to the version 1.3.16.
 </p>
 <h3>1.3.16 [2021-09-05]</h3>
 <ul>

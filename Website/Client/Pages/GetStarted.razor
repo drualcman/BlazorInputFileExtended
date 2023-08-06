@@ -6,25 +6,44 @@
     You can add from nuget package to your project in one of the followings ways:
 </p>
 <ul>
-    <li>Install using Package Manager Console <var>Install-Package BlazorInputFileExtended</var></li>
-    <li>Install the packege from command line by running <var>dotnet add package BlazorInputFileExtended</var></li>
-    <li>Add reference into the project file <var>&lt;PackageReference Include="BlazorInputFileExtended" Version="1.2.12" /&gt;</var></li>
+    <li>Install using Package Manager Console <var>Install-Package BlazorBasics.InputFileExtended</var></li>
+    <li>Install the packege from command line by running <var>dotnet add package BlazorBasics.InputFileExtended</var></li>
+    <li>Add reference into the project file <var>&lt;PackageReference Include="BlazorBasics.InputFileExtended" Version="3.5.22" /&gt;</var></li>
     <li>Using Visual Nuget Packege Manager
         <hr />
-        <img src="images/BlazorInputFileExtended.JPG" />
+        <img src="images/BlazorBasicsInputFileExtended.JPG" />
     </li>
 </ul>
 <h2>Import the namespace</h2>
-<p>Open the <strong>_Imports.razor</strong> file of your Blazor application and add this line <var>@@using BlazorInputFileExtended</var></p>
+<p>Open the <strong>_Imports.razor</strong> file of your Blazor application and add this lines
+    <ul>
+        <li>
+            <var>@@using BlazorBasics.InputFileExtended</var>
+        </li>
+        <li>
+            <var>@@using BlazorBasics.InputFileExtended.Models</var>
+        </li>
+        <li>
+            <var>@@using BlazorBasics.InputFileExtended.ValueObjects</var>
+        </li> 
+        <li>
+            <var>@@using BlazorBasics.InputFileExtended.Exceptions</var> only if you will use events OnError
+        </li>
+    </ul>
+</p>
+    
 <h2>Use a component</h2>
 <p>
     When you need upload a file add this code in the razor view:
     <pre>
 <code>
-    &lt;InputFileExtended 
-            TargetToPostFile="http://myserver.com/upload"            
-            ButtonShow="true" CleanOnSuccessUpload="true"
-    /&gt;
+    &lt;InputFileComponent OnChange=LoadFiles /&gt;
+@@code{
+    void LoadFiles(FilesUploadEventArgs e)
+    {
+        Console.WriteLine($"{e.Count} files to manage");
+    }
+}
 </code>
 </pre>
 </p>
@@ -35,5 +54,12 @@
 </ul>
 <p>
     This code show a button like this:
-    <InputFileExtended TargetToPostFile="files" ButtonShow="true" CleanOnSuccessUpload="true" />
+    <InputFileComponent OnChange=LoadFiles />
 </p>
+
+@code {
+    void LoadFiles(FilesUploadEventArgs e)
+    {
+        Console.WriteLine($"{e.Count} files to manage");
+    }
+}

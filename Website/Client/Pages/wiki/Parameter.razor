@@ -1,0 +1,167 @@
+﻿@page "/wiki/parameters"
+<h1>Properties</h1>
+<h2>Configure the component</h2>
+<ul>
+    <li><strong>Parameters:</strong>It's a object <var>InputFileParameters</var> with all the options. Defaults not allowed copy and paset, not allowed drag and drop and don't show a upload button.</li>
+</ul>
+<h3>InputFileParameters</h3>
+<pre>
+<code>
+/// &lt;summary&gt;
+/// How to configure the input file
+///
+&lt;/summary&gt;
+public class InputFileParameters
+{
+    /// &lt;summary&gt;
+    /// Enable or dissable copay and pase. Default desabled
+    ///
+    &lt;/summary&gt;
+    public bool AllowPasteFiles { get; set; }
+
+    /// &lt;summary&gt;
+    /// Set if we will accept multiple files uploaded or not
+    ///
+    &lt;/summary&gt;
+    public bool MultiFile { get; set; } = true;
+
+    /// &lt;summary&gt;
+    /// Number maximum of files can be uploaded
+    ///
+    &lt;/summary&gt;
+    public int MaxUploatedFiles { get; set; } = 5;
+
+    /// &lt;summary&gt;
+    /// Maximum file size per each file
+    ///
+    &lt;/summary&gt;
+    public long MaxFileSize { get; set; } = 1536000;
+
+    /// &lt;summary&gt;
+    /// File types accepted. Example: image/*
+    ///
+    &lt;/summary&gt;
+    public string InputFileTypes { get; set; } = string.Empty;
+
+    /// &lt;summary&gt;
+    /// Setup button for upload like a container class
+    ///
+    &lt;/summary&gt;
+    public ButtonOptions ButtonOptions { get; set; } = new();
+
+    /// &lt;summary&gt;
+    /// Setup images options
+    ///
+    &lt;/summary&gt;
+    public PreviewOptions PreviewOptions { get; set; } = new();
+
+    /// &lt;summary&gt;
+    /// Setup drag and drop options
+    ///
+    &lt;/summary&gt;
+    public DragAndDropOptions DragAndDropOptions { get; set; } = new();
+}
+</code>
+</pre>
+<h3>ButtonOptions</h3>
+<pre><code>
+/// &lt;summary&gt;
+/// configuration for teh upload button
+/// &lt;/summary&gt;
+public class ButtonOptions
+{
+    /// &lt;summary&gt;
+    /// Delegate to execute when need to submit the button
+    /// &lt;/summary&gt;
+    public Func&lt;IReadOnlyList&lt;FileUploadContent&gt;, bool&gt; OnSubmit;
+    /// &lt;summary&gt;
+    /// Show the save button
+    /// &lt;/summary&gt;
+    public bool ButtonShow { get; set; } = false;
+    /// &lt;summary&gt;
+    /// CSS button save
+    /// &lt;/summary&gt;
+    public string ButtonCss { get; set; } = "input-file button-upload";
+    /// &lt;summary&gt;
+    /// Button title
+    /// &lt;/summary&gt;
+    public string ButtonTitle { get; set; } = string.Empty;     
+    /// &lt;summary&gt;
+    /// Set the button type. Default is button
+    /// &lt;/summary&gt;
+    public ButtonType ButtonType { get; set; } = ButtonType.Button;  
+
+    /// &lt;summary&gt;
+    /// Determinate the file must be upload after selection
+    /// &lt;/summary&gt;
+    public bool AutoUpload { get; set; }  
+    /// &lt;summary&gt;
+    /// Clean all files after success upload
+    /// &lt;/summary&gt;
+    public bool CleanOnSuccessUpload { get; set; } = true;
+}
+</code>
+</pre>
+<h3>PreviewOptions</h3>
+<pre><code>
+/// &lt;summary&gt;
+/// Image options
+/// &lt;/summary&gt;
+public class PreviewOptions
+{
+    /// &lt;summary&gt;
+    /// Inicate if the file it's a image
+    /// &lt;/summary&gt;
+    public bool IsImage { get; set; } = true;
+    /// &lt;summary&gt;
+    /// If IsImage = true this indicate if need to do a preview
+    /// &lt;/summary&gt;
+    public bool ShowPreview { get; set; } = false;
+    /// &lt;summary&gt;
+    /// CSS class for the preview image wrapper. Default image
+    /// &lt;/summary&gt;
+    public string PreviewWrapperCss { get; set; } = "image-container";
+    /// &lt;summary&gt;
+    /// CSS class for the image file preview
+    /// &lt;/summary&gt;
+    public string ImagePreviewCss { get; set; } = "image";
+}
+</code>
+</pre>
+<h3>DragAndDropOptions</h3>
+<pre><code>
+/// &lt;summary&gt;
+/// configuration for the drag and drop options
+/// &lt;/summary&gt;
+public class DragAndDropOptions
+{
+    /// &lt;summary&gt;
+    /// Enable is can drop files
+    /// &lt;/summary&gt;
+    public bool CanDropFiles { get; set; } = false;
+
+    /// &lt;summary&gt;
+    /// Css when drop a file
+    /// &lt;/summary&gt;
+    public string DropZoneCss { get; set; } = "drop-zone";
+
+    /// &lt;summary&gt;
+    /// Css when drop a file
+    /// &lt;/summary&gt;
+    public string DroppingCss { get; set; } = "drop-zone-drag";
+}
+</code>
+</pre>
+<h2>Formating</h2>
+<ul>
+    <li><strong>ChildContent:</strong><var>RenderFragment&lt;FileUploadContent&gt</var> personalize each file will show in the list.</li>
+    <li><strong>InputContent:</strong><var>RenderFragment</var> personalize the content when will show the input button.</li>
+    <li><strong>SelectContent:</strong><var>RenderFragment&lt;int&gt</var> personalize message when files are selected.</li>
+    <li><strong>ButtonContent:</strong><var>RenderFragment&lt;int&gt</var> personalize upload button.</li>
+</ul>
+<h2>Whe is inside Edit Form</h2>
+<ul>
+    <li><strong>Model</strong> is a cascading parameter <var>EditContext</var> to receive the form data when the component is inside of the form.</li>
+</ul>
+
+<GAdSense />
