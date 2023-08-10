@@ -1,7 +1,7 @@
 ﻿@page "/"
 
 <h1>BlazorBasics InputFileExtended Component</h1>
-<h2>Version 3.5.22</h2>
+<h2>Version 3.5.24</h2>
 <div class="row">
     <div class="col">
         <p>
@@ -81,11 +81,11 @@
         Console.WriteLine($"{e.Count} files to manage");
     }
 
-    bool UploadFles(IReadOnlyList<BlazorBasics.InputFileExtended.Models.FileUploadContent> files)
+    async Task<bool> UploadFles(IReadOnlyList<BlazorBasics.InputFileExtended.Models.FileUploadContent> files)
     {
         // process your upload
         // ...
-        Console.WriteLine($"{files.Count} files to upload");
+        await Console.Out.WriteLineAsync($"{files.Count} files to upload");
         return true;
     }
 

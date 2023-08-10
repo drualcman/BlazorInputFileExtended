@@ -75,9 +75,17 @@ public class InputFileParameters
 public class ButtonOptions
 {
     /// &lt;summary&gt;
-    /// Delegate to execute when need to submit the button
+    /// Delegate to execute some code before submit
     /// &lt;/summary&gt;
-    public Func&lt;IReadOnlyList&lt;FileUploadContent&gt;, Task&lt;bool&gt;&gt; OnSubmit;
+    public Func&lt;IReadOnlyList&lt;FileUploadContent&gt;, Task&gt; OnBeforeSubmit;
+    /// &lt;summary&gt;
+    /// Delegate to execute submit form
+    /// &lt;/summary&gt;
+    public Func&lt;IReadOnlyList&lt;FileUploadContent&gt;, Task&gt; OnSubmit;
+    /// &lt;summary&gt;
+    /// Delegate to execute some code after submit
+    /// &lt;/summary&gt;
+    public Func&lt;bool, Task&gt; OnAfterSubmit;
     /// &lt;summary&gt;
     /// Show the save button
     /// &lt;/summary&gt;

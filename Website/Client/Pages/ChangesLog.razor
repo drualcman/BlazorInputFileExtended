@@ -1,10 +1,12 @@
 ﻿@page "/changes-log"
 <h1>Changes Log</h1>
 <h2>Version 3</h2>
-<h3>3.5.23 </h3>
+<h3>3.5.24  [2023-08-10]</h3>
+<p>Add 2 new Func properties in <var>ButtonOptions</var>. <var>Func&lt;IReadOnlyList&lt;FileUploadContent&gt;, Task&lt;bool&gt;&gt; OnBeforeSubmit</var> and <var>Func&lt;bool, Task&gt; OnAfterSubmit</var>. If user want to do some code before and after submit the form.</p>
+<h3>3.5.23  [2023-08-09]</h3>
 <ul>
     <li>Add parameter to hide show the list of the files.</li>
-    <li>Change Parameter buttonOptions OnSubmit to Func to return a Task bool.</li>
+    <li>Change Parameter buttonOptions OnSubmit to Func to return a <var>Func&lt;IReadOnlyList&lt;FileUploadContent&gt;, Task&lt;bool&gt;&gt;</var>.</li>
     <li>Removed not used injections.</li>
 </ul> 
 <h3>3.5.22 [2023-08-06]</h3>

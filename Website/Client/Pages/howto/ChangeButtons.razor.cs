@@ -27,10 +27,10 @@ public partial class ChangeButtons
         ButtonParams.ButtonOptions.OnSubmit = UploadFles;
     }
            
-    bool UploadFles(IReadOnlyList<FileUploadContent> files)
+    async Task<bool> UploadFles(IReadOnlyList<FileUploadContent> files)
     {           
         Messages = $"Image/s Uploaded {files.Count}";
-        InvokeAsync(StateHasChanged);
+        await InvokeAsync(StateHasChanged);
         return true;
     }
 }
