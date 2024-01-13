@@ -65,7 +65,7 @@ Also have a InputFileHandler can be inherit for extent and add more functions li
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.20" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.26" />
   </ItemGroup>
 
   <ItemGroup>

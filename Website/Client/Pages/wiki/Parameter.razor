@@ -45,7 +45,13 @@ public class InputFileParameters
     /// File types accepted. Example: image/*
     ///
     &lt;/summary&gt;
-    public string InputFileTypes { get; set; } = string.Empty;
+    public string InputFileTypes { get; set; } = string.Empty;    
+
+    /// &lt;summary&gt;
+    /// CSS for the input file
+    ///
+    &lt;/summary&gt;
+    public string InputFileCss { get; set; } = string.Empty;   
 
     /// &lt;summary&gt;
     /// Setup button for upload like a container class
@@ -136,7 +142,12 @@ public class PreviewOptions
     /// &lt;summary&gt;
     /// CSS class for the image file preview
     /// &lt;/summary&gt;
-    public string ImagePreviewCss { get; set; } = "image";
+    public string ImagePreviewCss { get; set; } = "image"; 
+    /// &lt;summary&gt;
+    /// Enable can delete if not eventcallback set
+    ///
+    &lt;/summary&gt;
+    public bool CanDeleteIfNotCallBack { get; set; }
 }
 </code>
 </pre>

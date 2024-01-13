@@ -1,6 +1,17 @@
 ﻿@page "/changes-log"
 <h1>Changes Log</h1>
 <h2>Version 3</h2>
+<h3>3.5.26  [2023-08-15]</h3>
+<ul>
+    <li>Create new component FilePreviewComponent to separate the logic when it's a preview image or only list image.</li>
+    <li>Fixed don't remove error message after fix the issue and or selecte a new file.</li>
+    <li>Add new property to set the Inputfile CSS</li>
+    <li>Add new property to set can delete if no event callback have set</li>
+    <li>Changes how to manage the delete actions and the list of the files</li>
+</ul>
+<p>Update nugets and NET versions.</p>
+<h3>3.5.25  [2023-08-15]</h3>
+<p>Update nugets and NET versions.</p>
 <h3>3.5.24  [2023-08-10]</h3>
 <p>Add 2 new Func properties in <var>ButtonOptions</var>. <var>Func&lt;IReadOnlyList&lt;FileUploadContent&gt;, Task&lt;bool&gt;&gt; OnBeforeSubmit</var> and <var>Func&lt;bool, Task&gt; OnAfterSubmit</var>. If user want to do some code before and after submit the form.</p>
 <h3>3.5.23  [2023-08-09]</h3>

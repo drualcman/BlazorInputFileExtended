@@ -9,13 +9,15 @@
     <li>Install using Package Manager Console <var>Install-Package BlazorBasics.InputFileExtended</var></li>
     <li>Install the packege from command line by running <var>dotnet add package BlazorBasics.InputFileExtended</var></li>
     <li>Add reference into the project file <var>&lt;PackageReference Include="BlazorBasics.InputFileExtended" Version="3.5.22" /&gt;</var></li>
-    <li>Using Visual Nuget Packege Manager
+    <li>
+        Using Visual Nuget Packege Manager
         <hr />
         <img src="images/BlazorBasicsInputFileExtended.JPG" />
     </li>
 </ul>
 <h2>Import the namespace</h2>
-<p>Open the <strong>_Imports.razor</strong> file of your Blazor application and add this lines
+<p>
+    Open the <strong>_Imports.razor</strong> file of your Blazor application and add this lines
     <ul>
         <li>
             <var>@@using BlazorBasics.InputFileExtended</var>
@@ -25,13 +27,13 @@
         </li>
         <li>
             <var>@@using BlazorBasics.InputFileExtended.ValueObjects</var>
-        </li> 
+        </li>
         <li>
             <var>@@using BlazorBasics.InputFileExtended.Exceptions</var> only if you will use events OnError
         </li>
     </ul>
 </p>
-    
+
 <h2>Use a component</h2>
 <p>
     When you need upload a file add this code in the razor view:
@@ -50,7 +52,7 @@
 <ul>
     <li><var>TargetToPostFile</var> is the end point where the form must be send the file.</li>
     <li><var>ButtonShow</var> display the button to upload.</li>
-    <li><var>CleanOnSuccessUpload</var> remove the file from the view after upload.</li>    
+    <li><var>CleanOnSuccessUpload</var> remove the file from the view after upload.</li>
 </ul>
 <p>
     This code show a button like this:
