@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>2.4.22</Version>
+    <Version>2.4.23</Version>
     <Authors>Sergi Ortiz Gomez</Authors>
     <Company>DrUalcman</Company>
     <Description>Component Blazor extend InputFile with drag and drop, copy and paste and all the necessary to upload files.
@@ -13,9 +13,10 @@ Also have a InputFileHandler can be inherit for extent and add more functions li
     <PackageLicenseFile>License.txt</PackageLicenseFile>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/drualcman/BlazorInputFileExtended</RepositoryUrl>
-    <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/</PackageProjectUrl>
+    <PackageProjectUrl>https://blazorinputfileextended.community-mall.com/version2/</PackageProjectUrl>
     <PackageTags>Components;Blazor;WebAssembly;InputFile;FileUpload;BlazorFileUpload;drag and drop;drop files</PackageTags>
     <PackageReleaseNotes>
+		Version 2.4.23: Update license and depencies.
 		Version 2.4.22: Removed injection of navigation manager and use a helpr to get the correct path.
 		Version 2.4.21: Implement IAsyncDisposable. Add Enumeral for the event actions. Use the enumeral in al events call back. Fire HttpClient dispose when object are disposed.
 		Version 2.4.20: Update Microsoft.AspNetCore.Components.Web to version 6.0.20 and removed dependency from Microsoft.AspNetCore.JsonPatch to version.
@@ -32,8 +33,6 @@ Also have a InputFileHandler can be inherit for extent and add more functions li
     <RepositoryType>Git</RepositoryType>
     <PackageIcon>icon-512.png</PackageIcon>
     <PackageIconUrl />
-    <AssemblyVersion>2.4.22.0</AssemblyVersion>
-    <FileVersion>2.4.22.0</FileVersion>
     <AssemblyName>BlazorInputFileExtended</AssemblyName>
     <RootNamespace>BlazorInputFileExtended</RootNamespace>
     <PackageId>BlazorInputFileExtended</PackageId>
@@ -65,7 +64,7 @@ Also have a InputFileHandler can be inherit for extent and add more functions li
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.26" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.36" />
   </ItemGroup>
 
   <ItemGroup>
