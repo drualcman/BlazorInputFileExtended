@@ -17,59 +17,56 @@ public class InputFileParameters
     /// Enable or dissable show file list. Default enabled
     /// &lt;/summary&gt;
     public bool ShowFileList { get; set; } = true;
+
     /// &lt;summary&gt;
     /// Enable or dissable copay and pase. Default desabled
-    ///
-    &lt;/summary&gt;
+    /// &lt;/summary&gt;
     public bool AllowPasteFiles { get; set; }
 
     /// &lt;summary&gt;
     /// Set if we will accept multiple files uploaded or not
-    ///
-    &lt;/summary&gt;
+    /// &lt;/summary&gt;
     public bool MultiFile { get; set; } = true;
 
     /// &lt;summary&gt;
     /// Number maximum of files can be uploaded
-    ///
-    &lt;/summary&gt;
+    /// &lt;/summary&gt;
     public int MaxUploatedFiles { get; set; } = 5;
 
     /// &lt;summary&gt;
     /// Maximum file size per each file
-    ///
-    &lt;/summary&gt;
+    /// &lt;/summary&gt;
     public long MaxFileSize { get; set; } = 1536000;
 
     /// &lt;summary&gt;
     /// File types accepted. Example: image/*
-    ///
-    &lt;/summary&gt;
+    /// &lt;/summary&gt;
     public string InputFileTypes { get; set; } = string.Empty;    
 
     /// &lt;summary&gt;
     /// CSS for the input file
-    ///
-    &lt;/summary&gt;
+    /// &lt;/summary&gt;
     public string InputFileCss { get; set; } = string.Empty;   
 
     /// &lt;summary&gt;
     /// Setup button for upload like a container class
-    ///
-    &lt;/summary&gt;
+    /// &lt;/summary&gt;
     public ButtonOptions ButtonOptions { get; set; } = new();
 
     /// &lt;summary&gt;
     /// Setup images options
-    ///
-    &lt;/summary&gt;
+    /// &lt;/summary&gt;
     public PreviewOptions PreviewOptions { get; set; } = new();
 
     /// &lt;summary&gt;
     /// Setup drag and drop options
-    ///
-    &lt;/summary&gt;
-    public DragAndDropOptions DragAndDropOptions { get; set; } = new();
+    /// &lt;/summary&gt;
+    public DragAndDropOptions DragAndDropOptions { get; set; } = new();  
+                     
+    /// &lt;summary&gt;
+    /// Gets or sets a value indicating whether streaming is enabled for data transfers. 
+    /// &lt;/summary&gt;
+    public bool EnableStreaming { get; set; } = false;
 }
 </code>
 </pre>
