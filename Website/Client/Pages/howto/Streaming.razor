@@ -1,0 +1,65 @@
+﻿@page "/how-to-use/streaming"
+<h1>How to use</h1>
+<h2>Streaming</h2>
+
+<p>Add <b>id</b> to the component to eacy manage form your own JAVASCRIPT to upload with streaming.</p>
+<InputFileComponent OnChange=HandleFileSelection Parameters="ButtonParams" id="fileInput">
+    <SelectContent>
+        <p>Add more</p>
+        @foreach (var item in context)
+        {
+            <p>@item.Name</p>
+        }
+    </SelectContent>
+</InputFileComponent>
+<button class="btn btn-primary" type="button">
+    Start upload
+</button>
+<pre>
+<code>
+&lt;InputFileComponent OnChange=HandleFileSelection Parameters="ButtonParams" id="fileInput"&gt
+&lt;SelectContent &gt
+&lt;span&gtAdd more&lt;/span&gt
+        @@foreach (var item in context)
+        {
+    &lt;span&gt@item.Name&lt;/span&gt            
+        }
+    &lt;/SelectContent&gt
+&lt;/InputFileComponent&gt
+&lt;button class="btn btn-primary" type="button"&gt
+    Start upload
+&lt;/button&gt
+
+@@code {
+    InputFileParameters ButtonParams; protected override void OnInitialized()
+    {
+        ButtonParams = new InputFileParameters()
+        {
+            EnableStreaming = true,
+            AllowPasteFiles = false,
+            MaxFileSize = 2L * 1024 * 1024, // 2 MB
+            MaxUploatedFiles = 1,
+            ShowFileList = false,
+            MultiFile = false,
+            InputFileTypes = ".mp4,.webm,.ogg,.mov,.mkv",
+            ButtonOptions = new ButtonOptions
+            {
+                ButtonShow = false,
+                CleanOnSuccessUpload = true
+            },
+            PreviewOptions = new PreviewOptions
+            {
+                ShowPreview = false,
+                IsImage = false
+            }
+        };
+    }
+
+    private void HandleFileSelection(BlazorBasics.InputFileExtended.Models.FilesUploadEventArgs e)
+    {
+        Console.WriteLine($"HandleFileSelection called {e.Action}");
+    }
+}
+</code>
+        </pre>
+

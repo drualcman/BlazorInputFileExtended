@@ -1,0 +1,31 @@
+﻿@page "/how-to-use/full-example"
+<h1>How to use</h1>
+<h2>Full example</h2>
+<InputFileComponent >
+    <SelectContent>
+        <p>Add more</p>
+    </SelectContent>
+    <InputContent>
+        <p>Add</p>
+    </InputContent>
+    <ChildContent>
+        <img src="@context.ImageDataUrl" alt="@context.Name" />
+    </ChildContent>
+</InputFileComponent>
+     <pre>
+<code>
+&lt;InputFileComponent &gt
+&lt;SelectContent&gt
+&lt;p&gtAdd more&lt;/p&gt
+    &lt;/SelectContent&gt
+&lt;InputContent&gt
+&lt;p&gtAdd&lt;/p&gt
+    &lt;/InputContent&gt
+&lt;ChildContent&gt
+&lt;img src="@@context.ImageDataUrl" alt="@@context.Name" /&gt
+    &lt;/ChildContent&gt
+&lt;/InputFileComponent&gt
+
+</code>
+</pre>
+
